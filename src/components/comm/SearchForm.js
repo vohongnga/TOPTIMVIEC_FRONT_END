@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import '../style.css';
+import './style.css';
+
 class SearchForm extends Component{
   render(){
       return (
@@ -8,11 +9,12 @@ class SearchForm extends Component{
                <div className="inline-block">
                     <form className="form-inline">
                         <div className="form-group">
-                            <input className="fa fa-search mr-2" type="text" name="search" placeholder="&#xf002; Search..." />
+                            
+                            <input className="fa fa-search mr-2" type="text" name="search" id ="tag1" placeholder="&#xf002; Search..." />
                         </div>
                         <div className="form-group ">
                             <select name="" id="">
-                                <option value="0">Địa điểm</option>
+                                <option value="0">Địa điểm</option>                      
                             </select>
                         </div>
                         <div className="form-group ">

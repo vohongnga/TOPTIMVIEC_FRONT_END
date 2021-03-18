@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
-import Header from "./components/Header";
-import SearchForm from "./components/SearchForm";
-import JOB_ITEM from "./components/JOB_ITEM";
-import Advertisements from "./components/Advertisements";
+import Index from './components/Index';
+import Header from './components/nhatuyendung/Index/Index';
+import Footer from './components/comm/Footer';
 import './App.css';
+import { BrowserRouter as Router,Route } from 'react-router-dom';
+
 class App extends Component{
   render(){
       return (
-          <div>
-            <Header />
-            <SearchForm />
-            <div class="container-fluid">
-                <div class="row">
-                    <JOB_ITEM />
-                    <Advertisements />
-                </div>
-            </div>    
-        </div>
+            <Router>
+                <Route path="/" exact component={Index} />
+                <Route path="/test" component={Footer} />
+                <Route path="/nha-tuyen-dung" component={Header} />
+            </Router>
       );
   }
 }
