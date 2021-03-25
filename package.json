@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.8.1",
     "bloodhound-js": "^1.2.3",
     "jquery": "^3.6.0",
+    "bootstrap": "^4.6.0",
     "react": "^17.0.1",
     "react-dnd": "^8.0.0",
     "react-dnd-html5-backend": "^8.0.0",

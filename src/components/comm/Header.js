@@ -25,7 +25,7 @@ class Header extends Component{
             </ul>
             <ul className="nav navbar-nav navbar-right">
                 <li><a className="btn btn-outline-success"><i className="fa fa-sign-in-alt" aria-hidden="true"></i>Đăng nhập</a></li>&nbsp;&nbsp;
-                <li><a href="" className="btn btn-outline-success"><i className="fa fa-user" aria-hidden="true"></i>Đăng ký</a></li>
+                <li><a href="/register" className="btn btn-outline-success"><i className="fa fa-user" aria-hidden="true"></i>Đăng ký</a></li>
                
             </ul>
         </div>
