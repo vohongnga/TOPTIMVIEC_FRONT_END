@@ -5,6 +5,7 @@ import './style.css';
 class Header extends Component{
   render(){
       return ( 
+          <div>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
             <a className="navbar-brand" href="#"><img src="https://res.cloudinary.com/pikann22/image/upload/w_150,c_scale/v1613830816/toptimviec/LogoMakr-48tDoh_uhomu6.png"/></a>
             <button className="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
@@ -17,7 +18,7 @@ class Header extends Component{
                         <Link to ="/test">Trang chủ</Link>
                     </li>&nbsp;&nbsp;
                     <li className="nav-item">
-                        <Link to="/header">Danh sách</Link>
+                    <Link to ="/list">Danh sách</Link>
                     </li>&nbsp;&nbsp;
                     <li className="nav-item">
                         <Link to="#">Quản lý tin</Link>
@@ -38,6 +39,9 @@ class Header extends Component{
                 </ul>
             </div>
         </nav>
+        
+
+    </div>
       );
   }
 }

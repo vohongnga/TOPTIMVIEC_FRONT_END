@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Header from "../comm/Header";
-import SearchForm from "../comm/SearchForm";
-import Footer from "../comm/Footer";
-import CandidateList from "./CandidateList";
+import Header from './../../components/nhatuyendung/comm/Header';
+import Footer from './../../components/nhatuyendung/comm/Footer'
+import SearchForm from './../../components/nhatuyendung/comm/SearchForm';
+import CandidateList from './../../components/nhatuyendung/Index/CandidateList';
 
-class Index extends Component{
+
+class IndexPage extends Component{
   render(){
       return (
         <div>
@@ -20,6 +21,6 @@ class Index extends Component{
       );
   }
 }
-export default Index;
+export default IndexPage;
 
 
