@@ -40,7 +40,7 @@ class Login extends Component {
                     <div className="submit">
                      <button type="button" className="btn btn-success center">Đăng nhập</button>
                     </div>
-                    <div className="register center">
+                    <div className="register center-text">
                       <h5>Bạn chưa có tài khoản? <a>Đăng ký</a></h5>
                     </div>
                     
