@@ -24,8 +24,8 @@ class Header extends Component{
                 </li>&nbsp;&nbsp;
             </ul>
             <ul className="nav navbar-nav navbar-right">
-                <li><a className="btn btn-outline-success"><i className="fa fa-sign-in-alt" aria-hidden="true"></i>Đăng nhập</a></li>&nbsp;&nbsp;
-                <li><a href="/register" className="btn btn-outline-success"><i className="fa fa-user" aria-hidden="true"></i>Đăng ký</a></li>
+                <li className="btn btn-outline-success "><Link to="/dang-nhap" ><i className="fa fa-sign-in-alt" aria-hidden="true"></i>Đăng nhập</Link></li>&nbsp;&nbsp;
+                <li className="btn btn-outline-success "><Link to="/dang-ky" ><i className="fa fa-user" aria-hidden="true"></i>Đăng ký</Link></li>
                
             </ul>
         </div>

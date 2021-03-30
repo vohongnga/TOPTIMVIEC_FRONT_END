@@ -130,11 +130,20 @@ span.icon2 {
 button{
     margin-top: 2.2em;
 }
-/*register NTD*/
-.content{
-    margin: auto 500px;
-    
-   
+
+
+
+/*register NTD_NTV*/
+.content {
+    margin: 20px 500px auto 500px; 
+    line-height: 37px;
+    background-color: white;
+    text-align: left;
+ 
+}
+.h1 {
+    font-size: 30px;
+    color: #4ca456;
 }
 
 
