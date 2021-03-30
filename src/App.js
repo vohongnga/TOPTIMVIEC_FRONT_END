@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import Register_NTD from './components/nhatuyendung/Register_NTD';
-import Register_NTV from './components/Register_NTV/Register_NTV';
+import Register_NTV from './components/nguoitimviec/Register_NTV';
 import Header from './components/comm/Header';
 
 class App extends Component {
@@ -20,18 +20,18 @@ class App extends Component {
           <Route path="/test" component={Footer} />
           <Route path="/nha-tuyen-dung" component={Employer} />
           <Route path="/danh-sach" component={List} />
-          <Route path="/login">
+          <Route path="/dang-nhap">
             <Login />
           </Route>
-          <Route path="/register" exact>
+          <Route path="/dang-ky" exact>
             <Header />
             <Register />
           </Route>
-          <Route path="/register/NTD">
+          <Route path="/dang-ky/nha-tuyen-dung">
             <Header />
             <Register_NTD />
           </Route>
-          <Route path="/register/NTV">
+          <Route path="/dang-ky/nguoi-tim-viec">
             <Header />
             <Register_NTV />
           </Route>
