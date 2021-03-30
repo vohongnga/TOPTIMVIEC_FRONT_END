@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
-import './style.css';
+import '../../style.css';
 
 class SearchForm extends Component{
   render(){
       return (
-         
-        <div className="jumbotron">
-               <div className="inline-block">
-                    <form className="form-inline">
-                        <div className="form-group">
-                            
-                            <input className="fa fa-search mr-2" type="text" name="search" id ="tag1" placeholder="&#xf002; Search..." />
-                        </div>
-                        <div className="form-group ">
-                            <select name="" id="">
-                                <option value="0">Địa điểm</option>                      
-                            </select>
-                        </div>
-                        <div className="form-group ">
-                            <button className="btn btn-success ml-2" type="submit">Search</button>
-                        </div>
-                    </form>
-               </div>           
+        <div className="dark index-search-div">
+            <div className="col center center-vertical index-search-form">
+                <div className="form-row">
+                    <div className="col col-sm-8">
+                        <input type="text" className="form-control form-control-lg" placeholder="Tên công việc, vị trí..."></input>
+                    </div>
+                    <div className="col col-sm-2">
+                        <select className="form-control form-control-lg">
+                            <option defaultValue>Địa điểm</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div className="col col-sm-2">
+                        <button type="submit" className="btn btn-success btn-lg btn-block">Tìm kiếm</button>
+                    </div>
+                </div>
+            </div>
         </div>
        
       );
