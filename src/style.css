@@ -133,8 +133,11 @@ span.icon2 {
 .h1 {
     font-size: 30px;
     color: #4ca456;
+    text-align: center;
 }
-
+.mt30 {
+    margin-top: 30px;
+}
 
 /*index NTD*/
 

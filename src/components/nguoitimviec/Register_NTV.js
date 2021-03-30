@@ -36,7 +36,7 @@ class Register_NTV extends Component {
                         <input type="text" name="" id="" className="form-control" placeholder="" aria-describedby="helpId" />
                     </div>
                     <div className="right-w3l">
-                        <button type="button" className="btn btn-success center">Đăng ký</button>
+                        <button type="button" className="btn btn-success center mt30">Đăng ký</button>
                     </div>
                 </form>
 

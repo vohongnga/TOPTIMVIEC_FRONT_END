@@ -28,7 +28,7 @@ class Register_NTD extends Component {
                         
                     </div>
                     <div className="right-w3l">
-                     <button type="button" className="btn btn-success center">Đăng ký</button>
+                     <button type="button" className="btn btn-success center mt30">Đăng ký</button>
                     </div>
                </form>
                
