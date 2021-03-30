@@ -5,7 +5,7 @@ class Job_item extends Component {
         return (
             <div className="row rounded border-left-0 border-right-0 border-top-0">
                 <div className="col-md-2 logo">
-                    <img src="https://res.cloudinary.com/pikann22/image/upload/w_60,c_scale/v1613642165/toptimviec/LogoMakr-87TXng_pnsj0a.png" />
+                    <img src="https://res.cloudinary.com/pikann22/image/upload/w_100,c_scale/v1613642165/toptimviec/LogoMakr-87TXng_pnsj0a.png" />
                 </div>
 
                 <div className="col-md-8 detail">
