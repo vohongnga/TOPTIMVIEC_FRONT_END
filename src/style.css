@@ -29,8 +29,10 @@
     margin:auto ;
     padding-top: 2em;
 }
-.center {
+.center-text {
     text-align: center;
+}
+.center {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -113,22 +115,9 @@ span.icon2 {
     
 }
 /*register*/
-.h350 {
-    height: 350px;
-}
-
-.w300 {
-    width: 300px;
-}
-
-.mt2 {
-    margin-top: 2em;
-}
-.ml {
-    margin-left: 200px;
-}
-button{
-    margin-top: 2.2em;
+.img-register {
+    height: 250px;
+    width: 250px;
 }
 
 

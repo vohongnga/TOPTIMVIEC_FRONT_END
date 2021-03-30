@@ -1,22 +1,29 @@
 import React, { Component } from "react";
-import {Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../style.css';
 
 class Register extends Component {
     render() {
-        document.body.style.backgroundColor = "#394141";
+        document.body.style.backgroundColor = "#e9e9e9";
         return (
-            
-           <div className="row">
-                <div className="col-sm-6 ">
-                    <img className="h350 w300 mt2 center" src="https://res.cloudinary.com/pikann22/image/upload/v1617029729/toptimviec/LogoMakr-1n1BGL_b5ptql.png"/> <br/>
-                    <button type="button" className="btn btn-success center"><Link to="/dang-ky/nguoi-tim-viec">Đăng ký Người tìm việc</Link></button>
+            <div className="col-sm-8 center">
+                <div className="row">
+                    <div className="col-sm-5 card mt-sm-5">
+                        <img src="https://res.cloudinary.com/pikann22/image/upload/v1617098321/toptimviec/Pointofsale_jobs_f78ajf.jpg" className="mt-sm-3"></img>
+                        <div className="card-body">
+                            <h5 className="card-title">Người tìm việc</h5>
+                            <a href="#" className="btn btn-success">Đăng ký Người tìm việc</a>
+                        </div>
+                    </div>
+                    <div className="col-sm-5 offset-sm-2 card mt-sm-5">
+                        <img src="https://res.cloudinary.com/pikann22/image/upload/v1617098321/toptimviec/Best-Applicant-Tracking-Systems-Workable-vs-BreezyHR-vs-ApplicantPro_zam89c.png" className="mt-sm-3"></img>
+                        <div className="card-body">
+                            <h5 className="card-title">Nhà tuyển dụng</h5>
+                            <a href="#" className="btn btn-success">Đăng ký Nhà tuyển dụng</a>
+                        </div>
+                    </div>
                 </div>
-                <div className="col-sm-6">
-                    <img className="h350 w300 mt2 center" src="https://res.cloudinary.com/pikann22/image/upload/v1617029730/toptimviec/LogoMakr-4DVhex_ssojgd.png"/><br/>
-                    <button type="button" className="btn btn-success center"><Link to="/dang-ky/nha-tuyen-dung">Đăng ký Nhà tuyển dụng</Link></button>
-                </div>
-           </div>
+            </div>
         );
 
     }
