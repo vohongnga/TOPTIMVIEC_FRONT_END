@@ -3,7 +3,7 @@ import '../../style.css';
 class Advertisements extends Component {
     render() {
         return (
-            <div className="col-md-4">
+            <div className="col-md-4 d-none d-sm-none d-md-block d-lg-block">
                 <div className="container">
                     <div className="card">
                         <div className="card-body">

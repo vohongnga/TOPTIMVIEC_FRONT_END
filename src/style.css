@@ -139,11 +139,9 @@ span.icon2 {
 
 /*register NTD_NTV*/
 .content {
-    margin: 20px 500px auto 500px; 
     line-height: 37px;
     background-color: white;
     text-align: left;
- 
 }
 .h1 {
     font-size: 30px;
@@ -185,7 +183,6 @@ span.icon2 {
 /* JOB ITEM */
 .job-item .row{
     margin: 0;
-    height: 120px;
     border: 1px solid #e9e9e9;
 }
 .job-item .row .detail p{

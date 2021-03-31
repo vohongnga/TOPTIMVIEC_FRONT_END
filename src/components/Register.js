@@ -6,7 +6,7 @@ class Register extends Component {
     render() {
         document.body.style.backgroundColor = "#394141";
         return (
-            <div className="col-sm-8 center center-vertical-screen">
+            <div className="col-sm-8 center mt-sm-5">
                 <div className="row">
                     <div className="col-sm-5 card">
                         <img src="https://res.cloudinary.com/pikann22/image/upload/v1617098321/toptimviec/Pointofsale_jobs_f78ajf.jpg" className="mt-sm-3"></img>
