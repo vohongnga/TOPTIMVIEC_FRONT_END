@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Register_NTV extends Component {
     render() {
-        document.body.style.backgroundColor = "#e9e9e9";
+        document.body.style.backgroundColor = "#394141";
         return (
             
             <div className="content  jumbotron">

@@ -11,7 +11,7 @@ class Index extends Component{
         document.body.style.backgroundColor = "#e9e9e9";
         return (
             <div>
-                <Header />
+                <Header hide={true} />
                 <SearchForm />
                 <div className="col col-sm-10 center mt-sm-4">
                     <div className="row">

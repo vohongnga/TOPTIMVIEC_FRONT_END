@@ -4,8 +4,8 @@ import '../../style.css';
 class SearchForm extends Component{
   render(){
       return (
-        <div className="dark index-search-div">
-            <div className="col center center-vertical index-search-form">
+        <div className="index-search-div">
+            <div className="col center center-vertical index-search-form rounded">
                 <div className="form-row">
                     <div className="col col-sm-8">
                         <input type="text" className="form-control form-control-lg" placeholder="Tên công việc, vị trí..."></input>
@@ -19,7 +19,7 @@ class SearchForm extends Component{
                         </select>
                     </div>
                     <div className="col col-sm-2">
-                        <button type="submit" className="btn btn-success btn-lg btn-block">Tìm kiếm</button>
+                        <button type="submit" className="btn btn-success btn-lg btn-block word-wrap text-truncate">Tìm kiếm</button>
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Register_NTD extends Component {
     render() {
-        document.body.style.backgroundColor = "#e9e9e9";
+        document.body.style.backgroundColor = "#394141";
         return (
             <div className="content jumbotron">
                 <h1 className="center h1">Đăng ký tài khoản</h1>

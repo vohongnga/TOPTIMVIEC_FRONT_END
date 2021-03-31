@@ -2,37 +2,49 @@ import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import Test from '../nhatuyendung/Test';
-class Header extends Component{
-  render(){
-      return ( 
-        <nav className="navbar navbar-expand-sm navbar dark sticky-top">
-        <Link className="navbar-brand" to="/"><img src="https://res.cloudinary.com/pikann22/image/upload/w_150,c_scale/v1613830816/toptimviec/LogoMakr-48tDoh_uhomu6.png"/></Link>
-        <button className="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="collapsibleNavId">
-            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li className="nav-item active">                   
-                    <Link className="nounderline" to ="/">Trang chủ</Link>
-                </li>&nbsp;&nbsp;
-                <li className="nav-item">
-                    <Link to="/mau-cv">Mẫu CV</Link>
-                </li>&nbsp;&nbsp;
-                <li className="nav-item">
-                    <Link to="#">Công ty</Link>
-                </li>&nbsp;&nbsp;
-            </ul>
-            <ul className="nav navbar-nav navbar-right">
-                <Link className="btn btn-outline-success "  to="/dang-nhap">Đăng nhập</Link>;
-                <Link className="btn btn-success "  to="/dang-ky">Đăng ký</Link>;
-            </ul>
-        </div>
-    </nav>
-    
- 
-   
-      );
-  }
+class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {"navbar": true};
+    }
+    changeNavbarBg = () => {
+        if (window.scrollY >= 100) {
+            this.setState({"navbar": false})
+        }
+        else {
+            this.setState({"navbar": true})
+        }
+    }
+    componentDidMount() {
+        window.addEventListener('scroll', this.changeNavbarBg);
+    }
+    render() {
+        return (
+            <header className={this.props.hide ? this.state.navbar ? "d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-1 fixed-top scrolling-navbar": "d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-1 fixed-top scrolling-navbar dark" : "d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-1 scrolling-navbar dark"}>
+                <Link className="navbar-brand d-flex align-items-center col-3 mb-md-0 text-dark text-decoration-none" to="/"><img src="https://res.cloudinary.com/pikann22/image/upload/w_150,c_scale/v1613830816/toptimviec/LogoMakr-48tDoh_uhomu6.png" /></Link>
+
+                <ul className="nav col-12 col-md-auto justify-content-center mb-md-0">
+                    <li>
+                        <Link className="nav-link px-2 link-secondary" to="/">Trang chủ</Link>
+                    </li>
+                    <li>
+                        <Link to="/mau-cv" className="nav-link px-2 link-dark">Mẫu CV</Link>
+                    </li>
+                    <li>
+                        <Link to="#" className="nav-link px-2 link-dark">Công ty</Link>
+                    </li>
+                </ul>
+
+                <div className="col-3 text-end">
+                    <div className="float-right">
+                        <Link className="btn btn-outline-success text-success mr-1 text-truncate"  to="/dang-nhap">Đăng nhập</Link>
+                        <Link className="btn btn-success text-truncate"  to="/dang-ky">Đăng ký</Link>
+                    </div>
+                </div>
+            </header>
+
+
+        );
+    }
 }
 export default Header;

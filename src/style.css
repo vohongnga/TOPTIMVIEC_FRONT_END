@@ -2,7 +2,6 @@
 .dark {
     background-color: #394141;
 }
-
 /* login */
 .login .header {
     padding-top: 5em;
@@ -43,7 +42,12 @@
     margin-right: auto;
 }
 .center-vertical {
-    top: 45%;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.center-vertical-screen {
+    top: 40vh;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
@@ -122,15 +126,16 @@ span.icon2 {
 
 .register{
     margin-top: 1.8em;
-    
 }
+
 /*register*/
 .img-register {
     height: 250px;
     width: 250px;
 }
-
-
+.full-height {
+    height: 100vh;
+}
 
 /*register NTD_NTV*/
 .content {
@@ -153,10 +158,17 @@ span.icon2 {
 
 /* JOB ITEM */
 .index-search-div {
-    height: 70vh;
+    height: 90vh;
+    background: linear-gradient(0deg, #394141BB, #394141BB), url("./image/GettyImages-1190049314_443497.jpg") no-repeat center center;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
 }
 .index-search-form {
-    width: 85%;
+    width: 80%;
+    background-color: #394141A0;
+    padding: 20px;
 }
 .backg{
     width: 100%;
