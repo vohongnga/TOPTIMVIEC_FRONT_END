@@ -8,12 +8,13 @@ import Advertisements from "./comm/Advertisements";
 import { BrowserRouter as Router, Switch,Route } from 'react-router-dom';
 class Index extends Component{
     render(){
-        document.body.style.backgroundColor = "#e9e9e9";
+        document.body.style.backgroundColor = "#eceff1";
         return (
             <div>
                 <Header hide={true} />
                 <SearchForm />
-                <div className="col col-sm-10 center mt-sm-4">
+                <h2 className="h2 text-center mt-5">- DANH SÁCH CÔNG VIỆC -</h2>
+                <div className="col col-sm-10 center mt-5">
                     <div className="row">
                         <Job_list />
                         <Advertisements />

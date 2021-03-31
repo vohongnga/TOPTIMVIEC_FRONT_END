@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import "../style.css"
+import logo_img from "../image/LogoMakr-87TXng_pnsj0a.png"
 
 class Login extends Component {
 
@@ -9,7 +10,7 @@ class Login extends Component {
         return (
             <div className="login">
                 <div className="header">
-                    <Link to="/"><img className="center" src="https://res.cloudinary.com/pikann22/image/upload/v1613642165/toptimviec/LogoMakr-87TXng_pnsj0a.png" height='250px' width='250px' /></Link>
+                    <Link to="/"><img className="center" src={logo_img} height='250px' width='250px' /></Link>
                 </div>
                 <div className="container">
                     <div className="login-form">
