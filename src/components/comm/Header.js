@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link, NavLink } from "react-router-dom";
 import Test from '../nhatuyendung/Test';
 import logo_img from "../../image/LogoMakr-48tDoh_uhomu6.png";
 class Header extends Component {
@@ -32,13 +32,13 @@ class Header extends Component {
                 <div className="col-sm-9 collapse navbar-collapse row" id="collapsibleNavbar">
                     <ul className="navbar-nav mx-auto justify-content-center mb-md-0">
                         <li>
-                            <Link className="nav-link px-2 active" to="/">Trang chủ</Link>
+                            <NavLink activeClassName="active" exact className="nav-link px-2" to="/">Trang chủ</NavLink>
                         </li>
                         <li>
-                            <Link to="/mau-cv" className="nav-link px-2">Mẫu CV</Link>
+                            <NavLink activeClassName="active" exact to="/mau-cv" className="nav-link px-2">Mẫu CV</NavLink>
                         </li>
                         <li>
-                            <Link to="#" className="nav-link px-2">Công ty</Link>
+                            <NavLink activeClassName="active" exact to="/cong-ty" className="nav-link px-2">Công ty</NavLink>
                         </li>
                     </ul>
 
