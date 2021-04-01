@@ -14,7 +14,7 @@ class Index extends Component{
                 <Header hide={true} />
                 <SearchForm />
                 <h2 className="h2 text-center mt-5">- DANH SÁCH CÔNG VIỆC -</h2>
-                <div className="col col-sm-10 center mt-5">
+                <div className="col col-md-10 center mt-5">
                     <div className="row">
                         <Job_list />
                         <Advertisements />

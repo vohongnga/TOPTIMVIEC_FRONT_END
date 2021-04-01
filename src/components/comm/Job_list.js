@@ -5,7 +5,7 @@ import Job_item from './Job_item';
 class Job_list extends Component {
     render() {
         return (
-            <div className="col-md-8 mt-3">
+            <div className="col-lg-8 mt-3">
                 <div className="job-item">
                     <Job_item/>
                     <Job_item/>
