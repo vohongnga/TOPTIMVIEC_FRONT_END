@@ -4,7 +4,7 @@ class Advertisements extends Component {
     render() {
         return (
             <div className="col-md-4 d-none d-sm-none d-md-block d-lg-block mt-3">
-                <div className="container">
+                <div className="container sticky-top advertisement">
                     <div className="card">
                         <div className="card-body">
                             <h4 className="card-title text-center">Quảng cáo</h4>
