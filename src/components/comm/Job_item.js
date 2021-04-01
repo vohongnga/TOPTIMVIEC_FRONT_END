@@ -1,13 +1,9 @@
 import React, { Component, useEffect } from 'react';
 import '../../style.css';
-import Aos from "aos";
 import "aos/dist/aos.css";
 
 class Job_item extends Component {
-    constructor(props) {
-        super(props);
-        Aos.init({duration: 1000});
-    }
+    
     render() {
         return (
             <div className="row full-width mx-1 mb-3 rounded bg-white border-0 big-hover" data-aos="fade-right">
