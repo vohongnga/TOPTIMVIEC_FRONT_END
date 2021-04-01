@@ -24,7 +24,7 @@ class App extends Component {
             <Login />
           </Route>
           <Route path="/dang-ky" exact>
-            <Header />
+            <Header/>
             <Register />
           </Route>
           <Route path="/dang-ky/nha-tuyen-dung">
