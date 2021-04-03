@@ -3,4 +3,4 @@ const ApiUrls = {
     "LOGIN_API": "https://toptimviec-backend.herokuapp.com/login",
 }
 
-export default ApiUrls
+export default ApiUrls;

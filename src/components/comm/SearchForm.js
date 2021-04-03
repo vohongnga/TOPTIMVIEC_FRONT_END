@@ -5,17 +5,19 @@ import {connect} from 'react-redux';
 import * as actions from './../../actions/index';
 
 class SearchForm extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            hashtag: ["Python", "Java", "PHP"]
-        }
-    }
     onChangeHashtag = (e) => {
         this.props.onChangeHashtag(e);
     }
     onChangePlace = (e) => {
         this.props.onChangePlace(e.target.value);
+    }
+    componentDidMount() {
+        if (this.props.list_hashtag.length === 0) {
+            this.props.fetchListHashtag();
+        }
+        if (this.props.list_place.length === 0) {
+            this.props.fetchListPlace();
+        }
     }
     render(){
         var ref = React.createRef();
@@ -28,7 +30,7 @@ class SearchForm extends Component{
                                 id="public-methods-example"
                                 labelKey="name"
                                 multiple
-                                options={this.state.hashtag}
+                                options={this.props.list_hashtag}
                                 placeholder="Tên công việc, vị trí..."
                                 ref={ref}
                                 size="large"
@@ -39,9 +41,7 @@ class SearchForm extends Component{
                         <div className="col-lg-2 col-md-3 mt-1 mt-md-0">
                             <select className="form-control form-control-lg" onChange={this.onChangePlace} defaultValue={this.props.search_value.place}>
                                 <option value="">Địa điểm</option>
-                                <option value="Hà Nội">Hà Nội</option>
-                                <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                                <option value="Đà Nẵng">Đà Nẵng</option>
+                                {this.showListPlace(this.props.list_place)}
                             </select>
                         </div>
                         <div className="col-lg-2 col-md-3 mt-1 mt-md-0">
@@ -52,10 +52,23 @@ class SearchForm extends Component{
             </div>
         );
     }
+    showListPlace = (list_place) => {
+        var result = null;
+        if (list_place.length > 0) {
+            result = list_place.map((place, index) => {
+                return (
+                    <option key={index} value={place}>{place}</option>
+                );
+            });
+            return result;
+        }
+    }
 }
 const mapStateToProps = state => {
     return {
-        search_value: state.search_value
+        search_value: state.search_value,
+        list_hashtag: state.list_hashtag,
+        list_place: state.list_place
     }
 }
 const mapDispatchToProps = (dispatch, props) => {
@@ -65,6 +78,12 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onChangePlace: (place) => {
             dispatch(actions.changePlace(place));
+        },
+        fetchListHashtag: () => {
+            dispatch(actions.fetchListHashtag());
+        },
+        fetchListPlace: () => {
+            dispatch(actions.fetchListPlace());
         }
     }
 }
