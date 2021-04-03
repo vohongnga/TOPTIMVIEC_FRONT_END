@@ -10,6 +10,7 @@ import Register from './components/Register';
 import Register_NTD from './components/nhatuyendung/Register_NTD';
 import Register_NTV from './components/nguoitimviec/Register_NTV';
 import Header from './components/comm/Header';
+import TestFetch from './components/nguoitimviec/TestFetch';
 
 class App extends Component {
   render() {
@@ -35,6 +36,10 @@ class App extends Component {
             <Header />
             <Register_NTV />
           </Route>
+          <Route path="/testAPI">
+            <TestFetch />
+          </Route>
+          
         </Switch>
 
       </Router>
