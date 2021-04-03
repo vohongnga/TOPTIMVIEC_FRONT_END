@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 
 class Register_NTD extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            email: "",
+            password: "",
+            
+        }
+    }
     render() {
         document.body.style.backgroundColor = "#394141";
         return (

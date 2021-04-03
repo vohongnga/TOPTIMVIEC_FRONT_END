@@ -69,7 +69,6 @@ class App extends Component {
     }
 }
 
-
 const mapStateToProps = state => {
     return {
         hide_header: state.hide_header

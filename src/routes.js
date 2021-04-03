@@ -7,7 +7,7 @@ import Register from './components/Register';
 import Register_NTD from './components/nhatuyendung/Register_NTD';
 import Register_NTV from './components/nguoitimviec/Register_NTV';
 import NotFoundPage from './pages/NotFoundPage';
-
+import TestFetch from './components/nguoitimviec/TestFetch';
 const routes=[
     {
         path:'/',
@@ -48,6 +48,12 @@ const routes=[
         path:'',
         exact: false,
         main: () => <NotFoundPage />
+    },
+    {
+        path:'/testAPI',
+        exact: false,
+        main: () => <TestFetch />
     }
+
 ];
 export default routes;
