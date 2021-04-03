@@ -7,25 +7,33 @@ class JobItem extends Component {
     
     render() {
         var {job} = this.props;
-        console.log(job)
+        var place = "";
+        if (job.place.length>0) {
+            job.place.forEach((element, i) => {
+                if (i===0) {
+                    place=element;
+                } else {
+                    place += ", "+element;
+                }
+            });
+        }
         return (
             <Link to={"/post/"+job._id}>
-                <div className="item row full-width mx-1 mb-3 rounded bg-white border-0 big-hover" data-aos="fade-right">
-                    <div className="col col-2 logo mx-3 ml-1 mt-1">
+                <div className="item row full-width mx-1 mb-3 rounded bg-white border-0 big-hover p-3" data-aos="fade-right">
+                    <div className="col col-2 logo">
                         <img className="mx-auto" src={job.employer.avatar} alt="" />
                     </div>
-                    <div className="col col-8 mt-2">
+                    <div className="col col-10">
                         <h4 className="text-truncate">{job.title}</h4>
                         <div className="row border-0 mt-3">
-                            <div className="detail ml-3">
-                                <h5>Công ty TopTimViec</h5>
-                                <button type="button" className="btn btn-light btn-sm mr-1">PHP</button>
-                                <button type="button" className="btn btn-light btn-sm mr-1">Laravel</button>
+                            <div className="col-8 detail">
+                                <h5 className="text-truncate">{job.employer.name}</h5>
+                                {this.showHashtag(job.hashtag)}
                             </div>
-                            <div className="ml-auto mr-4 city_and_posted_date">
-                                <p><i className="fa fa-dollar-sign mr-1 mb-2"></i>Đăng nhập để xem</p><br/>
+                            <div className="col-4 ml-auto city_and_posted_date">
+                                <p className="text-truncate text-right"><i className="fa fa-dollar-sign mr-1 mb-2"></i>Đăng nhập để xem</p><br/>
                                 <div className="text-right">
-                                    <p>Hồ Chí Minh</p>
+                                    <p className="text-truncate">{place}</p>
                                 </div>
                             </div>
                         </div>
@@ -33,6 +41,17 @@ class JobItem extends Component {
                 </div>
             </Link>
         );
+    }
+    showHashtag = (listHashtag) => {
+        var result = null;
+        if (listHashtag.length > 0) {
+            result = listHashtag.map((hashtag, index) => {
+                return (
+                    <button key={index} type="button" className="btn btn-light btn-sm mr-1">{hashtag}</button>
+                )
+            })
+        }
+        return result;
     }
 }
 export default JobItem;
