@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 import "../style.css"
 import logo_img from "../image/LogoMakr-87TXng_pnsj0a.png"
 import LoginService from "../services/LoginService";
@@ -69,7 +69,7 @@ class Login extends Component {
         return (
             <div className="login">
                 <div className="header">
-                    <Link to="/"><img className="center" src={logo_img} height='250px' width='250px' /></Link>
+                    <Link to="/"><img className="center" src={logo_img} height='250px' width='250px' alt=""/></Link>
                 </div>
                 <div className="container">
                     <div className="login-form">
@@ -98,12 +98,12 @@ class Login extends Component {
                                         <span className="icon2"><i className="fa fa-unlock" aria-hidden="true"></i></span>
                                     </div>
                                     <div className="forget">
-                                        <h6><a >Quên mật khẩu?</a></h6>
+                                        <h6><a href="/">Quên mật khẩu?</a></h6>
                                         <div className="submit">
                                             <button type="button" className="btn btn-success center" onClick={this.onSubmit}>Đăng nhập</button>
                                         </div>
                                         <div className="register center-text">
-                                            <h5>Bạn chưa có tài khoản? <a>Đăng ký</a></h5>
+                                            <h5>Bạn chưa có tài khoản? <a href="/dang-ky">Đăng ký</a></h5>
                                         </div>
 
                                     </div>
