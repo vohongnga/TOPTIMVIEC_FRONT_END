@@ -184,11 +184,25 @@ span.icon2 {
 .job-item .item{
     height: 150px;
 }
+.job-item .logo {
+    height: 120px;
+    width: 120px;
+}
+.job-item .logo img {
+    max-height: 100%;
+    max-width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+    left: 50%;
+}
 .big-hover:hover {
     transform: scale(1.04) !important; 
 }
 .job-item .row .detail p{
-    font-size: 15px;
+    font-size: 13px;
 }
 /* .job-item .row .feature-text p{
     font-size: 12px;
@@ -208,6 +222,7 @@ span.icon2 {
 }
 .job-item .row h4{
     font-size: 22px;
+    color: #333333;
 }
 .job-item .row h5{
     margin-bottom: 20px;
