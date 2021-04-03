@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
-import Index from './components/Index';
-import Employer from './components/nhatuyendung/Index/Index';
-import List from './components/nhatuyendung/DanhSach/Index';
-import Footer from './components/comm/Footer';
 import './App.css';
 import { Router, Switch, Route } from 'react-router-dom';
-import Login from './components/Login';
-import Register from './components/Register';
-import Register_NTD from './components/nhatuyendung/Register_NTD';
-import Register_NTV from './components/nguoitimviec/Register_NTV';
 import Header from './components/comm/Header';
 import { createBrowserHistory } from "history";
 import { connect } from 'react-redux';
 import * as actions from './actions/index';
+import routes from './routes';
 
 const history = createBrowserHistory()
 
@@ -53,22 +46,29 @@ class App extends Component {
         return (
             <Router history={history}>
                 { this.state.show_header && <Header /> }
-                <Switch>
-                    <Route path="/" exact component={Index} />
-                    <Route path="/test" component={Footer} />
-                    <Route path="/nha-tuyen-dung" component={Employer} />
-                    <Route path="/danh-sach" component={List} />
-                    <Route path="/dang-nhap" component={Login} />
-                    <Route path="/dang-ky" exact component={Register} />
-                    <Route path="/dang-ky/nha-tuyen-dung" component={Register_NTD} />
-                    <Route path="/dang-ky/nguoi-tim-viec" component={Register_NTV} />
-                </Switch>
-
+                <Switch>{ this.showContentMenus(routes) }</Switch>
             </Router>
         );
 
     }
+    showContentMenus = (routes) => {
+        var result = null;
+        if (routes.length > 0) {
+            result = routes.map((route, index) => {
+                return (
+                    <Route
+                        key={index}
+                        path={route.path}
+                        exact={route.exact}
+                        component={route.main}
+                    />
+                );
+            });
+            return result;
+        }
+    }
 }
+
 
 const mapStateToProps = state => {
     return {

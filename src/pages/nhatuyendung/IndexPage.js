@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from './../../components/nhatuyendung/comm/Header';
-import Footer from './../../components/nhatuyendung/comm/Footer'
-import SearchForm from './../../components/nhatuyendung/comm/SearchForm';
-import CandidateList from './../../components/nhatuyendung/Index/CandidateList';
+import Header from '../../components/nhatuyendung/comm/Header';
+import Footer from '../../components/nhatuyendung/comm/Footer'
+import SearchForm from '../../components/nhatuyendung/comm/SearchForm';
+import CandidateList from '../../components/nhatuyendung/Index/CandidateList';
 
 
 class IndexPage extends Component{

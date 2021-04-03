@@ -10,13 +10,3 @@ export const notHideHeader = () => {
         type : types.NOT_HIDE_HEADER
     };
 }
-export const showHeader = () => {
-    return {
-        type : types.SHOW_HEADER
-    };
-}
-export const notShowHeader = () => {
-    return {
-        type : types.NOT_SHOW_HEADER
-    };
-}
