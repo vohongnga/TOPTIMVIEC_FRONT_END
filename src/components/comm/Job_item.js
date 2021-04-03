@@ -1,16 +1,12 @@
 import React, { Component, useEffect } from 'react';
 import '../../style.css';
-import Aos from "aos";
 import "aos/dist/aos.css";
 
 class Job_item extends Component {
-    constructor(props) {
-        super(props);
-        Aos.init({duration: 1000});
-    }
+    
     render() {
         return (
-            <div className="row full-width mx-1 mb-3 rounded bg-white border-0 big-hover" data-aos="fade-right">
+            <div className="item row full-width mx-1 mb-3 rounded bg-white border-0 big-hover" data-aos="fade-right">
                 <div className="logo my-1 mx-4 mt-2">
                     <img src="https://res.cloudinary.com/pikann22/image/upload/w_150,c_scale/v1613642165/toptimviec/LogoMakr-87TXng_pnsj0a.png" width="115px" height="115px" />
                 </div>

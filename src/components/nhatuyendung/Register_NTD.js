@@ -4,7 +4,7 @@ class Register_NTD extends Component {
     render() {
         document.body.style.backgroundColor = "#394141";
         return (
-            <div className="col-lg-5 col-md-7 content jumbotron center mt-3">
+            <div className="col-lg-4 col-md-6 content jumbotron center mt-3">
                 <h1 className="center h1">Đăng ký tài khoản</h1>
                 <form >
                     <div className="info">
