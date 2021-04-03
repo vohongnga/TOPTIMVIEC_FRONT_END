@@ -1,2 +1,4 @@
 export const HIDE_HEADER = 'HIDE_HEADER';
 export const NOT_HIDE_HEADER = 'NOT_HIDE_HEADER';
+export const CHANGE_HASHTAG = 'CHANGE_HASHTAG';
+export const CHANGE_PLACE = 'CHANGE_PLACE';
