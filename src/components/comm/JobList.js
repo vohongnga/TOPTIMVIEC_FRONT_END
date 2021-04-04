@@ -52,7 +52,7 @@ class JobList extends Component {
             <div className="col-lg-8 mt-3">
                 <div className="job-item">
                     {this.props.jobs.length>0?this.showJobs(jobs):this.state.load_data?"":<div><img className="center my-5" src={img} alt="" width="200px" /><h2 className="h2 text-center text-muted">Không tìm thấy công việc</h2></div>}
-                    {this.state.load_data?<img className="center" src={loading_gif} alt="" width="100px"></img>:""}
+                    {this.state.load_data?<img className="center" src={loading_gif} alt="" width="50px"></img>:""}
                 </div>
             </div>
         );
