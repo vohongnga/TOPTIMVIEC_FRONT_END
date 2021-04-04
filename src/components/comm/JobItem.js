@@ -4,7 +4,6 @@ import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
 
 class JobItem extends Component {
-    
     render() {
         var {job} = this.props;
         var place = "";
@@ -31,7 +30,7 @@ class JobItem extends Component {
                                 {this.showHashtag(job.hashtag)}
                             </div>
                             <div className="col-4 ml-auto city_and_posted_date">
-                                <p className="text-truncate text-right"><i className="fa fa-dollar-sign mr-1 mb-2"></i>Đăng nhập để xem</p><br/>
+                                <p className="text-truncate text-right"><i className="fa fa-dollar-sign mr-1 mb-2"></i>{job.salary}</p><br/>
                                 <div className="text-right">
                                     <p className="text-truncate">{place}</p>
                                 </div>
