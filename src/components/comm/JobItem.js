@@ -42,7 +42,6 @@ class JobItem extends Component {
             </Link>
         );
     }
-<<<<<<< HEAD
     showHashtag = (listHashtag) => {
         var result = null;
         if (listHashtag.length > 0) {
@@ -54,7 +53,5 @@ class JobItem extends Component {
         }
         return result;
     }
-=======
->>>>>>> 281a714 (Add redux)
 }
 export default JobItem;
