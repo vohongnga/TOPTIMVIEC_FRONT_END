@@ -91,3 +91,9 @@ export const setListJob = (list_job) => {
         list_job
     };
 }
+export const setLoadJob = (load) => {
+    return {
+        type: types.SET_LOAD_JOB,
+        load
+    };
+}
