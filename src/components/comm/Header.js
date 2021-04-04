@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import { Link, NavLink } from "react-router-dom";
 import logo_img from "../../image/LogoMakr-48tDoh_uhomu6.png";
 import { connect } from 'react-redux';
+import SearchForm from "./SearchForm";
 
 class Header extends Component {
     constructor(props) {
         super(props);
-        this.state = {"navbar": true};
+        this.state = {
+            "navbar": true,
+            "searchbar": true
+        };
     }
     changeNavbarBg = () => {
         if (window.scrollY >= 100) {
@@ -14,6 +18,12 @@ class Header extends Component {
         }
         else {
             this.setState({"navbar": true})
+        }
+        if (window.scrollY >= 350) {
+            this.setState({"searchbar": false})
+        }
+        else {
+            this.setState({"searchbar": true})
         }
     }
     componentDidMount() {
@@ -47,9 +57,8 @@ class Header extends Component {
                         <Link className="btn btn-success text-truncate mt-1 mt-md-0"  to="/dang-ky">Đăng ký</Link>
                     </div>
                 </div>
+                {this.props.hide_header && !this.state.searchbar ? <div className="container-fluid col-10 mx-auto"><SearchForm header={true}/></div>: ""}
             </header>
-
-
         );
     }
 }

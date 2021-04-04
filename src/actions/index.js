@@ -53,3 +53,41 @@ export const fetchListPlace = () => {
         });
     }
 }
+export const fetchAppendListJob = (list_id_showed, list_hashtag, place) => {
+    return (dispatch) => {
+        return callApi('post-list', 'POST', {
+            "list_id_showed": list_id_showed, 
+            "list_hashtag": list_hashtag,
+            "place": place
+        }).then(res => {
+            dispatch(appendListJob(res.data.list_post));
+        }).catch(res => {
+            dispatch(appendListJob(res.response.data.list_post));
+        })
+    }
+}
+export const appendListJob = (list_job) => {
+    return {
+        type: types.APPEND_LIST_JOB,
+        list_job
+    };
+}
+export const fetchSetListJob = (list_id_showed, list_hashtag, place) => {
+    return (dispatch) => {
+        return callApi('post-list', 'POST', {
+            "list_id_showed": list_id_showed, 
+            "list_hashtag": list_hashtag,
+            "place": place
+        }).then(res => {
+            dispatch(setListJob(res.data.list_post));
+        }).catch(res => {
+            dispatch(setListJob(res.response.data.list_post));
+        })
+    }
+}
+export const setListJob = (list_job) => {
+    return {
+        type: types.SET_LIST_JOB,
+        list_job
+    };
+}
