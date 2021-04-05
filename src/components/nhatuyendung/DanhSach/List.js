@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import Header from "../comm/Header";
-import SearchForm from "../comm/SearchForm";
-import Footer from "../comm/Footer";
 import './style.css';
 
 class List extends Component{

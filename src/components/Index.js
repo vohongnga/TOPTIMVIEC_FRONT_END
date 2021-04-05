@@ -1,29 +1,61 @@
 import React, { Component } from 'react';
-import Header from "./comm/Header";
 import SearchForm from "./comm/SearchForm";
-import Job_list from "./comm/Job_list";
+import JobList from "./comm/JobList";
 import Advertisements from "./comm/Advertisements";
+import {connect} from 'react-redux';
+import * as actions from './../actions/index';
 
-// import { Route } from 'react-router';
-import { BrowserRouter as Router, Switch,Route } from 'react-router-dom';
 class Index extends Component{
+    constructor(props) {
+        super(props);
+        this.state={
+            showTopButton: false
+        };
+    }
+    onScrollDown = () => {
+        let showTopButton  = window.scrollY >= 500;
+        this.setState({showTopButton});
+    }
+    goToTop = () => {
+        window.scrollTo({ behavior: 'smooth', top: 0 });
+    }
+    componentDidMount() {
+        window.addEventListener('scroll', this.onScrollDown);
+    }
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.onScrollDown);
+    }
     render(){
         document.body.style.backgroundColor = "#eceff1";
+        
         return (
             <div>
-                <Header hide={true} />
-                <SearchForm />
-                <h2 className="h2 text-center mt-5">- DANH SÁCH CÔNG VIỆC -</h2>
-                <div className="col col-sm-10 center mt-5">
+                <div className="index-search-div">
+                    <SearchForm/>
+                </div>
+                {this.state.showTopButton?<button className="floating-btn btn btn-success fixed-bottom ml-auto rounded-circle mr-4 mb-4 shadow" onClick={this.goToTop}><i className="fa fa-arrow-up fa-w-20"></i></button>:""}
+                <h2 className="h2 text-center mt-5" ref={this.props.list_job_ref}>- DANH SÁCH CÔNG VIỆC -</h2>
+                <div className="col col-md-10 center mt-5">
                     <div className="row">
-                        <Job_list />
+                        <JobList />
                         <Advertisements />
                     </div>
                 </div>
             </div>
         );
     }
+}
+const mapStateToProps = state => {
+    return {
+        list_job_ref: state.list_job_ref
     }
-export default Index;
+}
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        setListJobRef: (ref) => {
+            dispatch(actions.changeHashtag(ref));
+        }
+    }
+}
 
-
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
