@@ -1,3 +1,7 @@
+/* color */
+.dark {
+    background-color: #394141;
+}
 /* login */
 .login .header {
     padding-top: 5em;
@@ -36,6 +40,16 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+.center-vertical {
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.center-vertical-screen {
+    top: 40vh;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 .forget h6 a {
     font-size: 0.9em;
@@ -112,23 +126,22 @@ span.icon2 {
 
 .register{
     margin-top: 1.8em;
-    
 }
+
 /*register*/
 .img-register {
     height: 250px;
     width: 250px;
 }
-
-
+.full-height {
+    height: 100vh;
+}
 
 /*register NTD_NTV*/
 .content {
-    margin: 20px 500px auto 500px; 
     line-height: 37px;
     background-color: white;
     text-align: left;
- 
 }
 .h1 {
     font-size: 30px;
@@ -142,24 +155,54 @@ span.icon2 {
 /*index NTD*/
 
 /* JOB ITEM */
-.job-item .row{
-    margin: 0;
+.index-search-div {
+    height: 90vh;
+    background: linear-gradient(0deg, #394141BB, #394141BB), url("./image/GettyImages-1190049314_443497.jpg") no-repeat center center;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+.index-search-form {
+    width: 80%;
+    background-color: #394141A0;
+    padding: 20px;
+}
+.backg{
+    width: 100%;
+    height: 200px;
+}
+.container-fluid{
+    /* border: 2px solid rgb(112, 108, 108) ; */
+    padding:20px;
+    margin: 0 10px 0 10px
+}
+.inline{
+    display:inline;
+}
+/* JOB ITEM */
+.job-item .item{
+    height: 150px;
+}
+.job-item .logo {
     height: 120px;
-    border: 1px solid rgb(233, 247, 233);
-    padding-top: 10px;
-    padding-bottom: 10px;
+    width: 120px;
+}
+.job-item .logo img {
+    max-height: 100%;
+    max-width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+    left: 50%;
+}
+.big-hover:hover {
+    transform: scale(1.04) !important; 
 }
 .job-item .row .detail p{
-    font-size: 15px;
-    margin-top:8px
-}
-.feature-text {
-    background-color: yellow;
-    padding: 4px 6px;
-    text-align: center;
-    width: min-content;
-    font-family: -webkit-pictograph;
-    border-radius: 20px;
+    font-size: 13px;
 }
 /* .job-item .row .feature-text p{
     font-size: 12px;
@@ -169,41 +212,36 @@ span.icon2 {
     font-size: 12px;
     color: #6e6e70;
 }
-.job-item .row .city_and_posted_date div{
-    padding-bottom: 18px;
+.job-item .row .city_and_posted_date a{
+    font-size: 12px;
+    color: #6e6e70;
 }
 .job-item .row .detail a{
     font-size: 13px;
     color: #6e6e70;
 }
-.job-item .row .detail h1{
+.job-item .row h4{
+    font-size: 22px;
+    color: #333333;
+}
+.job-item .row h5{
     margin-bottom: 20px;
-    font-size: 20px;
-    color:rgb(139, 192, 59)
-}
-.job-item .row .detail i{
-    margin-bottom: 15px;
-}
-.text-center p-3{
-    background-color: rgba(0, 0, 0, 0.2);}
-.label-info {
-        background-color: #5bc0de;
-        display: inline-block;
-        padding: 0.2em 0.6em 0.3em;
-        font-size: 75%;
-        font-weight: 700;
-        line-height: 1;
-        color: #fff;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: baseline;
-        border-radius: 0.25em;
+    font-size: 14px;
+    color: #6e6e70;
 }
 
-.nav-tabs {
-    position: relative;
+.advertisement {
+    top: 170px;
 }
 /*NTD/danhsach*/
-table{
+/* table{
     width: 100%;
+} */
+.nounderline a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+}
+
+.floating-btn {
+    width: 65px;
+    height: 65px;
 }

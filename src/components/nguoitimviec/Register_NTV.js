@@ -2,10 +2,10 @@ import React, { Component } from "react";
 
 class Register_NTV extends Component {
     render() {
-        document.body.style.backgroundColor = "#e9e9e9";
+        document.body.style.backgroundColor = "#394141";
         return (
             
-            <div className="content  jumbotron">
+            <div className="col-lg-4 col-md-6 content jumbotron center mt-3">
                 <h1 className="center h1">Đăng ký tài khoản</h1>
                 <form >
                     <div className="info">
