@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from "../../employer/comm/Header";
-import SearchForm from "../../employer/comm/SearchForm";
-import Footer from "../../employer/comm/Footer";
-import CandidateList from "./CandidateList";
+import Header from "../../components/employer/commom/Header";
+import SearchForm from "../../components/employer/commom/SearchForm";
+import Footer from "../../components/employer/commom/Footer";
+import CandidateList from "../../components/employer/index/CandidateList";
 
 class Index extends Component{
   render(){

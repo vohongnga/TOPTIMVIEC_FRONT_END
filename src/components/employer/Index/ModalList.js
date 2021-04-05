@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CandidateItem from './CandidateItem';
+import { Link } from 'react-router-dom'
 class ModalList extends Component{
   render(){
       return (
@@ -14,10 +14,10 @@ class ModalList extends Component{
                     </div>
                     <div class="modal-body">
                         <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-plus" aria-hidden="true"></i>Tạo danh sách mới</a>
-                            <a href="#" class="list-group-item list-group-item-action ">Active item</a>
-                            <a href="#" class="list-group-item list-group-item-action">Item</a>
-                            <a href="#" class="list-group-item list-group-item-action ">Disabled item</a>
+                            <Link to="" class="list-group-item list-group-item-action"><i class="fa fa-plus" aria-hidden="true"></i>Tạo danh sách mới</Link>
+                            <Link to="" class="list-group-item list-group-item-action ">Active item</Link>
+                            <Link to="" class="list-group-item list-group-item-action">Item</Link>
+                            <Link to="" class="list-group-item list-group-item-action ">Disabled item</Link>
                         </div>                       
                     </div>   
                     <div class="modal-footer">

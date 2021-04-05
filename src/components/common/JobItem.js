@@ -6,16 +6,19 @@ import {connect} from 'react-redux';
 import * as actions from './../../actions/index';
 
 class JobItem extends Component {
-    toPost = () => {
-        this.props.history.push("/post");
+    toPost = (id) => {
+        this.props.history.push("/post/"+id);
     }
     onClickHashtag(e, hashtag) {
         e.stopPropagation(); 
         this.props.onChangeHashtag([hashtag]);
+        this.props.setLoadingJob(true);
         this.props.setLoadJob(false);
+        this.props.setListJob([]);
         this.props.fetchListJob([], this.props.search_value.tag, this.props.search_value.place).then(() => {
             window.scrollTo({ behavior: 'smooth', top: (window.innerHeight)*0.9 - 150 });
             this.props.setLoadJob(true);
+            this.props.setLoadingJob(false);
         });
     }
     render() {
@@ -31,7 +34,7 @@ class JobItem extends Component {
             });
         }
         return (
-            <div className="item row full-width mx-1 mb-3 rounded bg-white border-0 big-hover p-3" data-aos="fade-right" onClick={this.toPost}>
+            <div className="item row full-width mx-1 mb-3 rounded bg-white border-0 big-hover p-3" data-aos="fade-right" onClick={(e) =>this.toPost(job._id)}>
                 <div className="col col-2 logo">
                     <img className="mx-auto" src={job.employer.avatar} alt="" />
                 </div>
@@ -84,6 +87,12 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         setLoadJob: (load) => {
             return dispatch(actions.setLoadJob(load));
+        },
+        setLoadingJob: (loading) => {
+            return dispatch(actions.setLoadingJob(loading));
+        },
+        setListJob: (jobs) => {
+            return dispatch(actions.setListJob(jobs));
         }
     }
 }

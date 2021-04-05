@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Router, Switch, Route } from 'react-router-dom';
-import Header from './components/comm/Header';
+import Header from './components/common/Header';
+import HeaderApplicant from './components/applicant/HeaderApplicant';
 import { createBrowserHistory } from "history";
 import { connect } from 'react-redux';
 import * as actions from './actions/index';
 import routes from './routes';
+import routes_applicant from './routes_applicant';
 
 const history = createBrowserHistory();
 
@@ -29,6 +31,11 @@ class App extends Component {
     }
 
     componentDidMount() {
+        if (localStorage.getItem("role") === "applicant" || sessionStorage.getItem("role") === "applicant") {
+            this.props.setRole("applicant");
+        } else if (localStorage.getItem("role") === "employer" || sessionStorage.getItem("role") === "employer") {
+            this.props.setRole("employer");
+        }
         if (window.location.pathname === "/") {
             if (!this.props.hide_header) {
                 this.props.onHideHeader();
@@ -43,12 +50,23 @@ class App extends Component {
     }
 
     render() {
-        return (
-            <Router history={history}>
-                { this.state.show_header && <Header /> }
-                <Switch>{ this.showContentMenus(routes) }</Switch>
-            </Router>
-        );
+        if (this.props.role === "") {
+            return (
+                <Router history={history}>
+                    { this.state.show_header && <Header /> }
+                    <Switch>{ this.showContentMenus(routes) }</Switch>
+                </Router>
+            );
+        } else if (this.props.role === "applicant") {
+            return (
+                <Router history={history}>
+                   <HeaderApplicant />
+                   <Switch>{ this.showContentMenus(routes_applicant) }</Switch>
+                </Router>
+            );
+        } else {
+            return (<div></div>);
+        }
 
     }
     showContentMenus = (routes) => {
@@ -72,7 +90,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        hide_header: state.hide_header
+        hide_header: state.hide_header,
+        role: state.role
     };
 }
 
@@ -83,6 +102,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onNotHideHeader : () => {
             dispatch(actions.notHideHeader())
+        },
+        setRole : (role) => {
+            dispatch(actions.setRole(role))
         }
     };
 }

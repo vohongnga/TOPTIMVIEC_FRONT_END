@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import SearchForm from "../../components/comm/SearchForm";
-import JobList from "../../components/comm/JobList";
-import Advertisements from "../../components/comm/Advertisements";
+import SearchForm from "../../components/common/SearchForm";
+import JobList from "../../components/common/JobList";
+import Advertisements from "../../components/common/Advertisements";
 import {connect} from 'react-redux';
 import * as actions from '../../actions/index';
 
