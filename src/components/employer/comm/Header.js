@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import './style.css';
 class Header extends Component{
   render(){
       return ( 

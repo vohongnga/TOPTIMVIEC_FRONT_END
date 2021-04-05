@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CandidateItem from './CandidateItem';
 import ModalList from './ModalList';
-import './style.css'
 class CandidateList extends Component{
   render(){
       return (
