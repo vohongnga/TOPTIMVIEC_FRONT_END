@@ -13,10 +13,13 @@ class SearchForm extends Component{
     }
     onSubmitSearch = (e) => {
         e.preventDefault();
+        this.props.setLoadingJob(true);
         this.props.setLoadJob(false);
+        this.props.setListJob([]);
         this.props.fetchListJob([], this.props.search_value.tag, this.props.search_value.place).then(() => {
             window.scrollTo({ behavior: 'smooth', top: (window.innerHeight)*0.9 - 150 });
             this.props.setLoadJob(true);
+            this.props.setLoadingJob(false);
         });
     }
     componentDidMount() {
@@ -98,6 +101,12 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         setLoadJob: (load) => {
             return dispatch(actions.setLoadJob(load));
+        },
+        setLoadingJob: (loading) => {
+            return dispatch(actions.setLoadingJob(loading));
+        },
+        setListJob: (jobs) => {
+            return dispatch(actions.setListJob(jobs));
         }
     }
 }

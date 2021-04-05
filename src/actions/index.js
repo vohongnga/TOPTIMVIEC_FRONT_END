@@ -97,3 +97,15 @@ export const setLoadJob = (load) => {
         load
     };
 }
+export const setLoadingJob = (loading) => {
+    return {
+        type: types.SET_LOADING_JOB,
+        loading
+    };
+}
+export const setRole = (role) => {
+    return {
+        type: types.SET_ROLE,
+        role
+    };
+}

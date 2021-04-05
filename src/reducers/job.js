@@ -1,4 +1,3 @@
-import { type } from 'jquery';
 import * as types from '../constants/ActionTypes';
 
 var initialState = [];
