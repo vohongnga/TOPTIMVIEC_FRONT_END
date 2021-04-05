@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "../style.css"
-import logo_img from "../image/LogoMakr-87TXng_pnsj0a.png"
-import LoginService from "../services/LoginService";
+import "../../style.css"
+import logo_img from "../../image/LogoMakr-87TXng_pnsj0a.png"
+import LoginService from "../../services/LoginService";
 import {connect} from 'react-redux';
-import * as actions from './../actions/index';
+import * as actions from '../../actions/index';
 
 class Login extends Component {
     constructor(props){
@@ -52,7 +52,6 @@ class Login extends Component {
                 this.setState({notif: ""})
             }
         }).catch(err => {
-            console.log(err.response);
             if (err.response.status === 401) {
                 this.setState({notif: "(*) Email hoặc mật khẩu không chính xác"});
             } else if (err.response.status === 403) {
@@ -64,6 +63,18 @@ class Login extends Component {
     }
     onCheckSaveAccount = (e) => {
         this.setState({checkSaveAccount: !this.state.checkSaveAccount});
+    }
+    onBlurEmail = () => {
+        if (this.state.user.email.length === 0)
+            this.setState({notif: "(*) Email không được để trống"});
+        else
+            this.setState({notif: ""});
+    }
+    onBlurPassword = () => {
+        if (this.state.user.password.length === 0)
+            this.setState({notif: "(*) Password không được để trống"});
+        else
+            this.setState({notif: ""});
     }
     render() {
         document.body.style.backgroundColor = "#394141";
@@ -84,6 +95,7 @@ class Login extends Component {
                                             type="text"
                                             required=""
                                             onChange={this.onChangeEmail}
+                                            onBlur={this.onBlurEmail}
                                         />
                                         <span className="icon1"><i className="fa fa-user" aria-hidden="true"></i></span>
                                     </div>
@@ -94,6 +106,7 @@ class Login extends Component {
                                             type="password"
                                             required=""
                                             onChange={this.onChangePassword}
+                                            onBlur={this.onBlurPassword}
                                         />
                                         <span className="icon2"><i className="fa fa-unlock" aria-hidden="true"></i></span>
                                     </div>
@@ -103,7 +116,7 @@ class Login extends Component {
                                             Ghi nhớ đăng nhập
                                         </label>
                                     </div>
-                                    {this.state.notif.length>0 ? <p className="text-danger mt-1">(*) Email hoặc mật khẩu không chính xác</p>: ""}
+                                    {this.state.notif.length>0 ? <p className="text-danger mt-1">{this.state.notif}</p>: ""}
                                     <div className="forget">
                                         <h6><a className="text-muted" href="/">Quên mật khẩu?</a></h6>
                                         <div className="submit">

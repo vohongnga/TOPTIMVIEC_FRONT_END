@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Register_NTD extends Component {
+class RegisterEmployer extends Component {
     render() {
         document.body.style.backgroundColor = "#394141";
         return (
@@ -37,4 +37,4 @@ class Register_NTD extends Component {
 
     }
 }
-export default Register_NTD;
+export default RegisterEmployer;

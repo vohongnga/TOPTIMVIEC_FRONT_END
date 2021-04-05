@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Register_NTV extends Component {
+class RegisterApplicant extends Component {
     render() {
         document.body.style.backgroundColor = "#394141";
         return (
@@ -45,4 +45,4 @@ class Register_NTV extends Component {
 
     }
 }
-export default Register_NTV;
+export default RegisterApplicant;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import SearchForm from "./comm/SearchForm";
-import JobList from "./comm/JobList";
-import Advertisements from "./comm/Advertisements";
+import SearchForm from "../../components/comm/SearchForm";
+import JobList from "../../components/comm/JobList";
+import Advertisements from "../../components/comm/Advertisements";
 import {connect} from 'react-redux';
-import * as actions from './../actions/index';
+import * as actions from '../../actions/index';
 
 class Index extends Component{
     constructor(props) {

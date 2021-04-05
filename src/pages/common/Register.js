@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import '../style.css';
-import ntv_img from '../image/Pointofsale_jobs.jpg'
-import ntd_img from '../image/Best-Applicant-Tracking-Systems-Workable-vs-BreezyHR-vs-ApplicantPro.png'
+import '../../style.css';
+import ntv_img from '../../image/Pointofsale_jobs.jpg'
+import ntd_img from '../../image/Best-Applicant-Tracking-Systems-Workable-vs-BreezyHR-vs-ApplicantPro.png'
 
 class Register extends Component {
     render() {

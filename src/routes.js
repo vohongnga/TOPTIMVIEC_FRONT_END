@@ -1,11 +1,11 @@
 import React from 'react';
-import Index from './components/Index';
+import Index from './pages/common/Index';
 import Employer from './components/nhatuyendung/Index/Index';
-import List from './components/nhatuyendung/DanhSach/Index';
-import Login from './components/Login';
-import Register from './components/Register';
-import Register_NTD from './components/nhatuyendung/Register_NTD';
-import Register_NTV from './components/nguoitimviec/Register_NTV';
+import List from './components/employer/DanhSach/Index';
+import Login from './pages/common/Login';
+import Register from './pages/common/Register';
+import RegisterEmployer from './pages/common/RegisterEmployer';
+import RegisterApplicant from './pages/common/RegisterApplicant';
 import NotFoundPage from './pages/NotFoundPage';
 
 const routes=[
@@ -37,12 +37,12 @@ const routes=[
     {
         path:'/dang-ky/nha-tuyen-dung',
         exact: true,
-        main: () => <Register_NTD />
+        main: () => <RegisterEmployer />
     },
     {
         path:'/dang-ky/nguoi-tim-viec',
         exact: true,
-        main: () => <Register_NTV />
+        main: () => <RegisterApplicant />
     },
     {
         path:'',

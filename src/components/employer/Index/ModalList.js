@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CandidateItem from './CandidateItem';
-import './style.css'
 class ModalList extends Component{
   render(){
       return (
