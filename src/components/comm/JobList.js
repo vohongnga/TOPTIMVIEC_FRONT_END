@@ -40,6 +40,8 @@ class JobList extends Component {
                 }
                 this.setState({"load_data": false});
             });
+        } else {
+            this.props.setLoadJob(true);
         }
         window.addEventListener('scroll', this.onScrollDown);
     }

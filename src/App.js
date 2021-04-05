@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as actions from './actions/index';
 import routes from './routes';
 
-const history = createBrowserHistory()
+const history = createBrowserHistory();
 
 class App extends Component {
     constructor(props) {
