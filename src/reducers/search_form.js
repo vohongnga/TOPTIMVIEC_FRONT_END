@@ -3,7 +3,8 @@ import * as types from '../constants/ActionTypes';
 var initialState = {
     tag: [],
     place: "",
-    load: true
+    load: true,
+    loading: true
 };
 
 const search_value = (state = initialState, action) => {
@@ -16,6 +17,9 @@ const search_value = (state = initialState, action) => {
             return state;
         case types.SET_LOAD_JOB:
             state.load=action.load;
+            return state;
+        case types.SET_LOADING_JOB:
+            state.loading=action.loading;
             return state;
         default: 
             return state;

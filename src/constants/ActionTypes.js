@@ -7,3 +7,5 @@ export const SET_LIST_PLACE = 'SET_LIST_PLACE';
 export const APPEND_LIST_JOB = 'APPEND_LIST_JOB';
 export const SET_LIST_JOB = "SET_LIST_JOB";
 export const SET_LOAD_JOB = "SET_LOAD_JOB";
+export const SET_LOADING_JOB = "SET_LOADING_JOB";
+export const SET_ROLE = "SET_ROLE";
