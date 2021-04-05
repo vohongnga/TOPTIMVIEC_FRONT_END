@@ -6,7 +6,7 @@ let LoginService = {
         return axios.post(ApiUrls.LOGIN_API, body)
                 .then(res => {
                     if (res.status === 200) {
-                        //console.log(res.data);
+                        console.log(res.data);
                         return res.data;
                     }
                     else {
