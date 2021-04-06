@@ -7,14 +7,17 @@ import { createBrowserHistory } from "history";
 import { connect } from 'react-redux';
 import * as actions from './actions/index';
 import routes from './routes';
-import routes_applicant from './routes_applicant';
+import { refreshToken } from './services/TokenService';
+import { getAccountInfo } from './services/AccountInfoService';
 
 const history = createBrowserHistory();
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {show_header : true};
+        this.state = {
+            show_header : true
+        };
     }
 
     onRouteChange = (location, action) => {
@@ -31,11 +34,15 @@ class App extends Component {
     }
 
     componentDidMount() {
-        if (localStorage.getItem("role") === "applicant" || sessionStorage.getItem("role") === "applicant") {
-            this.props.setRole("applicant");
-        } else if (localStorage.getItem("role") === "employer" || sessionStorage.getItem("role") === "employer") {
-            this.props.setRole("employer");
+        //Lay thong tin nguoi dung khi khoi dong
+        var key = localStorage.getItem("refresh_token");
+        if (key) {
+            sessionStorage.setItem("refresh_token", key);
+            refreshToken().then((res) => {
+                getAccountInfo();
+            });
         }
+        //Thiet lap an header khi o trang chu
         if (window.location.pathname === "/") {
             if (!this.props.hide_header) {
                 this.props.onHideHeader();
@@ -45,30 +52,34 @@ class App extends Component {
                 this.props.onNotHideHeader();
             }
         }
+        //Khong hien thi header khi o trang dang nhap
         this.setState({"show_header": window.location.pathname !== "/dang-nhap"});
         history.listen(this.onRouteChange);
     }
 
     render() {
-        if (this.props.role === "") {
-            return (
-                <Router history={history}>
-                    { this.state.show_header && <Header /> }
-                    <Switch>{ this.showContentMenus(routes) }</Switch>
-                </Router>
-            );
-        } else if (this.props.role === "applicant") {
-            return (
-                <Router history={history}>
-                   <HeaderApplicant />
-                   <Switch>{ this.showContentMenus(routes_applicant) }</Switch>
-                </Router>
-            );
-        } else {
-            return (<div></div>);
-        }
+        return (
+            <Router history={history}>
+                { this.state.show_header ? this.showHeader() : "" }
+                <Switch>{ this.showContentMenus(routes) }</Switch>
+            </Router>
+        );
 
     }
+
+    showHeader = () => {
+        var role = sessionStorage.getItem("role");
+        if (role === "employer") {
+            return "";
+        }
+        else if (role === "applicant") {
+            return <HeaderApplicant />;
+        }
+        else {
+            return <Header />;
+        }
+    }
+
     showContentMenus = (routes) => {
         var result = null;
         if (routes.length > 0) {

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link, NavLink } from "react-router-dom";
 import logo_img from "../../image/LogoMakr-48tDoh_uhomu6.png";
 import { connect } from 'react-redux';
-import * as actions from '../../actions/index';
 import { withRouter } from "react-router-dom";
 import SearchForm from "./../common/SearchForm";
 
@@ -30,30 +29,22 @@ class HeaderApplicant extends Component {
         }
     }
     componentDidMount() {
-        var avatar = localStorage.getItem("avatar");
-        if (!avatar) {
-            avatar = sessionStorage.getItem("avatar");
-        }
+        var avatar = sessionStorage.getItem("avatar");
         if (avatar !== "") {
             this.setState({"avatar": avatar})
         }
         window.addEventListener('scroll', this.changeNavbarBg);
     }
     logOut = () => {
-        localStorage.removeItem("id_user");
-        localStorage.removeItem("avatar");
-        localStorage.removeItem("name");
         localStorage.removeItem("refresh_token");
-        localStorage.removeItem("role");
 
         sessionStorage.removeItem("id_user");
         sessionStorage.removeItem("avatar");
         sessionStorage.removeItem("name");
         sessionStorage.removeItem("refresh_token");
         sessionStorage.removeItem("role");
-
         sessionStorage.removeItem("token");
-        this.props.setRole("");
+
         this.props.history.push("/dang-nhap");
     }
     componentWillUnmount() {
@@ -95,7 +86,7 @@ class HeaderApplicant extends Component {
                                 <Link className="dropdown-item" to="#">Trang cá nhân</Link>
                                 <Link className="dropdown-item" to="#">Hộp thư</Link>
                                 <Link className="dropdown-item" to="#">Cài đặt tài khoản</Link>
-                                <Link className="dropdown-item" onClick={this.logOut}>Đăng xuất</Link>
+                                <Link className="dropdown-item" to="#" onClick={this.logOut}>Đăng xuất</Link>
                             </div>
                         </li>
                     </div>
@@ -111,12 +102,5 @@ const mapStateToProps = state => {
         hide_header : state.hide_header
     }
 }
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        setRole: (role) => {
-            dispatch(actions.setRole(role));
-        }
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HeaderApplicant));
+export default connect(mapStateToProps, null)(withRouter(HeaderApplicant));
