@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from "../../components/employer/commom/Header";
 import SearchForm from "../../components/employer/commom/SearchForm";
 import Footer from "../../components/employer/commom/Footer";
-import CandidateList from "../../components/employer/index/CandidateList";
+import CandidateList from "../../components/employer/index2/CandidateList";
 
 class Index extends Component{
   render(){
