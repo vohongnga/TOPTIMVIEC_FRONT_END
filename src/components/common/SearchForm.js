@@ -30,10 +30,6 @@ class SearchForm extends Component{
             this.props.fetchListPlace();
         }
     }
-    componentWillUnmount() {
-        this.props.onChangeHashtag([]);
-        this.props.onChangePlace("");
-    }
     render(){
         var ref = React.createRef();
         return (

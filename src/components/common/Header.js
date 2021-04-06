@@ -57,7 +57,7 @@ class Header extends Component {
                         <Link className="btn btn-success text-truncate mt-1 mt-md-0"  to="/dang-ky">Đăng ký</Link>
                     </div>
                 </div>
-                {this.props.hide_header && !this.state.searchbar ? <div className="container-fluid col-10 mx-auto"><SearchForm header={true}/></div>: ""}
+                {this.props.hide_header && !this.state.searchbar ? <div className="container-fluid col-10 mx-auto d-none d-sm-none d-md-block d-lg-block"><SearchForm header={true}/></div>: ""}
             </header>
         );
     }

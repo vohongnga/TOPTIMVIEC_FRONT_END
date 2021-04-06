@@ -110,6 +110,8 @@ export const fetchSetListJob = (list_id_showed, list_hashtag, place) => {
                     "list_hashtag": list_hashtag,
                     "place": place
                 }
+            }).then(res => {
+                dispatch(setListJob(res.data.list_post));
             }).catch(res => {
                 dispatch(setListJob(res.response.data.list_post));
             })

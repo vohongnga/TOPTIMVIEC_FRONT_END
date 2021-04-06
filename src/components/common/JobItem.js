@@ -34,20 +34,20 @@ class JobItem extends Component {
             });
         }
         return (
-            <div className="item row full-width mx-1 mb-3 rounded bg-white border-0 big-hover p-3" data-aos="fade-right" onClick={(e) =>this.toPost(job._id)}>
+            <div className="item row h-100 full-width mx-1 mb-3 rounded bg-white big-hover pr-2 pl-4 pt-4 pb-3" data-aos="fade-right" onClick={(e) =>this.toPost(job._id)}>
                 <div className="col col-2 logo">
-                    <img className="mx-auto" src={job.employer.avatar} alt="" />
+                    <img className="mx-auto pr-2" src={job.employer.avatar} alt="" />
                 </div>
                 <div className="col col-10">
                     <h4 className="text-truncate">{job.title}</h4>
-                    <div className="row border-0 mt-3">
-                        <div className="col-8 detail">
+                    <div className="row mt-4 mb-1">
+                        <div className="col-8 detail mb-0 pb-0">
                             <h5 className="text-truncate">{job.employer.name}</h5>
-                            {this.showHashtag(job.hashtag)}
+                            <div className="row pl-3 mt-3">{this.showHashtag(job.hashtag)}</div>
                         </div>
-                        <div className="col-4 ml-auto city_and_posted_date">
-                            <p className="text-truncate text-right"><i className="fa fa-dollar-sign mr-1 mb-2"></i>{job.salary}</p><br/>
-                            <div className="text-right">
+                        <div className="col-4 ml-auto city_and_posted_date h-100">
+                            <p className="text-truncate text-right mt-1"><i className="fa fa-dollar-sign mr-1 mb-2"></i>{job.salary}</p><br/>
+                            <div className="text-right mt-3">
                                 <p className="text-truncate">{place}</p>
                             </div>
                         </div>
@@ -61,7 +61,7 @@ class JobItem extends Component {
         if (listHashtag.length > 0) {
             result = listHashtag.map((hashtag, index) => {
                 return (
-                    <button key={index} type="button" className="btn btn-light btn-sm mr-1" onClick={(e) =>this.onClickHashtag(e, hashtag)}>{hashtag}</button>
+                    <button key={index} type="button" className="btn btn-light btn-sm mr-1 mt-1" onClick={(e) =>this.onClickHashtag(e, hashtag)}>{hashtag}</button>
                 )
             })
         }
