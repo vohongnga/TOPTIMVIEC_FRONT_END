@@ -4,6 +4,7 @@ import logo_img from "../../image/LogoMakr-48tDoh_uhomu6.png";
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import SearchForm from "./../common/SearchForm";
+import LoginService from "../../services/LoginService";
 
 class HeaderApplicant extends Component {
     constructor(props) {
@@ -36,16 +37,7 @@ class HeaderApplicant extends Component {
         window.addEventListener('scroll', this.changeNavbarBg);
     }
     logOut = () => {
-        localStorage.removeItem("refresh_token");
-
-        sessionStorage.removeItem("id_user");
-        sessionStorage.removeItem("avatar");
-        sessionStorage.removeItem("name");
-        sessionStorage.removeItem("refresh_token");
-        sessionStorage.removeItem("role");
-        sessionStorage.removeItem("token");
-
-        this.props.history.push("/dang-nhap");
+        LoginService.logoutAPI();
     }
     componentWillUnmount() {
         window.removeEventListener('scroll', this.changeNavbarBg);

@@ -36,7 +36,11 @@ class Login extends Component {
         LoginService.fetchLoginAPI(this.state.user.email, this.state.user.password).then(res => {
             if (res.status === 200) {
                 if (this.state.checkSaveAccount) {
+                    localStorage.setItem("id_user", res.data.id_user);
+                    localStorage.setItem("avatar", res.data.avatar);
+                    localStorage.setItem("name", res.data.name);
                     localStorage.setItem("refresh_token", res.data.refresh_token);
+                    localStorage.setItem("role", res.data.role);
                 }
                 sessionStorage.setItem("id_user", res.data.id_user);
                 sessionStorage.setItem("avatar", res.data.avatar);

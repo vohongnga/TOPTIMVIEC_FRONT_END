@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import * as actions from './actions/index';
 import routes from './routes';
 import { refreshToken } from './services/TokenService';
-import { getAccountInfo } from './services/AccountInfoService';
 
 const history = createBrowserHistory();
 
@@ -38,9 +37,15 @@ class App extends Component {
         var key = localStorage.getItem("refresh_token");
         if (key) {
             sessionStorage.setItem("refresh_token", key);
-            refreshToken().then((res) => {
-                getAccountInfo();
-            });
+            var id_user = localStorage.getItem("id_user");
+            sessionStorage.setItem("id_user", id_user);
+            var avatar = localStorage.getItem("avatar");
+            sessionStorage.setItem("avatar", avatar);
+            var name = localStorage.getItem("name");
+            sessionStorage.setItem("name", name);
+            var role = localStorage.getItem("role");
+            sessionStorage.setItem("role", role);
+            refreshToken();
         }
         //Thiet lap an header khi o trang chu
         if (window.location.pathname === "/") {
