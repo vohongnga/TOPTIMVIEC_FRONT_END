@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import Header from "../../components/employer/commom/Header";
-import SearchForm from "../../components/employer/commom/SearchForm";
-import Footer from "../../components/employer/commom/Footer";
+import SearchForm from "../../components/common/SearchForm";
 import CandidateList from "../../components/employer/index/CandidateList";
 
-class Index extends Component{
-  render(){
-      return (
-        <div>
-            <Header />
-            <SearchForm />
-            <div class="container-fluid">
-                <div class="row">
-                    <CandidateList />                    
+class Index extends Component {
+    render() {
+        document.body.style.backgroundColor = "#eceff1";
+        return (
+            <div>
+                <div className="index-search-div">
+                    <SearchForm />
                 </div>
-            </div>  
-            <Footer />
-        </div>   
-      );
-  }
+                <div class="container-fluid">
+                    <div class="row">
+                        <CandidateList />
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 export default Index;
 

@@ -7,7 +7,7 @@ import * as actions from './../../actions/index';
 
 class JobItem extends Component {
     toPost = (id) => {
-        this.props.history.push("/post/"+id);
+        window.open("/post/"+id, "_blank")
     }
     onClickHashtag(e, hashtag) {
         e.stopPropagation(); 

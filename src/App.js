@@ -3,6 +3,7 @@ import './App.css';
 import { Router, Switch, Route } from 'react-router-dom';
 import Header from './components/common/Header';
 import HeaderApplicant from './components/applicant/HeaderApplicant';
+import HeaderEmployer from './components/employer/commom/HeaderEmployer';
 import { createBrowserHistory } from "history";
 import { connect } from 'react-redux';
 import * as actions from './actions/index';
@@ -75,7 +76,7 @@ class App extends Component {
     showHeader = () => {
         var role = sessionStorage.getItem("role");
         if (role === "employer") {
-            return "";
+            return <HeaderEmployer />;
         }
         else if (role === "applicant") {
             return <HeaderApplicant />;
