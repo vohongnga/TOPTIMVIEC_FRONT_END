@@ -26,20 +26,25 @@ class RegisterEmployer extends Component {
         let {email} = this.state;
         let {password} = this.state;
         let {repassword} = this.state;
+        
         EmployerService.fetchEmployerAPI(name,email,password,repassword).then(res => {
-            //console.log("ok");
-            if(res.status === 200){
-                console.log("ok");
-                this.setState({
-                    name: name,
-                    email:email,
-                    password:password,
-                    repassword:repassword
-                })
-                console.log("ok");
-                window.location.href = "/dang-nhap";
+            if(password !== repassword){
+                this.setState({notif: "(*) Mật khẩu không trùng khớp!"});
+            }else {
+                if(res.status === 201){
+               
+                    this.setState({
+                        name: res.name,
+                        email:email,
+                        password:password,
+                        repassword:repassword
+                    })
+                    console.log("ok");
+                    window.location.href = "/dang-nhap";
+                }
             }
-            window.location.href = "/dang-nhap";
+            
+          
         }).catch(err => {
             if (err.response.status === 400) {
                 this.setState({notif: "(*) Vui lòng nhập đầy đủ thông tin"});
@@ -47,9 +52,7 @@ class RegisterEmployer extends Component {
                 this.setState({notif: "(*) Lỗi kết nối cơ sở dữ liệu"});
             } else if (err.response.status === 409) {
                 this.setState({notif: "(*) Email đã tồn tại"});
-             }//else if(this.state.password !== this.state.repassword){
-            //     this.setState({notif: "(*) Mật khẩu không trùng khớp!"});
-            // }
+             }
         })
     }
     render() {
