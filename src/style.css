@@ -242,3 +242,12 @@ span.icon2 {
 .size-icon {
     font-size: 25px;
 }
+.verify {
+    height: 400px;
+   
+}
+.ct {
+    font-size: 30px;
+    text-align: center;
+    color: #394141;
+}

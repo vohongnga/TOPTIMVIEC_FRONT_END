@@ -8,6 +8,7 @@ import RegisterEmployer from './pages/common/RegisterEmployer';
 import RegisterApplicant from './pages/common/RegisterApplicant';
 import NotFoundPage from './pages/NotFoundPage';
 import { Redirect } from 'react-router-dom';
+import VerifyAccount from './pages/common/VerifyAccount';
 
 const routes=[
     {
@@ -63,10 +64,16 @@ const routes=[
         main: () => { return !sessionStorage.getItem("role") ? <RegisterApplicant /> : <Redirect to="/" />}
     },
     {
+        path:'/dang-ky/xac-nhan',
+        exact: true,
+        main: () => <VerifyAccount/>
+    },
+    {
         path:'',
         exact: false,
         main: () => <NotFoundPage />
     }
+    
 
 ];
 export default routes;

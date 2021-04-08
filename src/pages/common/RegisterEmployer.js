@@ -40,7 +40,7 @@ class RegisterEmployer extends Component {
                         repassword:repassword
                     })
                     console.log("ok");
-                    window.location.href = "/dang-nhap";
+                    window.location.href = "/dang-ky/xac-nhan";
                 }
             }
             
