@@ -43,6 +43,7 @@ class JobList extends Component {
         window.addEventListener('scroll', this.onScrollDown);
     }
     componentWillUnmount(){
+        this.props.setListJob([]);
         window.removeEventListener('scroll', this.onScrollDown);
     }
     render() {
@@ -91,6 +92,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         setLoadingJob: (loading) => {
             return dispatch(actions.setLoadingJob(loading));
+        },
+        setListJob: (jobs) => {
+            return dispatch(actions.setListJob(jobs));
         }
     }
 }

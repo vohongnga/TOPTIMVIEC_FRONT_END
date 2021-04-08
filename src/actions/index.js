@@ -1,5 +1,7 @@
 import * as types from './../constants/ActionTypes';
 import callApi from './../utils/apiCaller'
+import axios from 'axios'
+import {API_URL} from './../constants/ApiUrl'
 
 export const hideHeader = () => {
     return {
@@ -55,15 +57,29 @@ export const fetchListPlace = () => {
 }
 export const fetchAppendListJob = (list_id_showed, list_hashtag, place) => {
     return (dispatch) => {
-        return callApi('post-list', 'POST', {
-            "list_id_showed": list_id_showed, 
-            "list_hashtag": list_hashtag,
-            "place": place
-        }).then(res => {
-            dispatch(appendListJob(res.data.list_post));
-        }).catch(res => {
-            dispatch(appendListJob(res.response.data.list_post));
-        })
+        var key = sessionStorage.getItem("refresh_token");
+        if (key) {
+            return callApi('post-list', 'POST', {
+                "list_id_showed": list_id_showed, 
+                "list_hashtag": list_hashtag,
+                "place": place
+            }).then(res => {
+                if (res)
+                    dispatch(appendListJob(res.data.list_post));
+            });
+        } else {
+            return axios({
+                method: 'POST',
+                url: API_URL+'post-list',
+                data: {
+                    "list_id_showed": list_id_showed, 
+                    "list_hashtag": list_hashtag,
+                    "place": place
+                }
+            }).catch(res => {
+                dispatch(appendListJob(res.response.data.list_post));
+            })
+        }
     }
 }
 export const appendListJob = (list_job) => {
@@ -74,15 +90,32 @@ export const appendListJob = (list_job) => {
 }
 export const fetchSetListJob = (list_id_showed, list_hashtag, place) => {
     return (dispatch) => {
-        return callApi('post-list', 'POST', {
-            "list_id_showed": list_id_showed, 
-            "list_hashtag": list_hashtag,
-            "place": place
-        }).then(res => {
-            dispatch(setListJob(res.data.list_post));
-        }).catch(res => {
-            dispatch(setListJob(res.response.data.list_post));
-        })
+        var key = sessionStorage.getItem("refresh_token");
+        if (key) {
+            return callApi('post-list', 'POST', {
+                "list_id_showed": list_id_showed, 
+                "list_hashtag": list_hashtag,
+                "place": place
+            }).then(res => {
+                if (res)
+                    dispatch(setListJob(res.data.list_post));
+            });
+        }
+        else {
+            return axios({
+                method: 'POST',
+                url: API_URL+'post-list',
+                data: {
+                    "list_id_showed": list_id_showed, 
+                    "list_hashtag": list_hashtag,
+                    "place": place
+                }
+            }).then(res => {
+                dispatch(setListJob(res.data.list_post));
+            }).catch(res => {
+                dispatch(setListJob(res.response.data.list_post));
+            })
+        }
     }
 }
 export const setListJob = (list_job) => {

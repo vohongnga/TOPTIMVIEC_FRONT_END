@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from "../comm/Header";
-import Footer from "../comm/Footer";
-import List from './List';
+import Header from "../../components/employer/commom/HeaderEmployer";
+import Footer from "../../components/employer/commom/Footer";
+import List from '../../components/employer/list/List';
 
 class Index extends Component{
   render(){

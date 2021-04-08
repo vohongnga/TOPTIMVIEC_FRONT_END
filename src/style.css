@@ -181,9 +181,6 @@ span.icon2 {
     display:inline;
 }
 /* JOB ITEM */
-.job-item .item{
-    height: 150px;
-}
 .job-item .logo {
     height: 120px;
     width: 120px;
@@ -204,10 +201,6 @@ span.icon2 {
 .job-item .row .detail p{
     font-size: 13px;
 }
-/* .job-item .row .feature-text p{
-    font-size: 12px;
-    color: #6e6e70;
-} */
 .job-item .row .city_and_posted_date p{
     font-size: 12px;
     color: #6e6e70;
@@ -244,4 +237,8 @@ span.icon2 {
 .floating-btn {
     width: 65px;
     height: 65px;
+}
+
+.size-icon {
+    font-size: 25px;
 }

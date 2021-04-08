@@ -5,6 +5,7 @@ import logo_img from "../../image/LogoMakr-87TXng_pnsj0a.png"
 import LoginService from "../../services/LoginService";
 import {connect} from 'react-redux';
 import * as actions from '../../actions/index';
+import { withRouter } from "react-router-dom";
 
 class Login extends Component {
     constructor(props){
@@ -40,16 +41,17 @@ class Login extends Component {
                     localStorage.setItem("name", res.data.name);
                     localStorage.setItem("refresh_token", res.data.refresh_token);
                     localStorage.setItem("role", res.data.role);
-                } else {
-                    sessionStorage.setItem("id_user", res.data.id_user);
-                    sessionStorage.setItem("avatar", res.data.avatar);
-                    sessionStorage.setItem("name", res.data.name);
-                    sessionStorage.setItem("refresh_token", res.data.refresh_token);
-                    sessionStorage.setItem("role", res.data.role);
                 }
+                sessionStorage.setItem("id_user", res.data.id_user);
+                sessionStorage.setItem("avatar", res.data.avatar);
+                sessionStorage.setItem("name", res.data.name);
+                sessionStorage.setItem("refresh_token", res.data.refresh_token);
+                sessionStorage.setItem("role", res.data.role);
                 sessionStorage.setItem("token", res.data.token);
-                this.props.setRole(res.data.role);
-                this.setState({notif: ""})
+
+                this.setState({notif: ""});
+                this.props.history.push("/");
+                return;
             }
         }).catch(err => {
             if (err.response.status === 401) {
@@ -146,4 +148,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(withRouter(Login));
