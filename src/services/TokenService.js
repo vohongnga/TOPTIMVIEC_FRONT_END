@@ -10,7 +10,11 @@ export const refreshToken = () => {
         }).then((res) => {
             sessionStorage.setItem("token", res.data.token);
         }).catch((e) => {
+            localStorage.removeItem("id_user");
+            localStorage.removeItem("avatar");
+            localStorage.removeItem("name");
             localStorage.removeItem("refresh_token");
+            localStorage.removeItem("role");
 
             sessionStorage.removeItem("id_user");
             sessionStorage.removeItem("avatar");
@@ -21,7 +25,11 @@ export const refreshToken = () => {
             window.location.href = "/dang-nhap";
         });
     } else {
+        localStorage.removeItem("id_user");
+        localStorage.removeItem("avatar");
+        localStorage.removeItem("name");
         localStorage.removeItem("refresh_token");
+        localStorage.removeItem("role");
 
         sessionStorage.removeItem("id_user");
         sessionStorage.removeItem("avatar");

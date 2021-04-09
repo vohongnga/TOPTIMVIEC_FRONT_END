@@ -7,6 +7,7 @@ import list_place from './list_place';
 import role from './role';
 import choose_cv from './choose_cv';
 import list from './list';
+import list_page from './list_page';
 
 const appReducers = combineReducers({
     hide_header,
@@ -16,6 +17,7 @@ const appReducers = combineReducers({
     list_place,
     role,
     choose_cv,
-    list
+    list,
+    list_page
 });
 export default appReducers;
