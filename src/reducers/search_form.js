@@ -10,17 +10,25 @@ var initialState = {
 const search_value = (state = initialState, action) => {
     switch(action.type){
         case types.CHANGE_HASHTAG:
-            state.tag=action.hashtag;
-            return state;
+            return {
+                ...state,
+                tag: action.hashtag
+            };
         case types.CHANGE_PLACE:
-            state.place=action.place;
-            return state;
+            return {
+                ...state,
+                place: action.place
+            };
         case types.SET_LOAD_JOB:
-            state.load=action.load;
-            return state;
+            return {
+                ...state,
+                load: action.load
+            };
         case types.SET_LOADING_JOB:
-            state.loading=action.loading;
-            return state;
+            return {
+                ...state,
+                loading: action.loading
+            };
         default: 
             return state;
     }

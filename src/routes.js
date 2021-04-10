@@ -2,6 +2,7 @@ import React from 'react';
 import Index from './pages/common/Index';
 import Employer from './pages/employer/Index';
 import List from './pages/employer/List';
+import GetList from './pages/employer/GetList';
 import Login from './pages/common/Login';
 import Register from './pages/common/Register';
 import RegisterEmployer from './pages/common/RegisterEmployer';
@@ -33,6 +34,22 @@ const routes=[
             var role = sessionStorage.getItem("role");
             if (role === "employer") {
                 return <List />;
+            }
+            else if (role === "applicant") {
+                return <Redirect to="/" />;
+            }
+            else {
+                return <Redirect to="/dang-nhap" />;
+            }
+        }
+    },
+    {
+        path:'/danh-sach/:id',
+        exact: false,
+        main: (match) => {
+            var role = sessionStorage.getItem("role");
+            if (role === "employer") {
+                return <GetList id={match.match.params.id}/>;
             }
             else if (role === "applicant") {
                 return <Redirect to="/" />;

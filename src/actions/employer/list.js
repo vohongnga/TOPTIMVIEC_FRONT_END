@@ -45,3 +45,15 @@ export const setIdList = (id) => {
         id
     };
 }
+export const setListCandidate = (list) => {
+    return {
+        type: types.SET_LIST_CANDIDATE,
+        list
+    };
+}
+export const setTitleList = (name) => {
+    return {
+        type: types.SET_TITLE_LIST,
+        name
+    };
+}

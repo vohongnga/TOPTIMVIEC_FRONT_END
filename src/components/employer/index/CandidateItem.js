@@ -24,13 +24,13 @@ class CandidateItem extends Component {
     }
     onChooseCV = (e) => {
         e.stopPropagation(); 
-        window.$('#myModal').modal('show');
+        window.$('#chooseCVModal').modal('show');
         this.props.chooseCV(this.props.job._id);
     }
     render() {
         var {job} = this.props;
         return (
-            <div className="item row h-100 full-width mx-1 mb-3 rounded bg-white big-hover pr-2 pl-4 pt-4 pb-3" data-aos="fade-right" onClick={(e) =>this.toPost(job._id)}>
+            <div className="item row h-100 full-width mx-1 mb-3 rounded bg-white big-hover pr-2 pl-4 pt-4 pb-3" data-aos={this.props.list ? "fade-left" : "fade-right"} onClick={(e) =>this.toPost(job._id)}>
                 <div className="col col-2 logo">
                     <img className="mx-auto pr-2" src={job.avatar} alt="" />
                 </div>

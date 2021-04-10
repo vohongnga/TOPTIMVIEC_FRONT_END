@@ -26,17 +26,24 @@ class ChooseCVModal extends Component {
         this.props.setUpdateList(false);
         window.$('#addListModal').modal('show');
     }
+    onChooseCV = (id_list) => {
+        services.chooseCV(id_list, this.props.choose_cv);
+        window.$('#chooseCVModal').modal('hide');
+    }
     componentDidMount() {
         this.props.fetchSetList(0);
     }
+    onClose = () => {
+        window.$('#chooseCVModal').modal('hide');
+    }
     render() {
         return (
-            <div className="modal fade show" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="myModal-label" aria-hidden="true">
+            <div className="modal fade" id="chooseCVModal" tabIndex="-1" role="dialog" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="myModalTitle"> Thêm vào danh sách</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <h5 className="modal-title"> Thêm vào danh sách</h5>
+                            <button type="button" className="close" onClick={this.onClose}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -63,7 +70,7 @@ class ChooseCVModal extends Component {
                             </ul>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-success" data-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-success" onClick={this.onClose}>Close</button>
                         </div>
                     </div>
                 </div>
@@ -76,7 +83,7 @@ class ChooseCVModal extends Component {
         if (lists.length > 0) {
             result = lists.map((list, index) => {
                 return (
-                    <Link to="" className="list-group-item list-group-item-action " key={index}>{list.name}</Link>
+                    <Link to="" className="list-group-item list-group-item-action " key={index} onClick={()=>this.onChooseCV(list._id)}>{list.name}</Link>
                 )
             })
         }

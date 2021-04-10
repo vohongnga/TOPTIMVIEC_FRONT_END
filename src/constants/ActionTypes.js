@@ -17,3 +17,5 @@ export const SET_COUNT_PAGE_LIST = "SET_COUNT_PAGE_LIST";
 export const SET_NAME_LIST = "SET_NAME_LIST";
 export const SET_UPDATE_LIST = "SET_UPDATE_LIST";
 export const SET_ID_LIST = "SET_ID_LIST";
+export const SET_LIST_CANDIDATE = "SET_LIST_CANDIDATE";
+export const SET_TITLE_LIST = "SET_TITLE_LIST";

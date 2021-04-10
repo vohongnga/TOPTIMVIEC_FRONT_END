@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import * as actions from '../../actions/employer/list';
 import loading_gif from './../../image/loader.gif';
 import AddListModal from '../../components/employer/list/AddListModal';
-import * as services from '../../services/ListService';
+import DeleteDialog from './../../components/employer/list/DeleteDialog';
 
 class List extends Component {
     constructor(props) {
@@ -32,17 +32,13 @@ class List extends Component {
             this.setState({loading: false});
         });
     }
-    deleteList(id) {
-        services.deleteList(id).then(() => {
-            this.props.setPageList(0);
-            this.props.setList([]);
-            this.setState({loading: true});
-            this.props.fetchSetList(0).then(res => {
-                this.setState({loading: false});
-            });
-        });
+    deleteList(id, name) {
+        this.props.setIdList(id);
+        this.props.setNameList(name);
+        window.$('#deleteDialog').modal('show');
     }
     componentDidMount() {
+        this.props.setList([]);
         this.setState({loading: true});
         this.props.fetchSetList(0).then(res => {
             this.setState({loading: false});
@@ -91,6 +87,7 @@ class List extends Component {
                     
                 </div>
                 <AddListModal />
+                <DeleteDialog />
             </div>
         );
     }
@@ -100,11 +97,11 @@ class List extends Component {
             result = lists.map((list, index) => {
                 return (
                     <tr key={index}  className="d-flex">
-                        <th scope="row" className="col-2">{this.props.list_page.page*10+index+1}</th>
-                        <td className="col-8">{list.name}</td>
+                        <th scope="row" className="col-2">{this.props.list_page.page*20+index+1}</th>
+                        <td className="col-8"><Link className="text-dark" to={"/danh-sach/"+list._id}>{list.name}</Link></td>
                         <td className="col-2">
                             <Link to="#" onClick={() => this.onClickUpdateList(list.name, list._id)}><i className="fa fa-pencil-alt text-warning"></i></Link>
-                            <Link className="ml-2" to="#" onClick={() => this.deleteList(list._id)}><i className="fa fa-trash text-danger"></i></Link>
+                            <Link className="ml-2" to="#" onClick={() => this.deleteList(list._id, list.name)}><i className="fa fa-trash text-danger"></i></Link>
                         </td>
                     </tr>
                 )
@@ -157,5 +154,3 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(List);
-
-

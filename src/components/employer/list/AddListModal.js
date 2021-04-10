@@ -8,36 +8,44 @@ class AddListModal extends Component {
     onChangeListName = (e) => {
         this.props.setNameList(e.target.value);
     }
-    onAddNewList = () => {
-        services.newList(this.props.list_page.name_list).then(() => {
-            this.props.fetchSetList(0).then(() => {
-                this.props.setPageList(0);
-            });
+    onAddNewList = (e) => {
+        e.preventDefault();
+        services.newList(this.props.list_page.name_list).then((res) => {
+            this.props.setList(res.data.candidate_lists);
+            this.props.setCountPageList(res.data.page);
+            this.props.setPageList(0);
         });
         window.$('#addListModal').modal('hide');
     }
-    onUpdateList = () => {
-        services.updateList(this.props.list_page.id_list, this.props.list_page.name_list).then(() => {
-            this.props.fetchSetList(0).then(() => {
+    onUpdateList = (e) => {
+        e.preventDefault();
+        services.updateList(this.props.list_page.id_list, this.props.list_page.name_list).then((res) => {
+            if (this.props.get_list) {
+                this.props.setTitleList(this.props.list_page.name_list);
+            } else {
+                this.props.setList(res.data.candidate_lists);
+                this.props.setCountPageList(res.data.page);
                 this.props.setPageList(0);
-            });
+            }
         });
+        window.$('#addListModal').modal('hide');
+    }
+    onClose = () => {
         window.$('#addListModal').modal('hide');
     }
     render() {
-        document.body.style.backgroundColor = "#eceff1";
         return (
             <div className="modal fade" id="addListModal" tabIndex="-1" role="dialog" aria-labelledby="addListModal" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title">{this.props.list_page.update ? "Sửa danh sách" : "Thêm danh sách"}</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" className="close" onClick={this.onClose}>
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div className="modal-body">
-                    <form>
+                    <form onSubmit={this.props.list_page.update ? this.onUpdateList : this.onAddNewList}>
                         <div className="form-group">
                             <label htmlFor="list-name" className="col-form-label">Tên danh sách:</label>
                             <input type="text" className="form-control" id="list-name" onChange={this.onChangeListName} value={this.props.list_page.name_list} />
@@ -45,7 +53,7 @@ class AddListModal extends Component {
                     </form>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" className="btn btn-secondary" onClick={this.onClose}>Hủy</button>
                         <button type="button" className="btn btn-success" onClick={this.props.list_page.update ? this.onUpdateList : this.onAddNewList}>{this.props.list_page.update ? "Sửa danh sách" : "Thêm danh sách"}</button>
                     </div>
                     </div>
@@ -88,6 +96,12 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         setNameList: (name_list) => {
             return dispatch(actions.setNameList(name_list))
+        },
+        setTitleList: (name_list) => {
+            return dispatch(actions.setTitleList(name_list))
+        },
+        setCountPageList: (page) => {
+            return dispatch(actions.setCountPageList(page))
         }
     }
 }
