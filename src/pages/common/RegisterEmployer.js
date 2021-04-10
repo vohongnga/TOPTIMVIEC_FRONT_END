@@ -22,23 +22,13 @@ class RegisterEmployer extends Component {
     
     onSubmit = (e) => {
         e.preventDefault();
-        let {name} = this.state;
-        let {email} = this.state;
-        let {password} = this.state;
-        let {repassword} = this.state;
+        let {name,email,password,repassword} = this.state;
         
         EmployerService.fetchEmployerAPI(name,email,password,repassword).then(res => {
             if(password !== repassword){
                 this.setState({notif: "(*) Mật khẩu không trùng khớp!"});
             }else {
                 if(res.status === 201){
-               
-                    this.setState({
-                        name: res.name,
-                        email:email,
-                        password:password,
-                        repassword:repassword
-                    })
                     console.log("ok");
                     window.location.href = "/dang-ky/xac-nhan";
                 }
