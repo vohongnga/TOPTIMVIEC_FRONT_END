@@ -79,8 +79,7 @@ class CandidateList extends Component {
 const mapStateToProps = state => {
     return {
         search_value: state.search_value,
-        jobs: state.jobs,
-        choose_cv: state.choose_cv
+        jobs: state.jobs
     }
 }
 const mapDispatchToProps = (dispatch, props) => {

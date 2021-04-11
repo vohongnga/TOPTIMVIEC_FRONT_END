@@ -245,3 +245,11 @@ span.icon2 {
 .size-icon {
     font-size: 25px;
 }
+
+.dialog1 {
+    z-index: 1999; 
+}
+
+.dialog2 {
+    z-index: 2000; 
+}

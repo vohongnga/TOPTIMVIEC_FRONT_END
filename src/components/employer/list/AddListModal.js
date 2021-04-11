@@ -35,7 +35,7 @@ class AddListModal extends Component {
     }
     render() {
         return (
-            <div className="modal fade" id="addListModal" tabIndex="-1" role="dialog" aria-labelledby="addListModal" aria-hidden="true">
+            <div className="modal fade dialog2" id="addListModal" tabIndex="-1" role="dialog" aria-labelledby="addListModal" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                     <div className="modal-header">

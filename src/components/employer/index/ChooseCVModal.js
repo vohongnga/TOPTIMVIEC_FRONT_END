@@ -38,7 +38,7 @@ class ChooseCVModal extends Component {
     }
     render() {
         return (
-            <div className="modal fade" id="chooseCVModal" tabIndex="-1" role="dialog" aria-hidden="true">
+            <div className="modal fade dialog1" id="chooseCVModal" tabIndex="-1" role="dialog" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -49,7 +49,7 @@ class ChooseCVModal extends Component {
                         </div>
                         <div className="modal-body">
                             <div className="list-group overflow-auto">
-                                <Link to="" className="list-group-item list-group-item-action" onClick={this.onClickAddList}><i className="fa fa-plus mr-2" aria-hidden="true"></i>Tạo danh sách mới</Link>
+                                <Link to="#" className="list-group-item list-group-item-action" onClick={this.onClickAddList}><i className="fa fa-plus mr-2" aria-hidden="true"></i>Tạo danh sách mới</Link>
                                 {this.state.loading ? <img className="center" src={loading_gif} alt="" width="50px"></img> : ""}
                                 {this.showLists(this.props.list)}
                             </div>
@@ -83,7 +83,7 @@ class ChooseCVModal extends Component {
         if (lists.length > 0) {
             result = lists.map((list, index) => {
                 return (
-                    <Link to="" className="list-group-item list-group-item-action " key={index} onClick={()=>this.onChooseCV(list._id)}>{list.name}</Link>
+                    <Link to="#" className="list-group-item list-group-item-action " key={index} onClick={()=>this.onChooseCV(list._id)}>{list.name}</Link>
                 )
             })
         }

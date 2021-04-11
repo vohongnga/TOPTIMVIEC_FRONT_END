@@ -3,6 +3,7 @@ import CandidateList from "../../components/employer/list/CandidateList";
 import ListTitle from './../../components/employer/list/ListTitle';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/employer/list';
+import * as actions_index from './../../actions/index';
 import * as services from './../../services/ListService';
 
 class Index extends Component{
@@ -20,14 +21,21 @@ class Index extends Component{
         window.scrollTo({ behavior: 'smooth', top: 0 });
     }
     componentDidMount() {
+        this.props.setLoadingJob(true);
         services.getList(this.props.id).then((res) => {
+            this.props.setLoadingJob(false);
             this.props.setNameList(res.data.name);
             this.props.setTitleList(res.data.name);
             this.props.setIdList(res.data._id);
+            this.props.setListCandidate(res.data.list);
         })
         window.addEventListener('scroll', this.onScrollDown);
     }
     componentWillUnmount() {
+        this.props.setNameList("");
+        this.props.setTitleList("");
+        this.props.setIdList("");
+        this.props.setListCandidate([]);
         window.removeEventListener('scroll', this.onScrollDown);
     }
     render(){
@@ -48,7 +56,7 @@ class Index extends Component{
 }
 const mapStateToProps = state => {
     return {
-        list_job_ref: state.list_job_ref
+        get_list: state.get_list
     }
 }
 const mapDispatchToProps = (dispatch, props) => {
@@ -61,6 +69,12 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         setTitleList: (name_list) => {
             return dispatch(actions.setTitleList(name_list))
+        },
+        setListCandidate: (list) => {
+            return dispatch(actions.setListCandidate(list))
+        },
+        setLoadingJob: (loading) => {
+            return dispatch(actions_index.setLoadingJob(loading));
         }
     }
 }

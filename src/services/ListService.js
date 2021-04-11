@@ -15,3 +15,6 @@ export const chooseCV = (id_list, id_cv) => {
 export const getList = (id_list) => {
     return callApi('list-candidate/'+id_list, 'GET');
 }
+export const deleteCV = (id_list, id_cv) => {
+    return callApi('list-candidate/'+id_list+'/'+id_cv, 'DELETE');
+}
