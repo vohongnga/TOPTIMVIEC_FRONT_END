@@ -8,7 +8,7 @@ class NotFoundPage extends Component {
         document.body.style.backgroundColor = "#eceff1";
         return (
             <div>
-                <img src={img} className="center mt-5"/>
+                <img src={img} className="center mt-5 max-size-screen"/>
             </div>
         );
 
