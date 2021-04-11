@@ -40,7 +40,8 @@ class App extends Component {
         //Lay thong tin nguoi dung khi khoi dong
         this.setState({getting_data: true});
         var key = localStorage.getItem("refresh_token");
-        if (key) {
+        var session_key = sessionStorage.getItem("refresh_token");
+        if (key && !session_key) {
             sessionStorage.setItem("refresh_token", key);
             var id_user = localStorage.getItem("id_user");
             sessionStorage.setItem("id_user", id_user);
