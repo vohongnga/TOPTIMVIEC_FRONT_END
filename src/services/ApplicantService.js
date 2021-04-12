@@ -2,7 +2,7 @@ import axios from 'axios'
 import {API_URL} from './../constants/ApiUrl';
 
 let ApplicantService = {
-    fetchApplicantAPI: (name,email,gender,dob, password, repassword) => {
+    fetchApplicantAPI: (name,email,gender,dob, password) => {
         return axios({
             method: 'POST',
             url: API_URL+'applicant',
@@ -11,8 +11,7 @@ let ApplicantService = {
                 "email": email, 
                 "gender": gender,
                 "dob": dob,
-                "password": password,
-                "repassword": repassword
+                "password": password
             }
         });
     }

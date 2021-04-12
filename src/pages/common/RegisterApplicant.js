@@ -22,29 +22,37 @@ class RegisterApplicant extends Component {
             [name]: value
         });
     }
+    onHandleBlur = (e) => {
+        
+        let repassword = e.target.value;
+        if(!repassword ){
+            this.setState({notif: "(*) Vui lòng xác nhận lại mật khẩu!"});
+        }
+       
+    }
     onSubmit = (e) => {
         e.preventDefault();
         let {name, email, gender, dob, password, repassword} = this.state;
-        ApplicantService.fetchApplicantAPI(name,email,gender,dob,password,repassword).then(res =>{
-            if( password !== repassword){
-                this.setState({notif: "(*) Mật khẩu không trùng khớp!"});
-            }else{
-                if(res.status === 201){
-                    console.log("ok");
-                    window.location.href = "/dang-ky/xac-nhan";
+        if( password !== repassword){
+            this.setState({notif: "(*) Mật khẩu không trùng khớp!"});
+        } else{
+            ApplicantService.fetchApplicantAPI(name,email,gender,dob,password).then(res =>{
+                
+                    if(res.status === 201){
+                        console.log("ok");
+                        window.location.href = "/dang-ky/xac-nhan";
+                    }
+                
+            }).catch(err => {
+                if (err.response.status === 400) {
+                    this.setState({notif: "(*) Vui lòng nhập đầy đủ thông tin"});
+                } else if (err.response.status === 403) {
+                    this.setState({notif: "(*) Lỗi kết nối cơ sở dữ liệu"});
+                } else if (err.response.status === 409) {
+                    this.setState({notif: "(*) Email đã tồn tại"});
                 }
-            }
-            
-        }).catch(err => {
-            if (err.response.status === 400) {
-                this.setState({notif: "(*) Vui lòng nhập đầy đủ thông tin"});
-            } else if (err.response.status === 403) {
-                this.setState({notif: "(*) Lỗi kết nối cơ sở dữ liệu"});
-            } else if (err.response.status === 409) {
-                this.setState({notif: "(*) Email đã tồn tại"});
-             }
-        })
-
+            })
+        }
     }
     render() {
         document.body.style.backgroundColor = "#394141";
@@ -78,7 +86,7 @@ class RegisterApplicant extends Component {
                     </div>
                     <div className="info">
                         <label >Xác nhận lại mật khẩu (*):</label>
-                        <input type="text" name="repassword" id="" className="form-control" placeholder="" onChange={this.onHandleChange}/>
+                        <input type="text" name="repassword" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onHandleBlur}/>
                     </div>
                     {this.state.notif.length>0 ? <p className="text-danger mt-1">{this.state.notif}</p>: ""}
                     <div className="right-w3l">
