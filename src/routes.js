@@ -9,6 +9,8 @@ import RegisterApplicant from './pages/common/RegisterApplicant';
 import NotFoundPage from './pages/NotFoundPage';
 import { Redirect } from 'react-router-dom';
 import VerifyAccount from './pages/common/VerifyAccount';
+import ValidateAccount from './pages/common/ValidateAccount';
+import ErrorValidate from './pages/common/ErrorValidate';
 
 const routes=[
     {
@@ -67,6 +69,16 @@ const routes=[
         path:'/dang-ky/xac-nhan',
         exact: true,
         main: () => <VerifyAccount/>
+    },
+    {
+        path:'/dang-ky/xac-nhan-email',
+        exact: true,
+        main: () => <ValidateAccount/>
+    },
+    {
+        path:'/dang-ky/xac-nhan-email/loi',
+        exact: true,
+        main: () => <ErrorValidate/>
     },
     {
         path:'',

@@ -244,7 +244,7 @@ span.icon2 {
 }
 .verify {
     height: 400px;
-   
+    max-width: 100%;
 }
 .ct {
     font-size: 30px;
