@@ -13,7 +13,6 @@
     "email-validator": "^2.0.4",
     "formik": "^2.2.6",
     "jquery": "^3.6.0",
-    "query-string": "^7.0.0",
     "react": "^17.0.2",
     "react-bootstrap-typeahead": "^5.1.4",
     "react-dnd": "^8.0.3",
