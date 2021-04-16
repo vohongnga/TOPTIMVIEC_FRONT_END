@@ -12,7 +12,7 @@ class ValidateAccount extends Component {
         ValidateAccountService.fetchValidateAccountAPI(id, key).then(res => {
             this.props.history.push('/dang-nhap')
         }).catch(err => {
-            
+            this.props.history.push("/dang-ky/xac-nhan-email/loi");
         })
     }
     
