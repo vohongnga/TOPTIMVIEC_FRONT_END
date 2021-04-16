@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "../../style.css"
-import logo_img from "../../image/LogoMakr-87TXng_pnsj0a.png"
+import "../../style.css";
+import logo_img from "../../image/LogoMakr-87TXng_pnsj0a.png";
 import LoginService from "../../services/LoginService";
 import {connect} from 'react-redux';
 import * as actions from '../../actions/index';

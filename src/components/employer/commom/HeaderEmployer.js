@@ -83,7 +83,7 @@ class HeaderEmployer extends Component {
                         </li>
                     </div>
                 </div>
-                {this.props.hide_header && !this.state.searchbar ? <div className="container-fluid col-10 mx-auto d-none d-sm-none d-md-block d-lg-block"><SearchForm header={true}/></div>: ""}
+                {this.props.hide_header && !this.state.searchbar ? <div className="container-fluid col-10 mx-auto d-none d-sm-none d-md-block d-lg-block"><SearchForm header={true} employer={true}/></div>: ""}
             </header>
         );
     }
