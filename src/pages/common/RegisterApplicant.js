@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import ApplicantService from "../../services/ApplicantService";
-
+import DatePicker from "react-bootstrap-date-picker";
+import "react-datepicker/dist/react-datepicker.css";
 class RegisterApplicant extends Component {
     constructor(props) {
         super(props);
+        var value = new Date().toISOString();
         this.state = {
             name: "",
             email: "",
@@ -17,9 +19,20 @@ class RegisterApplicant extends Component {
                 email: false,
                 repassword: false
             },
-            notifmess: ""
-
+            notifmess: "",
+            value: value
         }
+    }
+    handleChange = () => {
+        this.setState({
+            value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z"
+            formattedValue: formattedValue // Formatted String, ex: "11/19/2016"
+          });
+    }
+    componentDidUpdate(){
+        var hiddenInputElement = document.getElementById("example-datepicker");
+        console.log(hiddenInputElement.value); // ISO String, ex: "2016-11-19T12:00:00.000Z"
+        console.log(hiddenInputElement.getAttribute('data-formattedvalue')) // Formatted String, ex: "11/19/2016"
     }
     onHandleChange = (e) => {
         let target = e.target;
@@ -29,41 +42,57 @@ class RegisterApplicant extends Component {
             [name]: value
         });
     }
-    onBlurRePassword = (e) => {
+    onBlurRePassword = () => {
 
-        let repassword = e.target.value;
-        let password = e.target.value;
+        let { password, repassword } = this.state;
         if (password !== repassword) {
             let notif = this.state.notif;
             notif.repassword = true;
-            this.setState({notif});
+            this.setState({ notif });
+        } else {
+            let notif = this.state.notif;
+            notif.repassword = false;
+            this.setState({ notif });
         }
 
     }
-    onBlurPassword = (e) => {
-        let password = e.target.value;
+    onBlurPassword = () => {
+        let { password } = this.state;
         if (!password) {
             let notif = this.state.notif;
-            notif.password = true
-            this.setState({ notif})
+            notif.password = true;
+            this.setState({ notif });
+        } else {
+            let notif = this.state.notif;
+            notif.password = false;
+            this.setState({ notif });
         }
+        this.onBlurRePassword();
     }
-    onBlurEmail = (e) => {
-        let email = e.target.value;
+    onBlurEmail = () => {
+        let { email } = this.state;
         if (!email) {
             let notif = this.state.notif;
-            notif.email = true
-            this.setState({ notif})
-           
+            notif.email = true;
+            this.setState({ notif });
+
+        } else {
+            let notif = this.state.notif;
+            notif.email = false;
+            this.setState({ notif });
         }
     }
-    onBlurName = (e) => {
-        let name = e.target.value;
+    onBlurName = () => {
+        let { name } = this.state;
         if (!name) {
             let notif = this.state.notif;
-            notif.name = true
-            this.setState({ notif})
-            
+            notif.name = true;
+            this.setState({ notif });
+
+        } else {
+            let notif = this.state.notif;
+            notif.name = false;
+            this.setState({ notif });
         }
     }
     onSubmit = (e) => {
@@ -88,8 +117,10 @@ class RegisterApplicant extends Component {
         })
 
     }
+     
     render() {
         document.body.style.backgroundColor = "#394141";
+    
         return (
 
             <div className="col-lg-4 col-md-6 content jumbotron center mt-3">
@@ -112,10 +143,16 @@ class RegisterApplicant extends Component {
                         <input type="radio" name="gender" value="false" onChange={this.onHandleChange} checked="checked" />&nbsp;Nam &#12644;
                         <input type="radio" name="gender" value="true" onChange={this.onHandleChange} />&nbsp;Nữ
                     </div>
-                    <div className="info">
+                    {/* <div className="info">
                         <label >Ngày sinh:</label>
                         <input type="text" name="dob" id="" className="form-control" placeholder="" onChange={this.onHandleChange} />
-                    </div>
+                    </div> */}
+                    {/* <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">
+                        <input placeholder="Select date" type="text" id="example" class="form-control"></input>
+                            <label for="example">Try me...</label>
+                            <i class="fas fa-calendar input-prefix" ></i>
+                    </div> */}
+                    <DatePicker id="example-datepicker" value={this.state.value} onChange={this.handleChange} />
                     <div className="info">
                         <label >Mật khẩu (*):</label>
                         <input type="password" name="password" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurPassword} />
@@ -125,8 +162,8 @@ class RegisterApplicant extends Component {
                         <label >Xác nhận lại mật khẩu (*):</label>
                         <input type="password" name="repassword" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurRePassword} />
                     </div>
-                    {this.state.notif.repassword === true? <p className="text-danger mt-1">(*) Mật khẩu không trùng khớp !</p> : ""}
-                    {this.state.notifmess.length > 0 ? <p className="text-danger mt-1">{this.state.notif}</p> : ""}
+                    {this.state.notif.repassword === true ? <p className="text-danger mt-1">(*) Mật khẩu không trùng khớp !</p> : ""}
+                    {this.state.notifmess.length > 0 ? <p className="text-danger mt-1">{this.state.notifmess}</p> : ""}
                     <div className="right-w3l">
                         <button type="button" className="btn btn-success center mt30" onClick={this.onSubmit}>Đăng ký</button>
                     </div>
@@ -134,7 +171,6 @@ class RegisterApplicant extends Component {
 
             </div>
         );
-
     }
 }
 export default RegisterApplicant;

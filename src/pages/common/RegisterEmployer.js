@@ -1,16 +1,27 @@
 import React, { Component } from "react";
 import EmployerService from '../../services/EmployerService';
+
+
 class RegisterEmployer extends Component {
     constructor(props){
         super(props);
+        
         this.state = {
             name: "",
             email: "",
             password: "",
             repassword: "",
-            notif: ""
+            notif: {
+                password: false,
+                name: false,
+                email: false,
+                repassword: false
+            },
+            notifmess: "",
+            
         }
     }
+
     onHandleChange = (e) => {
         let target = e.target;
         let name = target.name;
@@ -19,21 +30,64 @@ class RegisterEmployer extends Component {
             [name] : value
         });
     }
-    onHandleBlur = (e) => {
-        
-        let repassword = e.target.value;
-        if(!repassword ){
-            this.setState({notif: "(*) Mật khẩu không được để trống!"});
-        }
-       
-    }
     
+    onBlurRePassword = () => {
+
+        let { password, repassword } = this.state;
+        if (password !== repassword) {
+            let notif = this.state.notif;
+            notif.repassword = true;
+            this.setState({ notif });
+        } else {
+            let notif = this.state.notif;
+            notif.repassword = false;
+            this.setState({ notif });
+        }
+
+    }
+    onBlurPassword = () => {
+        let { password } = this.state;
+        if (!password) {
+            let notif = this.state.notif;
+            notif.password = true;
+            this.setState({ notif });
+        } else {
+            let notif = this.state.notif;
+            notif.password = false;
+            this.setState({ notif });
+        }
+        this.onBlurRePassword();
+    }
+    onBlurEmail = () => {
+        let { email } = this.state;
+        if (!email) {
+            let notif = this.state.notif;
+            notif.email = true;
+            this.setState({ notif });
+
+        } else {
+            let notif = this.state.notif;
+            notif.email = false;
+            this.setState({ notif });
+        }
+    }
+    onBlurName = () => {
+        let { name } = this.state;
+        if (!name) {
+            let notif = this.state.notif;
+            notif.name = true;
+            this.setState({ notif });
+
+        } else {
+            let notif = this.state.notif;
+            notif.name = false;
+            this.setState({ notif });
+        }
+    }
     onSubmit = (e) => {
         e.preventDefault();
-        let {name,email,password,repassword} = this.state;
-        if(password !== repassword){
-            this.setState({notif: "(*) Mật khẩu không trùng khớp!"});
-        }else {
+        let {name,email,password} = this.state;
+       
             EmployerService.fetchEmployerAPI(name,email,password).then(res => {
                 
                     if(res.status === 201){
@@ -50,8 +104,9 @@ class RegisterEmployer extends Component {
                     this.setState({notif: "(*) Email đã tồn tại"});
                 }
             })
-        }
+        
     }
+    
     render() {
         document.body.style.backgroundColor = "#394141";
         return (
@@ -60,25 +115,30 @@ class RegisterEmployer extends Component {
                 <form >
                     <div className="info">
                         <label>Tên công ty (*):</label>
-                        <input type="text" name="name" id="" className="form-control" placeholder="" onChange={this.onHandleChange}/>
+                        <input type="text" name="name" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurName}/>
                         
                     </div>
+                    {this.state.notif.name === true ? <p className="text-danger mt-1">(*) Tên công ty không được để trống !</p> : ""}
                     <div className="info">
                         <label >E-mail (*):</label>
-                        <input type="text" name="email" id="" className="form-control" placeholder="" onChange={this.onHandleChange}/>
+                        <input type="text" name="email" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurEmail}/>
                         
                     </div>
+                    {this.state.notif.email === true ? <p className="text-danger mt-1">(*) Email không được để trống!</p> : ""}
                     <div className="info">
                         <label >Mật khẩu (*):</label>
-                        <input type="password" name="password" id="" className="form-control" placeholder="" onChange={this.onHandleChange}/>
+                        <input type="password" name="password" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurPassword} />
                         
                     </div>
+                    {this.state.notif.password === true ? <p className="text-danger mt-1">(*) Mật khẩu không được để trống!</p> : ""}
                     <div className="info">
                         <label >Xác nhận lại mật khẩu (*):</label>
-                        <input type="password" name="repassword" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onHandleBlur}/>
+                        <input type="password" name="repassword" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurRePassword}/>
                         
                     </div>
-                    {this.state.notif.length>0 ? <p className="text-danger mt-1">{this.state.notif}</p>: ""}
+                    {this.state.notif.repassword === true ? <p className="text-danger mt-1">(*) Mật khẩu không trùng khớp !</p> : ""}
+                    {this.state.notifmess.length > 0 ? <p className="text-danger mt-1">{this.state.notifmess}</p> : ""}
+                   
                     <div className="right-w3l">
                      <button type="button" className="btn btn-success center mt30" onClick={this.onSubmit}>Đăng ký</button>
                     </div>
