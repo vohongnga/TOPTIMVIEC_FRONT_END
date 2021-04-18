@@ -26,7 +26,7 @@ class RegisterApplicant extends Component {
         
         let repassword = e.target.value;
         if(!repassword ){
-            this.setState({notif: "(*) Vui lòng xác nhận lại mật khẩu!"});
+            this.setState({notif: "(*) Mật khẩu không được để trống!"});
         }
        
     }
@@ -82,11 +82,11 @@ class RegisterApplicant extends Component {
                     </div>
                     <div className="info">
                         <label >Mật khẩu (*):</label>
-                        <input type="text" name="password" id="" className="form-control" placeholder="" onChange={this.onHandleChange} />
+                        <input type="password" name="password" id="" className="form-control" placeholder="" onChange={this.onHandleChange} />
                     </div>
                     <div className="info">
                         <label >Xác nhận lại mật khẩu (*):</label>
-                        <input type="text" name="repassword" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onHandleBlur}/>
+                        <input type="password" name="repassword" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onHandleBlur}/>
                     </div>
                     {this.state.notif.length>0 ? <p className="text-danger mt-1">{this.state.notif}</p>: ""}
                     <div className="right-w3l">
