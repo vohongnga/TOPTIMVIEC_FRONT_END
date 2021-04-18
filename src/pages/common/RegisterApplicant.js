@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import ApplicantService from "../../services/ApplicantService";
-import DatePicker from "react-bootstrap-date-picker";
-import "react-datepicker/dist/react-datepicker.css";
+
 class RegisterApplicant extends Component {
     constructor(props) {
         super(props);
-        var value = new Date().toISOString();
         this.state = {
             name: "",
             email: "",
@@ -20,20 +18,9 @@ class RegisterApplicant extends Component {
                 repassword: false
             },
             notifmess: "",
-            value: value
         }
     }
-    handleChange = () => {
-        this.setState({
-            value: value, // ISO String, ex: "2016-11-19T12:00:00.000Z"
-            formattedValue: formattedValue // Formatted String, ex: "11/19/2016"
-          });
-    }
-    componentDidUpdate(){
-        var hiddenInputElement = document.getElementById("example-datepicker");
-        console.log(hiddenInputElement.value); // ISO String, ex: "2016-11-19T12:00:00.000Z"
-        console.log(hiddenInputElement.getAttribute('data-formattedvalue')) // Formatted String, ex: "11/19/2016"
-    }
+    
     onHandleChange = (e) => {
         let target = e.target;
         let name = target.name;
@@ -143,16 +130,11 @@ class RegisterApplicant extends Component {
                         <input type="radio" name="gender" value="false" onChange={this.onHandleChange} checked="checked" />&nbsp;Nam &#12644;
                         <input type="radio" name="gender" value="true" onChange={this.onHandleChange} />&nbsp;Nữ
                     </div>
-                    {/* <div className="info">
+                    <div className="info">
                         <label >Ngày sinh:</label>
                         <input type="text" name="dob" id="" className="form-control" placeholder="" onChange={this.onHandleChange} />
-                    </div> */}
-                    {/* <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">
-                        <input placeholder="Select date" type="text" id="example" class="form-control"></input>
-                            <label for="example">Try me...</label>
-                            <i class="fas fa-calendar input-prefix" ></i>
-                    </div> */}
-                    <DatePicker id="example-datepicker" value={this.state.value} onChange={this.handleChange} />
+                    </div>
+                   
                     <div className="info">
                         <label >Mật khẩu (*):</label>
                         <input type="password" name="password" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurPassword} />

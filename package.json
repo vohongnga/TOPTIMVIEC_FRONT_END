@@ -10,13 +10,12 @@
     "axios": "^0.21.1",
     "bloodhound-js": "^1.2.3",
     "bootstrap": "^4.6.0",
-    "create-react-class": "^15.7.0",
+   
     "email-validator": "^2.0.4",
     "formik": "^2.2.6",
     "jquery": "^3.6.0",
     "react": "^17.0.2",
-    "react-bootstrap": "^1.5.2",
-    "react-bootstrap-date-picker": "^5.1.0",
+    
     "react-bootstrap-typeahead": "^5.1.4",
     "react-dnd": "^8.0.3",
     "react-dnd-html5-backend": "^8.0.3",
