@@ -3,6 +3,7 @@ import '../../style.css';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import {connect} from 'react-redux';
 import * as actions from './../../actions/index';
+import * as employer_action from './../../actions/employer/index';
 
 class SearchForm extends Component{
     onChangeHashtag = (e) => {
@@ -16,11 +17,20 @@ class SearchForm extends Component{
         this.props.setLoadingJob(true);
         this.props.setLoadJob(false);
         this.props.setListJob([]);
-        this.props.fetchListJob([], this.props.search_value.tag, this.props.search_value.place).then(() => {
-            window.scrollTo({ behavior: 'smooth', top: (window.innerHeight)*0.9 - 150 });
-            this.props.setLoadJob(true);
-            this.props.setLoadingJob(false);
-        });
+        if (this.props.employer) {
+            this.props.fetchListCV([], this.props.search_value.tag, this.props.search_value.place).then(() => {
+                window.scrollTo({ behavior: 'smooth', top: (window.innerHeight)*0.9 - 150 });
+                this.props.setLoadJob(true);
+                this.props.setLoadingJob(false);
+            });
+        } else {
+            this.props.fetchListJob([], this.props.search_value.tag, this.props.search_value.place).then(() => {
+                window.scrollTo({ behavior: 'smooth', top: (window.innerHeight)*0.9 - 150 });
+                this.props.setLoadJob(true);
+                this.props.setLoadingJob(false);
+            });
+        }
+        
     }
     componentDidMount() {
         if (this.props.list_hashtag.length === 0) {
@@ -107,6 +117,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         setListJob: (jobs) => {
             return dispatch(actions.setListJob(jobs));
+        },
+        fetchListCV: (list_id_showed, list_hashtag, place) => {
+            return dispatch(employer_action.fetchSetListCV(list_id_showed, list_hashtag, place));
         }
     }
 }

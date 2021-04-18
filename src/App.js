@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import * as actions from './actions/index';
 import routes from './routes';
 import { refreshToken } from './services/TokenService';
+import logo_img from "./image/LogoMakr-87TXng_pnsj0a.png";
+import loading_gif from './image/loader.gif';
 
 const history = createBrowserHistory();
 
@@ -16,7 +18,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show_header : true
+            show_header : true,
+            getting_data: true
         };
     }
 
@@ -35,8 +38,10 @@ class App extends Component {
 
     componentDidMount() {
         //Lay thong tin nguoi dung khi khoi dong
+        this.setState({getting_data: true});
         var key = localStorage.getItem("refresh_token");
-        if (key) {
+        var session_key = sessionStorage.getItem("refresh_token");
+        if (key && !session_key) {
             sessionStorage.setItem("refresh_token", key);
             var id_user = localStorage.getItem("id_user");
             sessionStorage.setItem("id_user", id_user);
@@ -46,7 +51,11 @@ class App extends Component {
             sessionStorage.setItem("name", name);
             var role = localStorage.getItem("role");
             sessionStorage.setItem("role", role);
-            refreshToken();
+            refreshToken().then(() => {
+                this.setState({getting_data: false});
+            });
+        } else {
+            this.setState({getting_data: false});
         }
         //Thiet lap an header khi o trang chu
         if (window.location.pathname === "/") {
@@ -64,13 +73,23 @@ class App extends Component {
     }
 
     render() {
-        return (
-            <Router history={history}>
-                { this.state.show_header ? this.showHeader() : "" }
-                <Switch>{ this.showContentMenus(routes) }</Switch>
-            </Router>
-        );
-
+        if (this.state.getting_data) {
+            document.body.style.backgroundColor = "#394141";
+            return (
+                <div className="pt-5 mt-5">
+                    <img className="center mt-5" src={logo_img} height='300px' width='300px' alt=""/>
+                    <img className="center" src={loading_gif} alt="" width="50px"></img>
+                </div>
+                
+            );
+        } else {
+            return (
+                <Router history={history}>
+                    { this.state.show_header ? this.showHeader() : "" }
+                    <Switch>{ this.showContentMenus(routes) }</Switch>
+                </Router>
+            );
+        }
     }
 
     showHeader = () => {
@@ -103,7 +122,6 @@ class App extends Component {
         }
     }
 }
-
 
 const mapStateToProps = state => {
     return {

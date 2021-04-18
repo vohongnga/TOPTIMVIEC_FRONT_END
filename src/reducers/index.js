@@ -5,6 +5,10 @@ import search_value from './search_form';
 import list_hashtag from './list_hashtag';
 import list_place from './list_place';
 import role from './role';
+import choose_cv from './choose_cv';
+import list from './list';
+import list_page from './list_page';
+import get_list from './get_list'
 
 const appReducers = combineReducers({
     hide_header,
@@ -12,6 +16,10 @@ const appReducers = combineReducers({
     search_value,
     list_hashtag,
     list_place,
-    role
+    role,
+    choose_cv,
+    list,
+    list_page,
+    get_list
 });
 export default appReducers;
