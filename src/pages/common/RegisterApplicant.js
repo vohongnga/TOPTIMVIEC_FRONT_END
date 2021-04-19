@@ -107,7 +107,6 @@ class RegisterApplicant extends Component {
      
     render() {
         document.body.style.backgroundColor = "#394141";
-        let {gender} = this.state;
         return (
             
             <div className="col-lg-4 col-md-6 content jumbotron center mt-3">
@@ -127,8 +126,8 @@ class RegisterApplicant extends Component {
                     {this.state.notif.email === true ? <p className="text-danger mt-1">(*) Email không được để trống!</p> : ""}
                     <div className="info">
                         <label >Giới tính:</label> &#12644;
-                        <input type="radio" name="gender" value="false" onChange={this.onHandleChange} checked={gender === "false"} />&nbsp;Nam &#12644;
-                        <input type="radio" name="gender" value="true" onChange={this.onHandleChange} checked={gender === "true"} />&nbsp;Nữ
+                        <input type="radio" name="gender" value="false" onChange={this.onHandleChange} checked={"checked"} />&nbsp;Nam &#12644;
+                        <input type="radio" name="gender" value="true" onChange={this.onHandleChange}  />&nbsp;Nữ
                     </div>
                     <div className="info">
                         <label >Ngày sinh:</label>
