@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import ApplicantService from "../../services/ApplicantService";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
 
 class RegisterApplicant extends Component {
     constructor(props){
@@ -8,7 +12,7 @@ class RegisterApplicant extends Component {
             name: "",
             email:"",
             gender:"",
-            dob: "",
+            dob: new Date("01/01/1999"),
             password: "",
             repassword: "",
             notif: ""
@@ -21,6 +25,9 @@ class RegisterApplicant extends Component {
         this.setState({
             [name]: value
         });
+    }
+    onChangeDob = (date) => {
+        this.setState({"dob": date})
     }
     onHandleBlur = (e) => {
         
@@ -78,7 +85,8 @@ class RegisterApplicant extends Component {
                     </div>
                     <div className="info">
                         <label >Ngày sinh:</label>
-                        <input type="text" name="dob" id="" className="form-control" placeholder="" onChange={this.onHandleChange} />
+                        {/* <input type="text" name="dob" id="" className="form-control" placeholder="" onChange={this.onHandleChange} /> */}
+                        <div><DatePicker selected={this.state.dob} className="form-control" dateFormat="dd/MM/yyyy" wrapperClassName="w-100" onChange={this.onChangeDob}/></div>
                     </div>
                     <div className="info">
                         <label >Mật khẩu (*):</label>
