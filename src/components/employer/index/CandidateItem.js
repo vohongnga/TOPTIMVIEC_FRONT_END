@@ -16,7 +16,7 @@ class CandidateItem extends Component {
         this.props.setLoadingJob(true);
         this.props.setLoadJob(false);
         this.props.setListJob([]);
-        this.props.fetchListJob([], this.props.search_value.tag, this.props.search_value.place).then(() => {
+        this.props.fetchListJob([], [hashtag], this.props.search_value.place).then(() => {
             window.scrollTo({ behavior: 'smooth', top: (window.innerHeight)*0.9 - 150 });
             this.props.setLoadJob(true);
             this.props.setLoadingJob(false);

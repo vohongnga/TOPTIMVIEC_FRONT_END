@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import ApplicantService from "../../services/ApplicantService";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
 
 class RegisterApplicant extends Component {
     constructor(props) {
         super(props);
         this.state = {
             name: "",
-            email: "",
-            gender: "",
-            dob: "",
+            email:"",
+            gender:"",
+            dob: new Date("01/01/1999"),
             password: "",
             repassword: "",
             notif: {
@@ -82,6 +86,16 @@ class RegisterApplicant extends Component {
             this.setState({ notif });
         }
     }
+    onChangeDob = (date) => {
+        this.setState({"dob": date})
+    }
+    onHandleBlur = (e) => {
+        
+        let repassword = e.target.value;
+        if(!repassword ){
+            this.setState({notif: "(*) Mật khẩu không được để trống!"});
+        }
+    }
     onSubmit = (e) => {
         e.preventDefault();
         let { name, email, gender, dob, password } = this.state;
@@ -102,8 +116,8 @@ class RegisterApplicant extends Component {
                 this.setState({ notifmess: "(*) Email đã tồn tại" });
             }
         })
-
     }
+    
      
     render() {
         document.body.style.backgroundColor = "#394141";
@@ -131,7 +145,8 @@ class RegisterApplicant extends Component {
                     </div>
                     <div className="info">
                         <label >Ngày sinh:</label>
-                        <input type="text" name="dob"  className="form-control" placeholder="" onChange={this.onHandleChange} />
+                        {/* <input type="text" name="dob"  className="form-control" placeholder="" onChange={this.onHandleChange} /> */}
+                        <div><DatePicker selected={this.state.dob} className="form-control" dateFormat="dd/MM/yyyy" wrapperClassName="w-100" onChange={this.onChangeDob}/></div>
                     </div>
                    
                     <div className="info">
@@ -154,4 +169,5 @@ class RegisterApplicant extends Component {
         );
     }
 }
+    
 export default RegisterApplicant;
