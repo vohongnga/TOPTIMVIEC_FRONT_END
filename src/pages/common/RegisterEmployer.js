@@ -115,25 +115,25 @@ class RegisterEmployer extends Component {
                 <form >
                     <div className="info">
                         <label>Tên công ty (*):</label>
-                        <input type="text" name="name" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurName}/>
+                        <input type="text" name="name"  className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurName}/>
                         
                     </div>
                     {this.state.notif.name === true ? <p className="text-danger mt-1">(*) Tên công ty không được để trống !</p> : ""}
                     <div className="info">
                         <label >E-mail (*):</label>
-                        <input type="text" name="email" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurEmail}/>
+                        <input type="text" name="email"  className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurEmail}/>
                         
                     </div>
                     {this.state.notif.email === true ? <p className="text-danger mt-1">(*) Email không được để trống!</p> : ""}
                     <div className="info">
                         <label >Mật khẩu (*):</label>
-                        <input type="password" name="password" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurPassword} />
+                        <input type="password" name="password"  className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurPassword} />
                         
                     </div>
                     {this.state.notif.password === true ? <p className="text-danger mt-1">(*) Mật khẩu không được để trống!</p> : ""}
                     <div className="info">
                         <label >Xác nhận lại mật khẩu (*):</label>
-                        <input type="password" name="repassword" id="" className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurRePassword}/>
+                        <input type="password" name="repassword"  className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurRePassword}/>
                         
                     </div>
                     {this.state.notif.repassword === true ? <p className="text-danger mt-1">(*) Mật khẩu không trùng khớp !</p> : ""}
