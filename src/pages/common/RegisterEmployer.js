@@ -86,24 +86,42 @@ class RegisterEmployer extends Component {
     }
     onSubmit = (e) => {
         e.preventDefault();
-        let {name,email,password} = this.state;
-       
-            EmployerService.fetchEmployerAPI(name,email,password).then(res => {
+        let {name,email,password,repassword} = this.state;
+            if(password === repassword && name && email && password){
+                EmployerService.fetchEmployerAPI(name,email,password).then(res => {
                 
                     if(res.status === 201){
                         console.log("ok");
                         window.location.href = "/dang-ky/xac-nhan";
                     }
+                
+                }).catch(err => {
+                    if (err.response.status === 400) {
+                        this.setState({notifmess: "(*) Vui lòng nhập đầy đủ thông tin"});
+                    } else if (err.response.status === 403) {
+                        this.setState({notifmess: "(*) Lỗi kết nối cơ sở dữ liệu"});
+                    } else if (err.response.status === 409) {
+                        this.setState({notifmess: "(*) Email đã tồn tại"});
+                    }
+                })
+            }else if(password !== repassword){
+                let notif = this.state.notif;
+                notif.repassword = true;
+                this.setState({ notif });
+            }else if(!name){
+                let notif = this.state.notif;
+                notif.name = true;
+                this.setState({ notif });
+            }else if(!email){
+                let notif = this.state.notif;
+                notif.email = true;
+                this.setState({ notif });
+            }else if(!password){
+                let notif = this.state.notif;
+                notif.password = true;
+                this.setState({ notif });
+            }
             
-            }).catch(err => {
-                if (err.response.status === 400) {
-                    this.setState({notif: "(*) Vui lòng nhập đầy đủ thông tin"});
-                } else if (err.response.status === 403) {
-                    this.setState({notif: "(*) Lỗi kết nối cơ sở dữ liệu"});
-                } else if (err.response.status === 409) {
-                    this.setState({notif: "(*) Email đã tồn tại"});
-                }
-            })
         
     }
     
