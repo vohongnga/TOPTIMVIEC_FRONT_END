@@ -85,17 +85,17 @@ const routes=[
     {
         path:'/dang-ky/xac-nhan',
         exact: true,
-        main: () => <VerifyAccount/>
+        main: () => { return !sessionStorage.getItem("role") ? <VerifyAccount /> : <Redirect to="/" />}
     },
     {
         path:'/dang-ky/xac-nhan-email',
         exact: true,
-        main: () => <ValidateAccount/>
+        main: () => { return !sessionStorage.getItem("role") ? <ValidateAccount /> : <Redirect to="/" />}
     },
     {
         path:'/dang-ky/xac-nhan-email/loi',
         exact: true,
-        main: () => <ErrorValidate/>
+        main: () => { return !sessionStorage.getItem("role") ? <ErrorValidate /> : <Redirect to="/" />}
     },
     {
         path:'',
