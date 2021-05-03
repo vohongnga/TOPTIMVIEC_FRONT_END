@@ -60,6 +60,8 @@ class Login extends Component {
                 this.setState({notif: "(*) Lỗi kết nối cơ sở dữ liệu"});
             } else if (err.response.status === 405) {
                 this.setState({notif: "(*) Vui lòng xác nhận email"});
+            }else if (err.response.status === 412) {
+                this.setState({notif: "(*) Tài khoản đã bị khóa !"});
             }
         })
     }

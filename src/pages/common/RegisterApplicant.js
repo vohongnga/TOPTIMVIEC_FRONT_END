@@ -11,7 +11,7 @@ class RegisterApplicant extends Component {
         this.state = {
             name: "",
             email:"",
-            gender:"",
+            gender: false,
             dob: new Date("01/01/1999"),
             password: "",
             repassword: "",
