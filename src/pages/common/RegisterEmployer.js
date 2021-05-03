@@ -99,7 +99,7 @@ class RegisterEmployer extends Component {
                     if (err.response.status === 400) {
                         this.setState({notifmess: "(*) Vui lòng nhập đầy đủ thông tin"});
                     } else if (err.response.status === 403) {
-                        this.setState({notifmess: "(*) Lỗi kết nối cơ sở dữ liệu"});
+                        this.setState({notifmess: "(*) Đăng ký không thành công.Vui lòng thử lại!"});
                     } else if (err.response.status === 409) {
                         this.setState({notifmess: "(*) Email đã tồn tại"});
                     }
