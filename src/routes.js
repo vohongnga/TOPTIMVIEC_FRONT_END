@@ -12,6 +12,7 @@ import { Redirect } from 'react-router-dom';
 import VerifyAccount from './pages/common/VerifyAccount';
 import ValidateAccount from './pages/common/ValidateAccount';
 import ErrorValidate from './pages/common/ErrorValidate';
+import IndexMail from './pages/employer/IndexMail';
 
 const routes=[
     {
@@ -61,6 +62,11 @@ const routes=[
                 return <Redirect to="/dang-nhap" />;
             }
         }
+    },
+    {
+        path:'/hop-thu',
+        exact: true,
+        main: () => { return <IndexMail />}
     },
     {
         path:'/dang-nhap',

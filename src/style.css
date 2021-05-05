@@ -265,3 +265,11 @@ span.icon2 {
 .max-size-screen {
     max-width: 100vw;
 }
+
+.title-email {
+    text-align: center;
+    font-size: 40px;
+}
+.gr1 {
+    display: inline;
+}
