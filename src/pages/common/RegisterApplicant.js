@@ -11,7 +11,7 @@ class RegisterApplicant extends Component {
         this.state = {
             name: "",
             email:"",
-            gender:"",
+            gender: false,
             dob: new Date("01/01/1999"),
             password: "",
             repassword: "",
@@ -29,6 +29,7 @@ class RegisterApplicant extends Component {
         let target = e.target;
         let name = target.name;
         let value = target.value;
+        if (name === 'gender') value = (value === 'true');
         this.setState({
             [name]: value
         });
@@ -111,7 +112,7 @@ class RegisterApplicant extends Component {
                 if (err.response.status === 400) {
                     this.setState({ notifmess: "(*) Vui lòng nhập đầy đủ thông tin" });
                 } else if (err.response.status === 403) {
-                    this.setState({ notifmess: "(*) Lỗi kết nối cơ sở dữ liệu" });
+                    this.setState({ notifmess: "(*) Đăng ký không thành công.Vui lòng thử lại!" });
                 } else if (err.response.status === 409) {
                     this.setState({ notifmess: "(*) Email đã tồn tại" });
                 }
@@ -156,10 +157,10 @@ class RegisterApplicant extends Component {
 
                     </div>
                     {this.state.notif.email === true ? <p className="text-danger mt-1">(*) Email không được để trống!</p> : ""}
-                    <div className="info">
+                    <div className="info" >
                         <label >Giới tính:</label> &#12644;
-                        <input type="radio" name="gender" value="false" onChange={this.onHandleChange} checked={"checked"} />&nbsp;Nam &#12644;
-                        <input type="radio" name="gender" value="true" onChange={this.onHandleChange}  />&nbsp;Nữ
+                        <input type="radio" name="gender" value={false} onChange={this.onHandleChange} checked={this.state.gender === false} />&nbsp;Nam &#12644;
+                        <input type="radio" name="gender" value={true} onChange={this.onHandleChange} checked={this.state.gender === true} />&nbsp;Nữ
                     </div>
                     <div className="info">
                         <label >Ngày sinh:</label>
