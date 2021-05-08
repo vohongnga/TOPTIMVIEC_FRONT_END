@@ -11,7 +11,9 @@ class JobList extends Component {
     constructor(props) {
         super(props);
         Aos.init({duration: 1000});
-    }
+    };
+
+    
     onScrollDown = () => {
         var scroll_offset=500;
         if (window.innerHeight + document.documentElement.scrollTop > document.scrollingElement.scrollHeight-scroll_offset && this.props.search_value.load) {
@@ -46,8 +48,11 @@ class JobList extends Component {
         this.props.setListJob([]);
         window.removeEventListener('scroll', this.onScrollDown);
     }
+    
+    
     render() {
         var {jobs} = this.props;
+       
         return (
             <div className="col-lg-8 mt-3">
                 <div className="job-item">

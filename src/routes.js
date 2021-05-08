@@ -12,6 +12,7 @@ import { Redirect } from 'react-router-dom';
 import VerifyAccount from './pages/common/VerifyAccount';
 import ValidateAccount from './pages/common/ValidateAccount';
 import ErrorValidate from './pages/common/ErrorValidate';
+import Post from './pages/common/Post';
 
 const routes=[
     {
@@ -81,6 +82,11 @@ const routes=[
         path:'/dang-ky/nguoi-tim-viec',
         exact: true,
         main: () => { return !sessionStorage.getItem("role") ? <RegisterApplicant /> : <Redirect to="/" />}
+    },
+    {
+        path: '/post/:id',
+        exact: true,
+        main:({match})=><Post match = {match}/>
     },
     {
         path:'/dang-ky/xac-nhan',
