@@ -304,3 +304,9 @@ span.icon2 {
 .company-card { transition: all .5s ease-in-out; }
 .company-card:hover { transform: scale(1.04); }
 
+.link {
+    color: #000;
+}
+.link:hover {
+    color: #000;
+}
