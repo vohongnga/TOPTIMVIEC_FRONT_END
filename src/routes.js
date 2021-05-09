@@ -14,6 +14,7 @@ import VerifyAccount from './pages/common/VerifyAccount';
 import ValidateAccount from './pages/common/ValidateAccount';
 import AccountSettingApplicant from './pages/applicant/AccountSetting';
 import AccountSettingEmployer from './pages/employer/AccountSetting';
+import Company from './pages/common/Company';
 import ErrorValidate from './pages/common/ErrorValidate';
 
 const routes=[
@@ -115,6 +116,11 @@ const routes=[
                 return <Redirect to="/dang-nhap" />;
             }
         }
+    },
+    {
+        path:'/cong-ty',
+        exact: true,
+        main: () => { return <Company />}
     },
     {
         path:'',
