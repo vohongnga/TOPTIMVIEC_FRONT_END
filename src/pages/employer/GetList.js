@@ -6,7 +6,7 @@ import * as actions from '../../actions/employer/list';
 import * as actions_index from './../../actions/index';
 import * as services from './../../services/ListService';
 
-class Index extends Component{
+class GetList extends Component{
     constructor(props) {
         super(props);
         this.state={
@@ -79,4 +79,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+export default connect(mapStateToProps, mapDispatchToProps)(GetList);
