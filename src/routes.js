@@ -11,6 +11,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import { Redirect } from 'react-router-dom';
 import VerifyAccount from './pages/common/VerifyAccount';
 import ValidateAccount from './pages/common/ValidateAccount';
+import Company from './pages/common/Company';
 import ErrorValidate from './pages/common/ErrorValidate';
 
 const routes=[
@@ -96,6 +97,11 @@ const routes=[
         path:'/dang-ky/xac-nhan-email/loi',
         exact: true,
         main: () => { return !sessionStorage.getItem("role") ? <ErrorValidate /> : <Redirect to="/" />}
+    },
+    {
+        path:'/cong-ty',
+        exact: true,
+        main: () => { return <Company />}
     },
     {
         path:'',
