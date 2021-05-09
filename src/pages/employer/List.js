@@ -71,17 +71,17 @@ class List extends Component {
                     {this.state.loading ? <img className="center" src={loading_gif} alt="" width="50px"></img> : ""}
                     <ul className="pagination justify-content-center mb-3">
                         <li className="page-item">
-                        <Link className="page-link" to="#" aria-label="Previous" onClick={this.props.list_page.page>0 ? () => this.changePage(this.props.list_page.page-1) : () => {} }>
+                        <button className="page-link" aria-label="Previous" onClick={this.props.list_page.page>0 ? () => this.changePage(this.props.list_page.page-1) : () => {} }>
                             <span aria-hidden="true">&laquo;</span>
                             <span className="sr-only">Previous</span>
-                        </Link>
+                        </button>
                         </li>
                         {this.showPage(this.props.list_page.page_count, this.props.list_page.page)}
                         <li className="page-item">
-                        <Link className="page-link" to="#" aria-label="Next" onClick={this.props.list_page.page<this.props.list_page.page_count-1 ? () => this.changePage(this.props.list_page.page+1) : () => {} }>
+                        <button className="page-link" aria-label="Next" onClick={this.props.list_page.page<this.props.list_page.page_count-1 ? () => this.changePage(this.props.list_page.page+1) : () => {} }>
                             <span aria-hidden="true">&raquo;</span>
                             <span className="sr-only">Next</span>
-                        </Link>
+                        </button>
                         </li>
                     </ul>
                     
@@ -112,12 +112,15 @@ class List extends Component {
     showPage = (page_count, page_choose) => {
         var result = null;
         if (page_count > 0) {
-            result = [...Array(page_count).keys()].map((page, index) => {
+            const begin_page = (+page_choose - 2 > 0) ? (+page_choose -2) : 1;
+            const end_page = (begin_page + 5 < page_count) ? (begin_page + 5) : page_count 
+            const page_array = Array(end_page - begin_page + 1).fill().map((_, idx) => begin_page + idx - 1)
+            result = page_array.map((page, index) => {
                 return (
                     <li className={index === page_choose ? "page-item active" : "page-item"} key={index}>
-                        <Link className="page-link" to="#" onClick={() => this.changePage(index)}>
+                        <button className="page-link" onClick={() => this.changePage(index)}>
                             {index+1}
-                        </Link>
+                        </button>
                     </li>
                 )
             })
