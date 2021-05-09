@@ -12,6 +12,7 @@ import { Redirect } from 'react-router-dom';
 import VerifyAccount from './pages/common/VerifyAccount';
 import ValidateAccount from './pages/common/ValidateAccount';
 import Company from './pages/common/Company';
+import CompanyDetail from './pages/common/CompanyDetail';
 import ErrorValidate from './pages/common/ErrorValidate';
 
 const routes=[
@@ -102,6 +103,11 @@ const routes=[
         path:'/cong-ty',
         exact: true,
         main: () => { return <Company />}
+    },
+    {
+        path:'/cong-ty/:id',
+        exact: true,
+        main: (props) => <CompanyDetail {...props} />
     },
     {
         path:'',

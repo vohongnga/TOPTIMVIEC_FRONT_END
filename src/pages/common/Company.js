@@ -71,13 +71,13 @@ class Company extends Component{
                 </div>
                 {this.state.loading ? <img className="center" src={loading_gif} alt="" width="50px"></img> : ""}
                 <ul className="pagination justify-content-center mb-5 mt-3">
-                    <li class="page-item">
+                    <li className="page-item">
                         <button className="page-link" onClick={() => this.setPage(1)}>
                             Đầu
                         </button>
                     </li>
                     {this.showPage(this.state.count_page, this.state.page)}
-                    <li class="page-item">
+                    <li className="page-item">
                         <button className="page-link" onClick={() => this.setPage(this.state.count_page)}>
                             Cuối
                         </button>
