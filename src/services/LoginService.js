@@ -15,11 +15,7 @@ let LoginService = {
     },
     logoutAPI: () => {
         return callApi('logout', 'DELETE').then(res => {
-            localStorage.removeItem("id_user");
-            localStorage.removeItem("avatar");
-            localStorage.removeItem("name");
             localStorage.removeItem("refresh_token");
-            localStorage.removeItem("role");
 
             sessionStorage.removeItem("id_user");
             sessionStorage.removeItem("avatar");

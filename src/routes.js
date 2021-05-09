@@ -1,4 +1,6 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+
 import Index from './pages/common/Index';
 import Employer from './pages/employer/Index';
 import List from './pages/employer/List';
@@ -8,9 +10,10 @@ import Register from './pages/common/Register';
 import RegisterEmployer from './pages/common/RegisterEmployer';
 import RegisterApplicant from './pages/common/RegisterApplicant';
 import NotFoundPage from './pages/NotFoundPage';
-import { Redirect } from 'react-router-dom';
 import VerifyAccount from './pages/common/VerifyAccount';
 import ValidateAccount from './pages/common/ValidateAccount';
+import AccountSettingApplicant from './pages/applicant/AccountSetting';
+import AccountSettingEmployer from './pages/employer/AccountSetting';
 import ErrorValidate from './pages/common/ErrorValidate';
 
 const routes=[
@@ -96,6 +99,22 @@ const routes=[
         path:'/dang-ky/xac-nhan-email/loi',
         exact: true,
         main: () => { return !sessionStorage.getItem("role") ? <ErrorValidate /> : <Redirect to="/" />}
+    },
+    {
+        path:'/tai-khoan',
+        exact: true,
+        main: (match) => {
+            var role = sessionStorage.getItem("role");
+            if (role === "employer") {
+                return <AccountSettingEmployer />;
+            }
+            else if (role === "applicant") {
+                return <AccountSettingApplicant />;
+            }
+            else {
+                return <Redirect to="/dang-nhap" />;
+            }
+        }
     },
     {
         path:'',

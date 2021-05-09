@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import * as actions from './actions/index';
 import routes from './routes';
 import { refreshToken } from './services/TokenService';
+import { getAccountInfo } from './services/AccountInfoService';
 import logo_img from "./image/LogoMakr-87TXng_pnsj0a.png";
 import loading_gif from './image/loader.gif';
 
@@ -43,16 +44,10 @@ class App extends Component {
         var session_key = sessionStorage.getItem("refresh_token");
         if (key && !session_key) {
             sessionStorage.setItem("refresh_token", key);
-            var id_user = localStorage.getItem("id_user");
-            sessionStorage.setItem("id_user", id_user);
-            var avatar = localStorage.getItem("avatar");
-            sessionStorage.setItem("avatar", avatar);
-            var name = localStorage.getItem("name");
-            sessionStorage.setItem("name", name);
-            var role = localStorage.getItem("role");
-            sessionStorage.setItem("role", role);
             refreshToken().then(() => {
-                this.setState({getting_data: false});
+                getAccountInfo().then(() => {
+                    this.setState({getting_data: false});
+                });
             });
         } else {
             this.setState({getting_data: false});
