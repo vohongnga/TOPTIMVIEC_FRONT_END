@@ -12,14 +12,19 @@ class JobItem extends Component {
     onClickHashtag(e, hashtag) {
         e.stopPropagation(); 
         this.props.onChangeHashtag([hashtag]);
-        this.props.setLoadingJob(true);
-        this.props.setLoadJob(false);
-        this.props.setListJob([]);
-        this.props.fetchListJob([], [hashtag], this.props.search_value.place).then(() => {
-            window.scrollTo({ behavior: 'smooth', top: (window.innerHeight)*0.9 - 150 });
-            this.props.setLoadJob(true);
-            this.props.setLoadingJob(false);
-        });
+        if (this.props.location.pathname === "/") {
+            this.props.setLoadingJob(true);
+            this.props.setLoadJob(false);
+            this.props.setListJob([]);
+            this.props.fetchListJob([], [hashtag], this.props.search_value.place).then(() => {
+                window.scrollTo({ behavior: 'smooth', top: (window.innerHeight)*0.9 - 150 });
+                this.props.setLoadJob(true);
+                this.props.setLoadingJob(false);
+            });
+        }
+        else {
+            this.props.history.push("/");
+        }
     }
     render() {
         var {job} = this.props;

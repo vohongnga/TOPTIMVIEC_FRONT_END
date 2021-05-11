@@ -77,7 +77,7 @@ class HeaderEmployer extends Component {
                             <div className="dropdown-menu dropdown-menu-right drop">
                                 <Link className="dropdown-item" to="#">Trang cá nhân</Link>
                                 <Link className="dropdown-item" to="/hop-thu">Hộp thư</Link>
-                                <Link className="dropdown-item" to="#">Cài đặt tài khoản</Link>
+                                <Link className="dropdown-item" to="/tai-khoan">Cài đặt tài khoản</Link>
                                 <Link className="dropdown-item" to="#" onClick={this.logOut}>Đăng xuất</Link>
                             </div>
                         </li>

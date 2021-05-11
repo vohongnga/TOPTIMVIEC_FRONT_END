@@ -269,7 +269,79 @@ span.icon2 {
 .title-email {
     text-align: center;
     font-size: 40px;
+    margin-bottom: 60px;
 }
 .gr1 {
     display: inline;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #000000;
+}
+
+.div-image-change {
+    width: 170px;
+    height: 170px;
+}
+
+.div-image-change:hover .overlay {
+    opacity: 0.4;
+}
+/* Company page */
+.company-search-div {
+    background: #394141;
+}
+
+.company-logo {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
+}
+
+.company-logo img{
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    position: absolute;
+}
+
+.company-card { transition: all .5s ease-in-out; }
+.company-card:hover { transform: scale(1.04); }
+
+.link {
+    color: #000;
+}
+.link:hover {
+    color: #000;
+}
+.text-name {
+    font-size: 25px;
+}
+.mb {
+    margin-bottom: 30px;
+}
+.page {
+    justify-content: center;
+}
+.avatar {
+    height: 70px;
+    width: 70px;
+}
+.detail {
+    border-left: solid rgb(228, 224, 224)  1px;
+   
+}
+.title-mail{
+    font-size: 35px;
+    margin-bottom: 20px;
+   
+}
+.bold {
+    font-weight: bold;
+    color: black;
 }

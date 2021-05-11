@@ -1,31 +1,31 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import callApi from '../../../utils/apiCaller';
+import callApi from "../../../utils/apiCaller";
 import loading_gif from '../../../image/loader.gif';
-class ListMail extends Component {
+class ListMailSend extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      receiveMailList: [],
-      "page": 1,
-      "count_page": 0,
-      "loading": false,
+      sendMailList: [],
+      page: 1,
+      count_page: 0,
+      loading: false,
     };
   }
   setPage = (page) => {
-    this.setState({ "page": page });
-    this.setState({ receiveMailList: [] });
+    this.setState({ page: page });
+    this.setState({ sendMailList: [] });
     this.setListMail(page);
   };
   setListMail = (page) => {
     this.setState({ loading: true });
-    callApi("mail?page=" + (page - 1), "GET").then((rs) => {
-      this.setState({receiveMailList: rs.data.list_mail});
+    callApi("mail/send?page=" + (page - 1), "GET").then((rs) => {
+      this.setState({ sendMailList: rs.data.list_mail });
       this.setState({ loading: false });
     });
   };
   setCountPage = () => {
-    callApi("/mail/page", "GET").then((rs) => {
+    callApi("/mail/send/page", "GET").then((rs) => {
       this.setState(rs.data);
     });
   };
@@ -64,35 +64,24 @@ class ListMail extends Component {
     let page = params.get("page");
     if (!page) page = 1;
 
-    
-    this.setState({ "page": page });
+    this.setState({ page: page });
     this.setListMail(1);
     this.setCountPage();
   }
 
   render() {
-    let { receiveMailList } = this.state;
-
+    let { sendMailList } = this.state;
     return (
       <div className="col-lg-8 col-md-6 content jumbotron center mt-3">
         <ul className="list-group mb">
-          {receiveMailList.map((list,index) => (
-            <Link to={"/hop-thu/" + list._id} key={index}>
-              {list.read === false ? (
-                <li className="list-group-item">
-                  <strong>
-                    <p className="text-name">{list.name}</p>
-                    <p className="text-right">{list.sent_date}</p>
-                  </strong>
-                </li>
-              ) : (
-                <li className="list-group-item">
-                  <p className="text-name">{list.name}</p>
-                  <p className="text-right">{list.sent_date}</p>
-                </li>
-              )}
+          {sendMailList.length > 0 ? sendMailList.map((list ,index) => (
+            <Link to={"/hop-thu/gui/" + list._id} key={index}>
+              <li className="list-group-item">
+                <p className="text-name">{list.name}</p>
+                <p className="text-right">{list.sent_date}</p>
+              </li>
             </Link>
-          ))}
+          )):""}
         </ul>
         {this.state.loading ? <img className="center" src={loading_gif} alt="" width="50px"></img> : ""}
         <nav aria-label="Page navigation example">
@@ -117,4 +106,4 @@ class ListMail extends Component {
     );
   }
 }
-export default ListMail;
+export default ListMailSend;

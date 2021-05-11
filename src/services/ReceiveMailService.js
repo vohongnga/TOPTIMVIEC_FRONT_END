@@ -1,13 +1,18 @@
-import axios from "axios";
-import ApiUrls from "../constants/ApiUrls";
 
-let ReceiveMailService = {
-    fetchReceiveMailAPI : () => {
-        return axios.get(ApiUrls.RECEIVE_MAIL_API).then(res =>{
-    
-                return res.data.list_mail;
-            
-        }).catch(err => err)
-    }
+import callApi from './../utils/apiCaller';
+
+export const getMail = (page) => {
+    return callApi("mail?page="+page,'GET').then(res => {
+        if(res.status === 200){
+            return res.data.list_mail;
+        }
+       
+    });
+};
+
+export const getMailById = (id_mail) => {
+    return callApi("mail/"+id_mail,'GET').then(res => {
+       return res.data;
+    }) 
 }
-export default ReceiveMailService;
+
