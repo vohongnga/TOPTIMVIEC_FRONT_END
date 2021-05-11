@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { withRouter } from "react-router";
-import MenuMail from "../../components/employer/mail/MenuMail";
-import ListMail from "../../components/employer/mail/ListMail";
+import MenuMail from "../../components/common/mail/MenuMail";
+import ListMail from "../../components/common/mail/ListMail";
 class IndexMail extends Component {
   render() {
     document.body.style.backgroundColor = "#eceff1 ";

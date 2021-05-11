@@ -1,7 +1,7 @@
 import { Component } from "react";
-import MenuMail from "../../components/employer/mail/MenuMail";
-import ListMailSend from "../../components/employer/mail/ListMailSend";
-class IndexMailSend extends Component {
+import MenuMail from "../../components/common/mail/MenuMail";
+import GetMail from "../../components/common/mail/GetMail";
+class DetaiMail extends Component {
   render() {
     document.body.style.backgroundColor = "#eceff1 ";
     return (
@@ -9,10 +9,10 @@ class IndexMailSend extends Component {
         <h1 className="title-email">Hộp thư</h1>
         <div className="row">
           <MenuMail />
-          <ListMailSend />
+          <GetMail id={this.props.id} />
         </div>
       </div>
     );
   }
 }
-export default IndexMailSend;
+export default DetaiMail;

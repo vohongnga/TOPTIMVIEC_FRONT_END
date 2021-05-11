@@ -17,9 +17,9 @@ import AccountSettingEmployer from './pages/employer/AccountSetting';
 import Company from './pages/common/Company';
 import CompanyDetail from './pages/common/CompanyDetail';
 import ErrorValidate from './pages/common/ErrorValidate';
-import IndexMail from './pages/employer/IndexMail';
-import DetaiMail from './pages/employer/DetailMail';
-import IndexMailSend from './pages/employer/IndexMailSend';
+import IndexMail from './pages/common/IndexMail';
+import DetaiMail from './pages/common/DetailMail';
+import IndexMailSend from './pages/common/IndexMailSend';
 
 
 const routes=[
