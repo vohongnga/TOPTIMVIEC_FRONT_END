@@ -5,6 +5,7 @@ import AddListModal from './AddListModal';
 import DeleteDialog from './DeleteDialog';
 import * as actions from '../../../actions/employer/list';
 import {connect} from 'react-redux';
+import SendMailModal from '../../common/mail/SendMailModal';
 
 class ListTitle extends Component {
     onClickUpdateList = () => {
@@ -14,6 +15,9 @@ class ListTitle extends Component {
     deleteList() {
         window.$('#deleteDialog').modal('show');
     }
+    onContact(){
+        window.$('#sendMaiModal').modal('show');
+    }
     render() {
         return (
             <div className="col-lg-4 mt-3">
@@ -21,12 +25,13 @@ class ListTitle extends Component {
                     <div className="col-12 text-center mt-2"><p className="text-muted">Danh sách</p></div>
                     <div className="col-12 mt-3"><h1 className="h2 text-break text-center">{this.props.get_list.title}<Link to="#"><i className="fa fa-pencil-alt text-primary ml-3 size-icon" onClick={() => this.onClickUpdateList()}></i></Link></h1></div>
                     <div className="col-12 mt-3 text-center">
-                        <button className="btn btn-primary">Liên hệ</button>
+                        <button className="btn btn-primary" onClick={this.onContact}>Liên hệ</button>
                         <button className="btn btn-danger ml-2" onClick={this.deleteList}>Xóa</button>
                     </div>
                 </div>
                 <AddListModal get_list={true} />
                 <DeleteDialog get_list={true} />
+                <SendMailModal get_list={true}/>
             </div>
         );
     }
