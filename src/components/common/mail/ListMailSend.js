@@ -1,7 +1,8 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import callApi from "../../../utils/apiCaller";
-import loading_gif from '../../../image/loader.gif';
+import loading_gif from "../../../image/loader.gif";
+import img from "./../../../image/document-256.png";
 class ListMailSend extends Component {
   constructor(props) {
     super(props);
@@ -74,16 +75,29 @@ class ListMailSend extends Component {
     return (
       <div className="col-lg-8 col-md-6 content jumbotron center mt-3">
         <ul className="list-group mb">
-          {sendMailList.length > 0 ? sendMailList.map((list ,index) => (
-            <Link to={"/hop-thu/gui/" + list._id} key={index}>
-              <li className="list-group-item">
-                <p className="text-name">{list.name}</p>
-                <p className="text-right">{list.sent_date}</p>
-              </li>
-            </Link>
-          )):""}
+          {sendMailList.length > 0 ? (
+            sendMailList.map((list, index) => (
+              <Link to={"/hop-thu/gui/" + list._id} key={index}>
+                <li className="list-group-item">
+                  <p className="text-name">{list.name}</p>
+                  <p className="text-right">{list.sent_date}</p>
+                </li>
+              </Link>
+            ))
+          ) : (
+            <div>
+              <img className="center my-5" src={img} alt="" width="200px" />
+              <h2 className="h2 text-center text-muted">
+                Không tìm thấy thư đã gửi
+              </h2>
+            </div>
+          )}
         </ul>
-        {this.state.loading ? <img className="center" src={loading_gif} alt="" width="50px"></img> : ""}
+        {this.state.loading ? (
+          <img className="center" src={loading_gif} alt="" width="50px"></img>
+        ) : (
+          ""
+        )}
         <nav aria-label="Page navigation example">
           <ul className="pagination page">
             <li className="page-item">
