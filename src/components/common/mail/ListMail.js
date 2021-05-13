@@ -94,20 +94,22 @@ class ListMail extends Component {
                 )}
               </Link>
             ))
-          ) : (
-            <div>
-              <img className="center my-5" src={img} alt="" width="200px" />
-              <h2 className="h2 text-center text-muted">
-                Không tìm thấy thư đến
-              </h2>
-            </div>
+          ) : ( (
+            this.state.loading ? (
+              <img className="center mb-5" src={loading_gif} alt="" width="50px"></img>
+            ) : (
+              <div>
+                  <img className="center my-5" src={img} alt="" width="200px" />
+                  <h2 className="h2 text-center text-muted">
+                    Không tìm thấy thư đến
+                  </h2>
+                </div>
+            )
+          )
+            
           )}
         </ul>
-        {this.state.loading ? (
-          <img className="center" src={loading_gif} alt="" width="50px"></img>
-        ) : (
-          ""
-        )}
+       
         <nav aria-label="Page navigation example">
           <ul className="pagination page">
             <li className="page-item">

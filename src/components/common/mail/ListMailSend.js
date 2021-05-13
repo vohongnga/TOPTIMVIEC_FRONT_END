@@ -84,6 +84,13 @@ class ListMailSend extends Component {
                 </li>
               </Link>
             ))
+          ) : this.state.loading ? (
+            <img
+              className="center mb-5"
+              src={loading_gif}
+              alt=""
+              width="50px"
+            ></img>
           ) : (
             <div>
               <img className="center my-5" src={img} alt="" width="200px" />
@@ -93,11 +100,7 @@ class ListMailSend extends Component {
             </div>
           )}
         </ul>
-        {this.state.loading ? (
-          <img className="center" src={loading_gif} alt="" width="50px"></img>
-        ) : (
-          ""
-        )}
+
         <nav aria-label="Page navigation example">
           <ul className="pagination page">
             <li className="page-item">
