@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component} from 'react';
 import verifyaccount from '../../image/verifyaccount.png'
 class VerifyAccount extends Component {
     render() {

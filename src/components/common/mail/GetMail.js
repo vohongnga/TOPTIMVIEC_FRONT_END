@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { getMailById } from "../../../services/ReceiveMailService";
 import loading_gif from "../../../image/loader.gif";
 class GetMail extends Component {

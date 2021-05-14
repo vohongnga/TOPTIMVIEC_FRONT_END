@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component} from 'react';
 import MenuMail from "../../components/common/mail/MenuMail";
 import GetMail from "../../components/common/mail/GetMail";
 class DetaiMail extends Component {

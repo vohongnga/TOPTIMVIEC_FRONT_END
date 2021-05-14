@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React,{ Component } from "react";
 import { Link } from "react-router-dom";
 import callApi from "../../../utils/apiCaller";
 import loading_gif from "../../../image/loader.gif";

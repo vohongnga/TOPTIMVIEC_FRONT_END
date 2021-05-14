@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import errorvalidate from "../../image/email-error.png"
 class ErrorValidate extends Component{
     render() {
