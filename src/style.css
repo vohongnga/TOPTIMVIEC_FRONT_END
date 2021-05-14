@@ -319,8 +319,11 @@ span.icon2 {
 .link:hover {
     color: #000;
 }
-.text-name {
-    font-size: 25px;
+.text-name-mail {
+    font-size: 18px;
+}
+.text-name-title-mail {
+    font-size: 20px;
 }
 .mb {
     margin-bottom: 30px;
@@ -328,9 +331,9 @@ span.icon2 {
 .page {
     justify-content: center;
 }
-.avatar {
-    max-height: 100%;
-    max-width: 100%;
+.avatar-mail {
+    max-height: 50px;
+    max-width: 50px;
 }
 .ct-mail {
     border-left: solid rgb(228, 224, 224)  1px;

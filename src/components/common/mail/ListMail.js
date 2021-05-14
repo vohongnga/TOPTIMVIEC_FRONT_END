@@ -74,21 +74,21 @@ class ListMail extends Component {
     let { receiveMailList } = this.state;
 
     return (
-      <div className="col-lg-8 col-md-6 content jumbotron center mt-3">
+      <div className="col-lg-8 col-md-6 center p-4 rounded bg-white">
         <ul className="list-group mb">
           {receiveMailList.length > 0 ? (
             receiveMailList.map((list, index) => (
               <Link to={"/hop-thu/" + list._id} key={index}>
                 {list.read === false ? (
-                  <li className="list-group-item">
+                  <li className="list-group-item p-3">
                     <strong>
-                      <p className="text-name">{list.name}</p>
+                      <p className="text-name-title-mail">{list.name}</p>
                       <p className="text-right">{list.sent_date}</p>
                     </strong>
                   </li>
                 ) : (
                   <li className="list-group-item">
-                    <p className="text-name">{list.name}</p>
+                    <p className="text-name-title-mail">{list.name}</p>
                     <p className="text-right">{list.sent_date}</p>
                   </li>
                 )}

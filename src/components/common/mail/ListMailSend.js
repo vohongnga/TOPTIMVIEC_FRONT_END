@@ -73,13 +73,13 @@ class ListMailSend extends Component {
   render() {
     let { sendMailList } = this.state;
     return (
-      <div className="col-lg-8 col-md-6 content jumbotron center mt-3">
+      <div className="col-lg-8 col-md-6 center p-4 rounded bg-white">
         <ul className="list-group mb">
           {sendMailList.length > 0 ? (
             sendMailList.map((list, index) => (
               <Link to={"/hop-thu/gui/" + list._id} key={index}>
-                <li className="list-group-item">
-                  <p className="text-name">{list.name}</p>
+                <li className="list-group-item p-3">
+                  <p className="text-name-title-mail">{list.name}</p>
                   <p className="text-right">{list.sent_date}</p>
                 </li>
               </Link>
