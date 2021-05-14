@@ -28,7 +28,7 @@ class GetMail extends Component {
   }
   render() {
     return (
-      <div className="col-lg-8 col-md-6 content jumbotron center mt-3 detail">
+      <div className="col-lg-8 col-md-6 content jumbotron center mt-3 ct-mail">
         {this.state.loading ? (
           <img className="center " src={loading_gif} alt="" width="50px"></img>
         ) : (
@@ -37,7 +37,8 @@ class GetMail extends Component {
             <div className="row">
               <div className="col col-2 logo">
                 <img
-                  className="mx-auto avatar"
+                  className="mx-auto avatar" 
+                  height="150px" width="150px"
                   src={this.state.sender.avatar}
                   alt=""
                 />

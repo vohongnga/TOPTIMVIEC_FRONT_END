@@ -329,10 +329,10 @@ span.icon2 {
     justify-content: center;
 }
 .avatar {
-    height: 80%;
-    width: 80%;
+    max-height: 100%;
+    max-width: 100%;
 }
-.detail {
+.ct-mail {
     border-left: solid rgb(228, 224, 224)  1px;
    
 }
