@@ -17,6 +17,10 @@ import AccountSettingEmployer from './pages/employer/AccountSetting';
 import Company from './pages/common/Company';
 import CompanyDetail from './pages/common/CompanyDetail';
 import ErrorValidate from './pages/common/ErrorValidate';
+import IndexMail from './pages/common/IndexMail';
+import DetaiMail from './pages/common/DetailMail';
+import IndexMailSend from './pages/common/IndexMailSend';
+
 
 const routes=[
     {
@@ -61,6 +65,70 @@ const routes=[
             }
             else if (role === "applicant") {
                 return <Redirect to="/" />;
+            }
+            else {
+                return <Redirect to="/dang-nhap" />;
+            }
+        }
+    },
+    {
+        path:'/hop-thu',
+        exact: true,
+        main: () => { 
+            var role = sessionStorage.getItem("role");
+            if (role === "employer") {
+                return <IndexMail />;
+            }
+            else if (role === "applicant") {
+                return <IndexMail />;
+            }
+            else {
+                return <Redirect to="/dang-nhap" />;
+            }
+        }
+    },
+    {
+        path:'/hop-thu/gui',
+        exact: true,
+        main: () => { 
+            var role = sessionStorage.getItem("role");
+            if (role === "employer") {
+                return <IndexMailSend />;
+            }
+            else if (role === "applicant") {
+                return <IndexMailSend />;
+            }
+            else {
+                return <Redirect to="/dang-nhap" />;
+            }
+        }
+    },
+    {
+        path:'/hop-thu/gui/:id',
+        exact: false,
+        main: (match) => {
+            var role = sessionStorage.getItem("role");
+            if (role === "employer") {
+                return <DetaiMail id={match.match.params.id}/>;
+            }
+            else if (role === "applicant") {
+                return <DetaiMail id={match.match.params.id} />;
+            }
+            else {
+                return <Redirect to="/dang-nhap" />;
+            }
+        }
+    },
+    {
+        path:'/hop-thu/:id',
+        exact: false,
+        main: (match) => {
+            var role = sessionStorage.getItem("role");
+            if (role === "employer") {
+                return <DetaiMail id={match.match.params.id}/>;
+            }
+            else if (role === "applicant") {
+                return <DetaiMail id={match.match.params.id} />;
             }
             else {
                 return <Redirect to="/dang-nhap" />;

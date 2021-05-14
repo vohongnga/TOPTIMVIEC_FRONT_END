@@ -76,7 +76,7 @@ class HeaderEmployer extends Component {
                             <div className="nav-link dropdown-toggle p-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img className="rounded-circle" src={this.state.avatar} width="38px" height="38px" alt=""></img></div>
                             <div className="dropdown-menu dropdown-menu-right drop">
                                 <Link className="dropdown-item" to="#">Trang cá nhân</Link>
-                                <Link className="dropdown-item" to="#">Hộp thư</Link>
+                                <Link className="dropdown-item" to="/hop-thu">Hộp thư</Link>
                                 <Link className="dropdown-item" to="/tai-khoan">Cài đặt tài khoản</Link>
                                 <Link className="dropdown-item" to="#" onClick={this.logOut}>Đăng xuất</Link>
                             </div>

@@ -265,6 +265,15 @@ span.icon2 {
 .max-size-screen {
     max-width: 100vw;
 }
+
+.title-email {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 60px;
+}
+.gr1 {
+    display: inline;
+}
 .overlay {
     position: absolute;
     top: 0;
@@ -309,4 +318,33 @@ span.icon2 {
 }
 .link:hover {
     color: #000;
+}
+.text-name-mail {
+    font-size: 18px;
+}
+.text-name-title-mail {
+    font-size: 20px;
+}
+.mb {
+    margin-bottom: 30px;
+}
+.page {
+    justify-content: center;
+}
+.avatar-mail {
+    max-height: 50px;
+    max-width: 50px;
+}
+.ct-mail {
+    border-left: solid rgb(228, 224, 224)  1px;
+   
+}
+.title-mail{
+    font-size: 35px;
+    margin-bottom: 20px;
+   
+}
+.bold {
+    font-weight: bold;
+    color: black;
 }
