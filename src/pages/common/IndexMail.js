@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component} from 'react';
 import { withRouter } from "react-router";
 import MenuMail from "../../components/common/mail/MenuMail";
 import ListMail from "../../components/common/mail/ListMail";

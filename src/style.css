@@ -329,8 +329,8 @@ span.icon2 {
     justify-content: center;
 }
 .avatar {
-    height: 70px;
-    width: 70px;
+    height: 80%;
+    width: 80%;
 }
 .detail {
     border-left: solid rgb(228, 224, 224)  1px;
