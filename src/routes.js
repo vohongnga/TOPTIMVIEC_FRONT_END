@@ -20,7 +20,7 @@ import ErrorValidate from './pages/common/ErrorValidate';
 import IndexMail from './pages/common/IndexMail';
 import DetaiMail from './pages/common/DetailMail';
 import IndexMailSend from './pages/common/IndexMailSend';
-
+import CV1 from './components/cv/cv1/CV1';
 
 const routes=[
     {
@@ -195,6 +195,11 @@ const routes=[
         path:'/cong-ty/:id',
         exact: true,
         main: (props) => <CompanyDetail {...props} />
+    },
+    {
+        path:'/mau-cv',
+        exact: true,
+        main: () =>  <CV1 edit={true}/>
     },
     {
         path:'',
