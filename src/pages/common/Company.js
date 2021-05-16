@@ -25,11 +25,13 @@ class Company extends Component{
         this.setListCompany(page);
     }
     setListCompany = (page) => {
-        this.setState({loading: true});
-        callApi("employer?name=" + this.state.name + "&page=" + (page - 1), 'GET').then(rs => {
-            this.setState(rs.data);
-            this.setState({loading: false});
-        });
+        if (page > 0) {
+            this.setState({loading: true});
+            callApi("employer?name=" + this.state.name + "&page=" + (page - 1), 'GET').then(rs => {
+                this.setState(rs.data);
+                this.setState({loading: false});
+            });
+        }
     }
     setCountPage = () => {
         callApi("/employer/page?name=" + this.state.name, 'GET').then(rs => {
