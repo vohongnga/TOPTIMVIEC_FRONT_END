@@ -51,7 +51,6 @@ class Header extends Component {
                             <NavLink activeClassName="active" exact to="/cong-ty" className="nav-link px-2">Công ty</NavLink>
                         </li>
                     </ul>
-c 
                     <div className="navbar-nav ml-auto">
                         <Link className="btn btn-outline-success text-success mr-1 text-truncate"  to="/dang-nhap">Đăng nhập</Link>
                         <Link className="btn btn-success text-truncate mt-1 mt-md-0"  to="/dang-ky">Đăng ký</Link>
