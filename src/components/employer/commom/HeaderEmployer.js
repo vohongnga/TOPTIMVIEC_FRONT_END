@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import SearchForm from "./../../common/SearchForm";
 import LoginService from "../../../services/LoginService";
+import Notification from "../../common/Notification";
 
 class HeaderEmployer extends Component {
     constructor(props) {
@@ -64,14 +65,7 @@ class HeaderEmployer extends Component {
 
                     <div className="navbar-nav ml-auto">
                         <Link className="btn btn-success text-truncate mt-1 mt-md-0"  to="#">Đăng tin</Link>
-                        <li className="nav-item dropdown ml-lg-3">
-                            <div className="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i className="fa fa-bell size-icon"/></div>
-                            <div className="dropdown-menu dropdown-menu-right drop">
-                                <Link className="dropdown-item" to="#">Notification</Link>
-                                <Link className="dropdown-item" to="#">Notification</Link>
-                                <Link className="dropdown-item" to="#">Notification</Link>
-                            </div>
-                        </li>
+                        <Notification />
                         <li className="nav-item dropdown ml-lg-3 mr-lg-2">
                             <div className="nav-link dropdown-toggle p-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img className="rounded-circle" src={this.state.avatar} width="38px" height="38px" alt=""></img></div>
                             <div className="dropdown-menu dropdown-menu-right drop">

@@ -26,6 +26,7 @@
     "reactstrap": "^8.9.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "socket.io-client": "^4.1.1",
     "web-vitals": "^1.1.1",
     "yarn": "^1.22.10",
     "yup": "^0.32.9"
