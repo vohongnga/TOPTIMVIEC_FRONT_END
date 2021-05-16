@@ -91,7 +91,6 @@ class RegisterEmployer extends Component {
                 EmployerService.fetchEmployerAPI(name,email,password).then(res => {
                 
                     if(res.status === 201){
-                        console.log("ok");
                         window.location.href = "/dang-ky/xac-nhan";
                     }
                 
