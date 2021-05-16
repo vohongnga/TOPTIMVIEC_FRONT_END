@@ -38,7 +38,6 @@ class Notification extends Component {
     }
     getData = () => {
         if (!this.state.show) {
-            console.log("asdf")
             this.setState({"show": true})
             if (!this.state.loading && !this.state.stop) {
                 this.setState({"list_notify": []});

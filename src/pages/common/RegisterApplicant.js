@@ -104,7 +104,6 @@ class RegisterApplicant extends Component {
             ApplicantService.fetchApplicantAPI(name, email, gender, dob, password).then(res => {
 
                 if (res.status === 201) {
-                    console.log("ok");
                     window.location.href = "/dang-ky/xac-nhan";
                 }
     
