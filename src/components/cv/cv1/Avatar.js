@@ -17,7 +17,7 @@ class Avatar extends React.Component {
                     <p suppressContentEditableWarning contentEditable={this.props.edit} onBlur={this.onChangeAvatar} name="name">{this.props.name}</p>
                 </h1>
                 <h3 className="tagline">
-                    <div suppressContentEditableWarning contentEditable={this.props.edit} onBlur={this.onChangeAvatar} name="position" >{this.props.position}</div>
+                    <p suppressContentEditableWarning contentEditable={this.props.edit} onBlur={this.onChangeAvatar} name="position" >{this.props.position}</p>
                 </h3>
             </div>
         );

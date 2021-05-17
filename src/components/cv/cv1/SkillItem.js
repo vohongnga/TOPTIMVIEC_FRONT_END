@@ -23,7 +23,7 @@ export default class SkillItem extends React.Component {
                     <p suppressContentEditableWarning contentEditable={edit} onBlur={this.onChangeTitleSkill} name="skill">{skill.skill}</p>
                 </h3>
                 <div className="level-bar">
-                    <input type="range" min="0" max="5" value={skill.rate} name="rate" className="theme-bar" onChange={this.onChangeLevelSkill} />
+                    <input type="range" min="0" max="5" value={skill.rate} name="rate" className="theme-bar" onChange={this.onChangeLevelSkill} disabled={!edit} />
                 </div>
             </div>
         );
