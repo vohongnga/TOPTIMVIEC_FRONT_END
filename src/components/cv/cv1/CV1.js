@@ -170,8 +170,13 @@ class CV1 extends React.Component {
     })
   }
 
+  componentDidMount() {
+    if (this.props.data) {
+      this.setState(this.props.data);
+    }
+  }
+
   render() {
-    console.log(this.state)
     var { address, avatar, content, dob, email, gender, interests, name, phone, position, skill } = this.state;
     return (
       <div>

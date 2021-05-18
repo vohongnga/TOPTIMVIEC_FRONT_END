@@ -11,7 +11,6 @@ export default class SkillItem extends React.Component {
     onChangeLevelSkill = (e) => {
         var name = e.target.name;
         var value = parseInt(e.target.value);
-        console.log(value)
         var { index, onChangeLevelSkill } = this.props;
         return onChangeLevelSkill(name, value, index)
     }
