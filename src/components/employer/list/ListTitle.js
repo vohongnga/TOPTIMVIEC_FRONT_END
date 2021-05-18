@@ -5,7 +5,6 @@ import AddListModal from './AddListModal';
 import DeleteDialog from './DeleteDialog';
 import * as actions from '../../../actions/employer/list';
 import {connect} from 'react-redux';
-import SendMailModal from '../mail/SendMailModal';
 
 class ListTitle extends Component {
     onClickUpdateList = () => {
@@ -16,7 +15,7 @@ class ListTitle extends Component {
         window.$('#deleteDialog').modal('show');
     }
     onContact(){
-        window.$('#sendMaiModal').modal('show');
+        window.$('#sendMailModal').modal('show');
     }
     render() {
         return (
@@ -31,7 +30,6 @@ class ListTitle extends Component {
                 </div>
                 <AddListModal get_list={true} />
                 <DeleteDialog get_list={true} />
-                <SendMailModal id={this.props.id}/>
             </div>
         );
     }

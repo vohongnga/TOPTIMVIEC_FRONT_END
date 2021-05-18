@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import ListPostModal from "./ListPostModal";
+import ListCvModal from "./ListCvModal";
 import { sendMail } from "../../../services/SendMailService";
-import * as employer_action from "./../../../actions/employer/index";
-class SendMailModal extends Component {
+import * as actions from "./../../../actions/index";
+
+class SendMailCvModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,20 +23,20 @@ class SendMailModal extends Component {
     });
   };
 
-  onChoosePost = () => {
-    window.$("#listPostModal").modal("show");
+  onChooseCv = () => {
+    window.$("#listCvModal").modal("show");
   };
   onClose = () => {
     this.setState({
       title: "",
       content: "",
     });
-    this.props.choiceAttachPost(null);
-    window.$("#sendMailModal").modal("hide");
+    this.props.choiceAttachCv(null);
+    window.$("#sendMaiCvModal").modal("hide");
   };
-  onClosePost = (e) => {
+  onCloseCv = (e) => {
     e.stopPropagation();
-    this.props.choiceAttachPost(null);
+    this.props.choiceAttachCv(null);
   };
   showHashtag = (listHashtag) => {
     var result = null;
@@ -55,7 +56,7 @@ class SendMailModal extends Component {
     return result;
   };
   onSubmit = () => {
-    let receiver = this.props.get_list.list.map((re, index) => re.applicant);
+    let receiver = [this.props.id_employer];
     let attach_post;
     if (this.props.choice_attach_post) {
       attach_post = this.props.choice_attach_post._id;
@@ -76,8 +77,8 @@ class SendMailModal extends Component {
   handleClick = (e) => {
     const { target } = e;
     if (
-      window.$("#sendMailModal").is(":visible") &&
-      !window.$("#listPostModal").is(":visible") &&
+      window.$("#sendMaiCvModal").is(":visible") &&
+      !window.$("#listCvModal").is(":visible") &&
       !this.sendMailRef.current.contains(target)
     ) {
       this.onClose();
@@ -90,14 +91,14 @@ class SendMailModal extends Component {
     document.removeEventListener("click", this.handleClick);
   }
   render() {
-    let show_post = this.props.choice_attach_post;
+    let show_cv = this.props.choice_attach_cv;
     return (
       <div
         className="modal fade bd-example-modal-lg"
-        id="sendMailModal"
+        id="sendMaiCvModal"
         tabIndex="-1"
         role="dialog"
-        aria-labelledby="sendMailModal"
+        aria-labelledby="sendMaiCvModal"
         aria-hidden="true"
       >
         <div className="modal-dialog modal-lg" role="document">
@@ -135,26 +136,25 @@ class SendMailModal extends Component {
                   onChange={this.onHandleChange}
                 ></textarea>
               </div>
-              {show_post ? (
-                <div className="item row h-30 full-width mx-1 mb-3 rounded bg-white mt-2 border border-secondary">
+
+              {show_cv ? (
+                <div className="item row h-30 full-width mx-1 mb-3 py-3 rounded bg-white mt-2 border border-secondary">
                   <div className="col col-2 logo pt-1">
                     <img
                       className="mx-auto avatar "
-                      src={show_post.employer.avatar}
+                      src={show_cv.avatar}
                       alt=""
                       height="100px"
                       width="100px"
                     />
                   </div>
                   <div className="col col-10">
-                    <h4 className="text-truncate">{show_post.title}</h4>
+                    <h4 className="text-truncate">{show_cv.name}</h4>
                     <div className="row mt-4 mb-1">
                       <div className="col-8 detail mb-0 pb-0">
-                        <h5 className="text-truncate">
-                          {show_post.employer.name}
-                        </h5>
+                        <h5 className="text-truncate">{show_cv.position}</h5>
                         <div className="row pl-3 mt-3">
-                          {this.showHashtag(show_post.hashtag)}
+                          {this.showHashtag(show_cv.hashtag)}
                         </div>
                       </div>
                       <div className="col-4 ml-auto city_and_posted_date h-100 text-right">
@@ -162,24 +162,19 @@ class SendMailModal extends Component {
                           to="#"
                           className="btn btn-danger text-white"
                           role="button"
-                          onClick={this.onClosePost}
+                          onClick={this.onCloseCv}
                         >
                           Xóa
                         </Link>
-                        <p className="text-truncate text-right mt-1">
-                          <i className="fa fa-dollar-sign mr-1 mb-2"></i>
-                          {show_post.salary}
-                        </p>
-                        <br />
                         <div className="text-right mt-3">
-                          <p className="text-truncate">{show_post.place}</p>
+                          <p className="text-truncate">{show_cv.place}</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               ) : (
-                <Link to="#" onClick={this.onChoosePost}>
+                <Link to="#" onClick={this.onChooseCv}>
                   Đính kèm
                 </Link>
               )}
@@ -203,7 +198,7 @@ class SendMailModal extends Component {
             </div>
           </div>
         </div>
-        <ListPostModal />
+        <ListCvModal />
       </div>
     );
   }
@@ -217,9 +212,9 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    choiceAttachPost: (post) => {
-      return dispatch(employer_action.choiceAttachPost(post));
+    choiceAttachCv: (cv) => {
+      return dispatch(actions.choiceAttachCv(cv));
     },
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(SendMailModal);
+export default connect(mapStateToProps, mapDispatchToProps)(SendMailCvModal);

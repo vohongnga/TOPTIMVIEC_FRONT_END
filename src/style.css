@@ -348,7 +348,6 @@ span.icon2 {
 .send-mail {
     line-height: 30px;
 }
-.ct_post {
-    border: 1px solid black;
-    border-radius: 25px;
+.list-cv-modal {
+    height: 80vh;
 }

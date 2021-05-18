@@ -143,3 +143,9 @@ export const setRole = (role) => {
         role
     };
 }
+export const choiceAttachCv = (cv) => {
+    return {
+        type: types.CHOICE_ATTACH_CV,
+        cv
+    }
+}

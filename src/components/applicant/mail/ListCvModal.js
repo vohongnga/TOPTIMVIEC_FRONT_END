@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import callApi from "../../../utils/apiCaller";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import * as employer_action from "./../../../actions/employer/index";
+import * as actions from "./../../../actions/index";
 
-class ListPostModal extends Component {
+class ListCvModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listPost: [],
+      listCv: [],
       page: 1,
       count_page: 0,
       loading: false,
@@ -16,18 +16,18 @@ class ListPostModal extends Component {
   }
   setPage = (page) => {
     this.setState({ page: page });
-    this.setState({ listPost: [] });
-    this.setListPost(page);
+    this.setState({ listCv: [] });
+    this.setListCv(page);
   };
-  setListPost = (page) => {
+  setListCv = (page) => {
     this.setState({ loading: true });
-    callApi("post/my?page=" + (page - 1), "GET").then((rs) => {
-      this.setState({ listPost: rs.data.list_post });
+    callApi("cv/my?page=" + (page - 1), "GET").then((rs) => {
+      this.setState({ listCv: rs.data.list_cv });
       this.setState({ loading: false });
     });
   };
   setCountPage = () => {
-    callApi("/post/my/page", "GET").then((rs) => {
+    callApi("/cv/my/page", "GET").then((rs) => {
       this.setState(rs.data);
     });
   };
@@ -60,15 +60,6 @@ class ListPostModal extends Component {
     }
     return result;
   };
-  componentDidMount() {
-    const search = window.location.search;
-    const params = new URLSearchParams(search);
-    let page = params.get("page");
-    if (!page) page = 1;
-    this.setState({ page: page });
-    this.setListPost(1);
-    this.setCountPage();
-  }
   showHashtag = (listHashtag) => {
     var result = null;
     if (listHashtag.length > 0) {
@@ -86,67 +77,71 @@ class ListPostModal extends Component {
     }
     return result;
   };
-  onChoosePost = (list) => {
-    this.props.choiceAttachPost(list);
-    window.$("#listPostModal").modal("hide");
+
+  componentDidMount() {
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    let page = params.get("page");
+    if (!page) page = 1;
+    this.setState({ page: page });
+    this.setListCv(1);
+    this.setCountPage();
+  }
+
+  onChooseCv = (list) => {
+    this.props.choiceAttachCv(list);
+    window.$("#listCvModal").modal("hide");
   };
   onClose() {
-    window.$("#listPostModal").modal("hide");
+    window.$("#listCvModal").modal("hide");
   }
   render() {
-    let { listPost } = this.state;
+    let { listCv } = this.state;
     return (
       <div
         className="modal fade bd-example-modal-lg dialog2"
-        id="listPostModal"
+        id="listCvModal"
         tabIndex="-1"
         role="dialog"
-        aria-labelledby="listPostModal"
+        aria-labelledby="listCvModal"
         aria-hidden="true"
       >
         <div className="modal-dialog modal-lg" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Danh sách bài đăng</h5>
+              <h5 className="modal-title">Danh sách công việc</h5>
               <button type="button" className="close" onClick={this.onClose}>
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div className="modal-body overflow-auto list-cv-modal">
-              {listPost.map((list, index) => (
+              {listCv.map((list, index) => (
                 <Link
                   to="#"
                   data-aos="fade-right"
                   key={index}
-                  onClick={() => this.onChoosePost(list)}
+                  onClick={() => this.onChooseCv(list)}
                 >
                   <div className="item row h-30 full-width mx-1 mb-3 rounded bg-grey big-hover border border-secondary pt-2 pb-2">
                     <div className="col col-2 logo ">
                       <img
                         className="mx-auto avatar "
-                        src={list.employer.avatar}
+                        src={list.avatar}
                         alt=""
                         height="100px"
                         width="100px"
                       />
                     </div>
                     <div className="col col-10">
-                      <h4 className="text-truncate">{list.title}</h4>
+                      <h4 className="text-truncate">{list.name}</h4>
                       <div className="row mt-4 mb-1">
                         <div className="col-8 detail mb-0 pb-0">
-                          <h5 className="text-truncate">
-                            {list.employer.name}
-                          </h5>
-                          <div className="row pl-3 mt-3">
+                          <h5 className="text-truncate">{list.position}</h5>
+                          <div className="row pl-3 mt-3 ">
                             {this.showHashtag(list.hashtag)}
                           </div>
                         </div>
                         <div className="col-4 ml-auto city_and_posted_date h-100">
-                          <p className="text-truncate text-right mt-1">
-                            <i className="fa fa-dollar-sign mr-1 mb-2"></i>
-                            {list.salary}
-                          </p>
-                          <br />
                           <div className="text-right mt-3">
                             <p className="text-truncate">{list.place}</p>
                           </div>
@@ -192,9 +187,9 @@ class ListPostModal extends Component {
 }
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    choiceAttachPost: (post) => {
-      return dispatch(employer_action.choiceAttachPost(post));
+    choiceAttachCv: (cv) => {
+      return dispatch(actions.choiceAttachCv(cv));
     },
   };
 };
-export default connect(null, mapDispatchToProps)(ListPostModal);
+export default connect(null, mapDispatchToProps)(ListCvModal);
