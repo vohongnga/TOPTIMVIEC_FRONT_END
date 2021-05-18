@@ -22,6 +22,7 @@ import DetaiMail from './pages/common/DetailMail';
 import IndexMailSend from './pages/common/IndexMailSend';
 
 
+
 const routes=[
     {
         path:'/',
