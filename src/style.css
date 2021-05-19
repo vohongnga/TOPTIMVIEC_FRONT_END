@@ -392,3 +392,7 @@ span.icon2 {
     background: red;
     color: white;
 }
+.avatar {
+    max-height: 100%;
+    max-width: 100%;
+}
