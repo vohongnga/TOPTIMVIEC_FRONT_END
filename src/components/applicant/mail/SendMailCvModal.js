@@ -32,7 +32,7 @@ class SendMailCvModal extends Component {
       content: "",
     });
     this.props.choiceAttachCv(null);
-    window.$("#sendMaiCvModal").modal("hide");
+    window.$("#sendMailCvModal").modal("hide");
   };
   onCloseCv = (e) => {
     e.stopPropagation();
@@ -77,7 +77,7 @@ class SendMailCvModal extends Component {
   handleClick = (e) => {
     const { target } = e;
     if (
-      window.$("#sendMaiCvModal").is(":visible") &&
+      window.$("#sendMailCvModal").is(":visible") &&
       !window.$("#listCvModal").is(":visible") &&
       !this.sendMailRef.current.contains(target)
     ) {
@@ -95,10 +95,10 @@ class SendMailCvModal extends Component {
     return (
       <div
         className="modal fade bd-example-modal-lg"
-        id="sendMaiCvModal"
+        id="sendMailCvModal"
         tabIndex="-1"
         role="dialog"
-        aria-labelledby="sendMaiCvModal"
+        aria-labelledby="sendMailCvModal"
         aria-hidden="true"
       >
         <div className="modal-dialog modal-lg" role="document">

@@ -28,24 +28,24 @@ class GetMail extends Component {
   }
   render() {
     return (
-      <div className="col-lg-8 col-md-6 content jumbotron center mt-3 ct-mail">
+      <div className="col-lg-8 col-md-6 content center ct-mail bg-white rounded p-4">
         {this.state.loading ? (
           <img className="center " src={loading_gif} alt="" width="50px"></img>
         ) : (
           <div>
             <h2 className="title-mail">{this.state.title}</h2>
-            <div className="row">
-              <div className="col col-2 logo">
+            <div className="row mt-4">
+              <div className="logo ml-3">
                 <img
-                  className="mx-auto avatar" 
-                  height="150px" width="150px"
+                  className="mx-auto avatar-mail rounded-circle" 
+                  height="50px" width="50px"
                   src={this.state.sender.avatar}
                   alt=""
                 />
               </div>
-              <div className="col col-6">
-                <h2 className="text-name">{this.state.sender.name}</h2>
-                <p className="text-truncate">{this.state.sent_date}</p>
+              <div className="ml-3">
+                <h2 className="text-name-mail">{this.state.sender.name}</h2>
+                <p className="">{this.state.sent_date}</p>
               </div>
             </div>
             <hr />

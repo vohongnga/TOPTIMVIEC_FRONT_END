@@ -20,7 +20,7 @@ import ErrorValidate from './pages/common/ErrorValidate';
 import IndexMail from './pages/common/IndexMail';
 import DetailMail from './pages/common/DetailMail';
 import IndexMailSend from './pages/common/IndexMailSend';
-
+import CV from './pages/employer/CV';
 
 
 const routes=[
@@ -196,6 +196,22 @@ const routes=[
         path:'/cong-ty/:id',
         exact: true,
         main: (props) => <CompanyDetail {...props} />
+    },
+    {
+        path:'/cv/:id',
+        exact: true,
+        main: (match) => {
+            var role = sessionStorage.getItem("role");
+            if (role === "employer") {
+                return <CV  id={match.match.params.id}/>;
+            }
+            else if (role === "applicant") {
+                return <Redirect to="/" />;
+            }
+            else {
+                return <Redirect to="/dang-nhap" />;
+            }
+        }
     },
     {
         path:'',
