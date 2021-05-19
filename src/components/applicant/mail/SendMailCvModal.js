@@ -141,7 +141,7 @@ class SendMailCvModal extends Component {
                 <div className="item row h-30 full-width mx-1 mb-3 py-3 rounded bg-white mt-2 border border-secondary">
                   <div className="col col-2 logo pt-1">
                     <img
-                      className="mx-auto avatar "
+                      className="mx-auto avatar-list-modal "
                       src={show_cv.avatar}
                       alt=""
                       height="100px"

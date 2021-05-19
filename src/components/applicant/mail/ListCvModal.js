@@ -125,7 +125,7 @@ class ListCvModal extends Component {
                   <div className="item row h-30 full-width mx-1 mb-3 rounded bg-grey big-hover border border-secondary pt-2 pb-2">
                     <div className="col col-2 logo ">
                       <img
-                        className="mx-auto avatar "
+                        className="mx-auto avatar-list-modal "
                         src={list.avatar}
                         alt=""
                         height="100px"
