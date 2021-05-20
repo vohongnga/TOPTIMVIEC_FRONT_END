@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Aos from "aos";
 import callApi from '../../utils/apiCaller';
 import JobItem from '../../components/common/JobItem';
+import SendMailCvModal from '../../components/applicant/mail/SendMailCvModal';
 
 class CompanyDetail extends Component{
     constructor(props) {
@@ -22,6 +23,9 @@ class CompanyDetail extends Component{
             this.setState(rs.data);
         });
     }
+    onContact() {
+        window.$('#sendMailCvModal').modal('show');
+    }
     render(){
         document.body.style.backgroundColor = "#eceff1";
         
@@ -33,7 +37,7 @@ class CompanyDetail extends Component{
                         <img className="mx-auto my-5" src={this.state.avatar} alt="" width="170px"></img>
                         <div className="col-12"><h1 className="h2 text-break text-center">{this.state.name}</h1></div>
                         <div className="col-12 mt-3 text-center">
-                            <button className="btn btn-primary">Liên hệ</button>
+                            <button className="btn btn-primary" onClick={this.onContact}>Liên hệ</button>
                         </div>
                     </div>
                 </div>
@@ -51,6 +55,8 @@ class CompanyDetail extends Component{
                         {this.state.list_post.length > 0 ? this.showJobs(this.state.list_post) : ""}
                     </div>
                 </div>
+               
+                <SendMailCvModal id_employer={this.props.match.params.id} />
             </div>
         );
     }
