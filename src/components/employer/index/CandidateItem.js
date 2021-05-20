@@ -52,8 +52,14 @@ class CandidateItem extends Component {
                             <div className="row pl-3 mt-3">{this.showHashtag(job.hashtag)}</div>
                         </div>
                         <div className="col-4 ml-auto city_and_posted_date h-100 text-right">
-                            <Link to="#" className="btn btn-success text-white" role="button" onClick={this.onChooseCV}>Chọn</Link>
+                            {!this.props.manage ? <Link to="#" className="btn btn-success text-white" role="button" onClick={this.onChooseCV}>Chọn</Link> : ""}
                             {this.props.list ? <Link to="#" className="btn btn-danger text-white ml-1" role="button" onClick={this.onDeleteCV}>Xóa</Link> : ""}
+                            {this.props.manage ? 
+                                <div>
+                                    <Link to="#" className="btn btn-primary text-white ml-1" role="button">Sửa</Link> 
+                                    <Link to="#" className="btn btn-danger text-white ml-1" role="button" onClick={(e) => this.props.onChoiceDelete(e, job._id)}>Xóa</Link> 
+                                </div>
+                            : ""}
                             <div className="text-right mt-4">
                                 <p className="text-truncate">{job.place}</p>
                             </div>

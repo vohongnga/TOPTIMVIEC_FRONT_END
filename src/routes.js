@@ -21,6 +21,8 @@ import IndexMail from './pages/common/IndexMail';
 import DetailMail from './pages/common/DetailMail';
 import IndexMailSend from './pages/common/IndexMailSend';
 import CV from './pages/employer/CV';
+import ListSampleCV from './pages/applicant/cv/ListSampleCV';
+import CVManage from './pages/applicant/CVManage';
 
 const routes=[
     {
@@ -206,6 +208,38 @@ const routes=[
             }
             else if (role === "applicant") {
                 return <CV  id={match.match.params.id}/>;
+            }
+            else {
+                return <Redirect to="/dang-nhap" />;
+            }
+        }
+    },
+    {
+        path:'/mau-cv',
+        exact: true,
+        main: (match) => {
+            var role = sessionStorage.getItem("role");
+            if (role === "employer") {
+                return <Redirect to="/" />;
+            }
+            else if (role === "applicant") {
+                return <ListSampleCV />;
+            }
+            else {
+                return <ListSampleCV />;
+            }
+        }
+    },
+    {
+        path:'/quan-ly-cv',
+        exact: true,
+        main: (match) => {
+            var role = sessionStorage.getItem("role");
+            if (role === "employer") {
+                return <Redirect to="/" />;
+            }
+            else if (role === "applicant") {
+                return <CVManage />;
             }
             else {
                 return <Redirect to="/dang-nhap" />;
