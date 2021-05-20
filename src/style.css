@@ -371,6 +371,12 @@ span.icon2 {
     color: black;
 }
 
+.send-mail {
+    line-height: 30px;
+}
+.list-cv-modal {
+    height: 80vh;
+}
 /* Notification */
 .notify-dropdown {
     height: 60vh;
@@ -386,4 +392,8 @@ span.icon2 {
     border-radius: 50%;
     background: red;
     color: white;
+}
+.avatar-list-modal {
+    max-height: 100%;
+    max-width: 100%;
 }

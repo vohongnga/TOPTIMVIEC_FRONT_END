@@ -18,7 +18,7 @@ import Company from './pages/common/Company';
 import CompanyDetail from './pages/common/CompanyDetail';
 import ErrorValidate from './pages/common/ErrorValidate';
 import IndexMail from './pages/common/IndexMail';
-import DetaiMail from './pages/common/DetailMail';
+import DetailMail from './pages/common/DetailMail';
 import IndexMailSend from './pages/common/IndexMailSend';
 import CV from './pages/employer/CV';
 
@@ -109,10 +109,10 @@ const routes=[
         main: (match) => {
             var role = sessionStorage.getItem("role");
             if (role === "employer") {
-                return <DetaiMail id={match.match.params.id}/>;
+                return <DetailMail id={match.match.params.id}/>;
             }
             else if (role === "applicant") {
-                return <DetaiMail id={match.match.params.id} />;
+                return <DetailMail id={match.match.params.id} />;
             }
             else {
                 return <Redirect to="/dang-nhap" />;
@@ -125,10 +125,10 @@ const routes=[
         main: (match) => {
             var role = sessionStorage.getItem("role");
             if (role === "employer") {
-                return <DetaiMail id={match.match.params.id}/>;
+                return <DetailMail id={match.match.params.id}/>;
             }
             else if (role === "applicant") {
-                return <DetaiMail id={match.match.params.id} />;
+                return <DetailMail id={match.match.params.id} />;
             }
             else {
                 return <Redirect to="/dang-nhap" />;
@@ -205,7 +205,7 @@ const routes=[
                 return <CV  id={match.match.params.id}/>;
             }
             else if (role === "applicant") {
-                return <Redirect to="/" />;
+                return <CV  id={match.match.params.id}/>;
             }
             else {
                 return <Redirect to="/dang-nhap" />;
