@@ -37,16 +37,12 @@ class Login extends Component {
         e.preventDefault();
         LoginService.fetchLoginAPI(this.state.user.email, this.state.user.password).then(res => {
             if (res.status === 200) {
-                if (this.state.checkSaveAccount) {
-                    localStorage.setItem("refresh_token", res.data.refresh_token);
-                }
-                this.cookies.set("id_user", res.data.id_user);
-                this.cookies.set("avatar", res.data.avatar);
-                this.cookies.set("name", res.data.name);
-                this.cookies.set("refresh_token", res.data.refresh_token);
-                this.cookies.set("role", res.data.role);
-                this.cookies.set("token", res.data.token);
-
+                this.cookies.set("id_user", res.data.id_user, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
+                this.cookies.set("avatar", res.data.avatar, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
+                this.cookies.set("name", res.data.name, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
+                this.cookies.set("refresh_token", res.data.refresh_token, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
+                this.cookies.set("role", res.data.role, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
+                this.cookies.set("token", res.data.token, {expires: 0});
                 this.setState({notif: ""});
                 this.props.history.push("/");
                 return;

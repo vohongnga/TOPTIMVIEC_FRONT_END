@@ -18,14 +18,13 @@ let LoginService = {
     },
     logoutAPI: () => {
         return callApi('logout', 'DELETE').then(res => {
-            localStorage.removeItem("refresh_token");
-
             cookies.remove("id_user");
             cookies.remove("avatar");
             cookies.remove("name");
             cookies.remove("refresh_token");
             cookies.remove("role");
             cookies.remove("token");
+            cookies.remove("save_account");
 
             window.location.href = "/dang-nhap";
         });

@@ -10,7 +10,6 @@ import { connect } from 'react-redux';
 import * as actions from './actions/index';
 import routes from './routes';
 import { refreshToken } from './services/TokenService';
-import { getAccountInfo } from './services/AccountInfoService';
 import logo_img from "./image/LogoMakr-87TXng_pnsj0a.png";
 import loading_gif from './image/loader.gif';
 
@@ -42,14 +41,10 @@ class App extends Component {
     componentDidMount() {
         //Lay thong tin nguoi dung khi khoi dong
         this.setState({getting_data: true});
-        var key = localStorage.getItem("refresh_token");
-        var session_key = this.cookies.get('refresh_token');
-        if (key && !session_key) {
-            this.cookies.set('refresh_token', key);
+        var key = this.cookies.get('refresh_token');
+        if (key) {
             refreshToken().then(() => {
-                getAccountInfo().then(() => {
-                    this.setState({getting_data: false});
-                });
+                this.setState({getting_data: false});
             });
         } else {
             this.setState({getting_data: false});

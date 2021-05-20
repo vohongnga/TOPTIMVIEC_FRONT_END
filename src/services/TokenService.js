@@ -14,33 +14,23 @@ export const refreshToken = () => {
         }).then((res) => {
             cookies.set("token", res.data.token);
         }).catch((e) => {
-            localStorage.removeItem("id_user");
-            localStorage.removeItem("avatar");
-            localStorage.removeItem("name");
-            localStorage.removeItem("refresh_token");
-            localStorage.removeItem("role");
-
             cookies.remove("id_user");
             cookies.remove("avatar");
             cookies.remove("name");
             cookies.remove("refresh_token");
             cookies.remove("role");
             cookies.remove("token");
+            cookies.remove("save_account");
             window.location.href = "/dang-nhap";
         });
     } else {
-        localStorage.removeItem("id_user");
-        localStorage.removeItem("avatar");
-        localStorage.removeItem("name");
-        localStorage.removeItem("refresh_token");
-        localStorage.removeItem("role");
-
         cookies.remove("id_user");
         cookies.remove("avatar");
         cookies.remove("name");
         cookies.remove("refresh_token");
         cookies.remove("role");
         cookies.remove("token");
+        cookies.remove("save_account");
 
         window.location.href = "/dang-nhap";
     }
