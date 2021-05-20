@@ -1,6 +1,9 @@
 import {API_URL} from './../constants/ApiUrl';
 import axios from 'axios'
 import callApi from './../utils/apiCaller';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 let LoginService = {
     fetchLoginAPI: (email, password) => {
@@ -17,12 +20,12 @@ let LoginService = {
         return callApi('logout', 'DELETE').then(res => {
             localStorage.removeItem("refresh_token");
 
-            sessionStorage.removeItem("id_user");
-            sessionStorage.removeItem("avatar");
-            sessionStorage.removeItem("name");
-            sessionStorage.removeItem("refresh_token");
-            sessionStorage.removeItem("role");
-            sessionStorage.removeItem("token");
+            cookies.remove("id_user");
+            cookies.remove("avatar");
+            cookies.remove("name");
+            cookies.remove("refresh_token");
+            cookies.remove("role");
+            cookies.remove("token");
 
             window.location.href = "/dang-nhap";
         });

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Cookies from 'universal-cookie';
 import "../../style.css";
 import logo_img from "../../image/LogoMakr-87TXng_pnsj0a.png";
 import LoginService from "../../services/LoginService";
@@ -18,6 +19,7 @@ class Login extends Component {
             notif: "",
             checkSaveAccount: true
         }
+        this.cookies = new Cookies();
     }
     onChangeEmail = (e) => {
         let email = e.target.value;
@@ -38,12 +40,12 @@ class Login extends Component {
                 if (this.state.checkSaveAccount) {
                     localStorage.setItem("refresh_token", res.data.refresh_token);
                 }
-                sessionStorage.setItem("id_user", res.data.id_user);
-                sessionStorage.setItem("avatar", res.data.avatar);
-                sessionStorage.setItem("name", res.data.name);
-                sessionStorage.setItem("refresh_token", res.data.refresh_token);
-                sessionStorage.setItem("role", res.data.role);
-                sessionStorage.setItem("token", res.data.token);
+                this.cookies.set("id_user", res.data.id_user);
+                this.cookies.set("avatar", res.data.avatar);
+                this.cookies.set("name", res.data.name);
+                this.cookies.set("refresh_token", res.data.refresh_token);
+                this.cookies.set("role", res.data.role);
+                this.cookies.set("token", res.data.token);
 
                 this.setState({notif: ""});
                 this.props.history.push("/");

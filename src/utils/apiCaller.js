@@ -1,9 +1,12 @@
 import axios from 'axios';
 import {API_URL} from './../constants/ApiUrl';
 import {refreshToken} from './../services/TokenService';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 export default function callApi(endpoint, method = 'GET', body) {
-    var token = sessionStorage.getItem("token");
+    var token = cookies.get("token");
     if (token) {
         return axios({
             method: method,

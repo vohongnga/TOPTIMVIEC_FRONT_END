@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Cookies from 'universal-cookie';
 import './App.css';
 import { Router, Switch, Route } from 'react-router-dom';
 import Header from './components/common/Header';
@@ -22,6 +23,7 @@ class App extends Component {
             show_header : true,
             getting_data: true
         };
+        this.cookies = new Cookies();
     }
 
     onRouteChange = (location, action) => {
@@ -41,9 +43,9 @@ class App extends Component {
         //Lay thong tin nguoi dung khi khoi dong
         this.setState({getting_data: true});
         var key = localStorage.getItem("refresh_token");
-        var session_key = sessionStorage.getItem("refresh_token");
+        var session_key = this.cookies.get('refresh_token');
         if (key && !session_key) {
-            sessionStorage.setItem("refresh_token", key);
+            this.cookies.set('refresh_token', key);
             refreshToken().then(() => {
                 getAccountInfo().then(() => {
                     this.setState({getting_data: false});
@@ -88,7 +90,7 @@ class App extends Component {
     }
 
     showHeader = () => {
-        var role = sessionStorage.getItem("role");
+        var role = this.cookies.get('role');
         if (role === "employer") {
             return <HeaderEmployer />;
         }
