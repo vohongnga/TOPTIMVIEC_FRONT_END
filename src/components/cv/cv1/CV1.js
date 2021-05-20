@@ -1,7 +1,6 @@
 import React from 'react';
 import Avatar from './Avatar';
 import Info from './Info';
-// import Interest from './Interest';
 import ContentItem from './ContentItem';
 import SkillItem from './SkillItem';
 import "./stylecv1.css";
@@ -171,7 +170,7 @@ class CV1 extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     var { address, avatar, content, dob, email, gender, interests, name, phone, position, skill } = this.state;
     return (
       <div>
