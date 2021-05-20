@@ -20,7 +20,6 @@ export const refreshToken = () => {
             cookies.remove("refresh_token");
             cookies.remove("role");
             cookies.remove("token");
-            cookies.remove("save_account");
             window.location.href = "/dang-nhap";
         });
     } else {
@@ -30,7 +29,6 @@ export const refreshToken = () => {
         cookies.remove("refresh_token");
         cookies.remove("role");
         cookies.remove("token");
-        cookies.remove("save_account");
 
         window.location.href = "/dang-nhap";
     }
