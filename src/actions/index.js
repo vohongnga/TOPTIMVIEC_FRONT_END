@@ -3,6 +3,7 @@ import callApi from './../utils/apiCaller'
 import axios from 'axios'
 import {API_URL} from './../constants/ApiUrl'
 
+
 export const hideHeader = () => {
     return {
         type : types.HIDE_HEADER
@@ -141,4 +142,10 @@ export const setRole = (role) => {
         type: types.SET_ROLE,
         role
     };
+}
+export const choiceAttachCv = (cv) => {
+    return {
+        type: types.CHOICE_ATTACH_CV,
+        cv
+    }
 }

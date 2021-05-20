@@ -32,3 +32,9 @@ export const chooseCV = (cv) => {
         cv
     };
 }
+export const choiceAttachPost = (post) => {
+    return {
+        type: types.CHOICE_ATTACH_POST,
+        post // post:post
+    }
+}

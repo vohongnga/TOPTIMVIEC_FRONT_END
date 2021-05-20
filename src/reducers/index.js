@@ -8,7 +8,9 @@ import role from './role';
 import choose_cv from './choose_cv';
 import list from './list';
 import list_page from './list_page';
-import get_list from './get_list'
+import get_list from './get_list';
+import choice_attach_post from './choice_attach_post';
+import choice_attach_cv from './choice_attach_cv';
 
 const appReducers = combineReducers({
     hide_header,
@@ -20,6 +22,8 @@ const appReducers = combineReducers({
     choose_cv,
     list,
     list_page,
-    get_list
+    get_list,
+    choice_attach_post,
+    choice_attach_cv,
 });
 export default appReducers;
