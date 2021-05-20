@@ -6,7 +6,8 @@ export const refreshToken = () => {
     if (key) {
         return axios({
             method: "GET",
-            url: API_URL+"token?refresh-token="+encodeURIComponent(key)
+            url: API_URL+"token",
+            headers: { Authorization: `Bearer ${key}` }
         }).then((res) => {
             sessionStorage.setItem("token", res.data.token);
         }).catch((e) => {
