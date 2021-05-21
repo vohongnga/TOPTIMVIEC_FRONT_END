@@ -39,7 +39,8 @@ const routes=[
             }
             else if (role === "applicant") {
                 return <Index />;
-            }else if (role === "admin"){
+            }
+            else if (role === "admin"){
                 return <IndexAdmin />
             }
             else {

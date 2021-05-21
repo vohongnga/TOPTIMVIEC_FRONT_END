@@ -6,8 +6,8 @@ class IndexAdmin extends Component {
     render() {
         document.body.style.backgroundColor = "#eceff1 ";
         return (
-            <div className="col col-md-10 mt-2 ">
-                <div className="row">
+            <div>
+                <div className="row mx-0">
                     <SideBar />
                     <ListContent />
                 </div>

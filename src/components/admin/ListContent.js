@@ -1,44 +1,68 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import LoginService from "../../services/LoginService";
 
 class ListContent extends Component {
-  render() {
-    return (
-      <div className="col-lg-9 col-md-6 center p-4 rounded ">
-        <div id="page-wrapper">
-          <div id="page-inner">
-            <div className="row">
-              <div className="col-md-12">
-                <h2 className="h2 text-index">TRANG QUẢN TRỊ VIÊN</h2>
-              </div>
+    logOut = () => {
+        LoginService.logoutAPI();
+    }
+    render() {
+        return (
+            <div className="col-lg-9 col-md-6 px-0">
+                <div className="dark py-4 text-right pr-3">
+                    <button className="btn btn-success text-truncate" onClick={this.logOut}>Đăng xuất</button>
+                </div>
+                <div className="p-5 row m-0">
+                    <div className="col-4 p-2">
+                        <div className="card border-secondary px-0">
+                            <div className="card-header bg-white border-0">Số bài đăng</div>
+                            <div className="card-body text-secondary">
+                                <h2 className="h2 card-title text-center">2000</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-4 p-2">
+                        <div className="card border-secondary px-0">
+                            <div className="card-header bg-white border-0">Số bài đăng</div>
+                            <div className="card-body text-secondary">
+                                <h2 className="h2 card-title text-center">2000</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-4 p-2">
+                        <div className="card border-secondary px-0">
+                            <div className="card-header bg-white border-0">Số bài đăng</div>
+                            <div className="card-body text-secondary">
+                                <h2 className="h2 card-title text-center">2000</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-4 p-2">
+                        <div className="card border-secondary px-0">
+                            <div className="card-header bg-white border-0">Số bài đăng</div>
+                            <div className="card-body text-secondary">
+                                <h2 className="h2 card-title text-center">2000</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-4 p-2">
+                        <div className="card border-secondary px-0">
+                            <div className="card-header bg-white border-0">Số bài đăng</div>
+                            <div className="card-body text-secondary">
+                                <h2 className="h2 card-title text-center">2000</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-4 p-2">
+                        <div className="card border-secondary px-0">
+                            <div className="card-header bg-white border-0">Số bài đăng</div>
+                            <div className="card-body text-secondary">
+                                <h2 className="h2 card-title text-center">2000</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <hr />
-            <div className="row">
-              <div className="item row h-40 full-width mx-1 mb-3 rounded bg-grey big-hover border border-secondary py-3 px-1 col-3 text-center">
-                <Link to="" className="">
-                  <h4 className="h4">Quản lý tin</h4>
-                </Link>
-              </div>
-              <div className="item row h-40 full-width mx-1 mb-3 rounded bg-grey big-hover border border-secondary py-3 px-1 col-3">
-                <Link to="" className="">
-                  <h4 className="h4">Quản lý cv </h4>
-                </Link>
-              </div>
-              <div className="item row h-40 full-width mx-1 mb-3 rounded bg-grey big-hover border border-secondary py-3 px-1 col-3">
-                <Link to="" className="">
-                  <h4 className="h4">Quản lý công ty </h4>
-                </Link>
-              </div>
-              <div className="item row h-40 full-width mx-1 mb-3 rounded bg-grey big-hover border border-secondary py-3 px-1 col-3">
-                <Link to="" className="">
-                  <h4 className="h4">Quản lý tài khoản</h4>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 export default ListContent;

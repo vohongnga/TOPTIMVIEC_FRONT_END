@@ -397,51 +397,12 @@ span.icon2 {
     max-height: 100%;
     max-width: 100%;
 }
-/*ADMIN*/
-.user-image {
-    margin: 25px auto;
--webkit-border-radius: 10px;
--moz-border-radius: 10px;
-border-radius: 10px;
-max-height:170px;
-max-width:170px;
+/* Admin */
+.admin-left-bar {
+    background-color: #394141;
+    height: 100vh;
 }
-.img-responsive {
-    display: block;
-  max-width: 100%;
-  height: auto;
+
+.admin-left-bar .list-group-item {
+    background-color: #394141;
 }
-.navbar-side {
-	border:none;
-	background-color: #eceff1;
-	
-}
-.navbar-default {
-    border:0px solid #eceff1;
-         
-    }
-    
-    .sidebar-collapse .nav > li  {
-        color:#fff;
-        background:#eceff1;
-        text-shadow:none;
-        
-    }
-    .text-sidebar {
-        color: #4ca456;
-    }
-    #page-inner {
-        width:100%;
-        padding:10px;
-        min-height:800px;
-    }
-    #page-wrapper {
-        padding: 15px 15px;
-        min-height: 400px;
-        background:white;
-        width:100%;
-    }    
-    .text-index {
-        color: #4ca456;
-    }
-    
