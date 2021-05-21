@@ -8,7 +8,12 @@ import * as employer_action from './../../../actions/employer/index';
 
 class CandidateItem extends Component {
     toPost = (id) => {
-        window.open("/cv/"+id, "_blank")
+        if (this.props.manage) {
+            this.props.history.push("/cv/"+id);
+        }
+        else {
+            window.open("/cv/"+id, "_blank");
+        }
     }
     onClickHashtag(e, hashtag) {
         e.stopPropagation(); 
