@@ -12,6 +12,7 @@ import routes from './routes';
 import { refreshToken } from './services/TokenService';
 import logo_img from "./image/LogoMakr-87TXng_pnsj0a.png";
 import loading_gif from './image/loader.gif';
+import HeaderAdmin from './components/admin/HeaderAdmin';
 
 const history = createBrowserHistory();
 
@@ -92,6 +93,8 @@ class App extends Component {
         }
         else if (role === "applicant") {
             return <HeaderApplicant />;
+        }else if(role === "admin"){
+            return <HeaderAdmin />
         }
         else {
             return <Header />;

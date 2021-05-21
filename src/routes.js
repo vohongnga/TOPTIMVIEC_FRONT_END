@@ -24,6 +24,7 @@ import IndexMailSend from './pages/common/IndexMailSend';
 import CV from './pages/employer/CV';
 import ListSampleCV from './pages/applicant/cv/ListSampleCV';
 import CVManage from './pages/applicant/CVManage';
+import IndexAdmin from "./pages/admin/IndexAdmin";
 
 const cookies = new Cookies();
 
@@ -38,6 +39,8 @@ const routes=[
             }
             else if (role === "applicant") {
                 return <Index />;
+            }else if (role === "admin"){
+                return <IndexAdmin />
             }
             else {
                 return <Index />;
