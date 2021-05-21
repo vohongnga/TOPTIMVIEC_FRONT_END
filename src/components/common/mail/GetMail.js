@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Aos from "aos";
+import Cookies from 'universal-cookie';
 import { getMailById } from "../../../services/ReceiveMailService";
 import loading_gif from "../../../image/loader.gif";
 import JobItem from "../JobItem";
@@ -27,6 +28,7 @@ class GetMail extends Component {
       reply: false
     };
     Aos.init({duration: 1000});
+    this.cookies = new Cookies();
   }
   showHashtag = (listHashtag) => {
     var result = null;
@@ -68,7 +70,7 @@ class GetMail extends Component {
     getMailById(id).then((detailMail) => {
       this.setState(detailMail);
       this.setState({ loading: false });
-      if (sessionStorage.getItem("id_user") === detailMail.sender._id) {
+      if (this.cookies.get('id_user') === detailMail.sender._id) {
         this.setState({reply: false});
       }
       else {
@@ -77,7 +79,7 @@ class GetMail extends Component {
     });
   }
   onReply = () => {
-    this.role = sessionStorage.getItem("role");
+    this.role = this.cookies.get('role');
     if(this.role === "applicant"){
       window.$("#sendMailCvModal").modal("show");
     }else if(this.role === "employer"){
