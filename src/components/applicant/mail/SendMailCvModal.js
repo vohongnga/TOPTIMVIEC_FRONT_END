@@ -205,7 +205,6 @@ class SendMailCvModal extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    get_list: state.get_list,
     choice_attach_post: state.choice_attach_post,
     choice_attach_cv: state.choice_attach_cv,
   };

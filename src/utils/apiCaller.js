@@ -19,6 +19,9 @@ export default function callApi(endpoint, method = 'GET', body) {
                     return callApi(endpoint, method, body);
                 });
             }
+            else if (e.response.status === 404) {
+                window.location.href = "/khong-ton-tai";
+            }
         });
     }
     else {

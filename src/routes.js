@@ -24,6 +24,9 @@ import IndexMailSend from './pages/common/IndexMailSend';
 import CV from './pages/employer/CV';
 import ListSampleCV from './pages/applicant/cv/ListSampleCV';
 import CVManage from './pages/applicant/CVManage';
+import ForgetPassword from './pages/common/ForgetPassword';
+import CreateNewPassword from './pages/common/CreateNewPassword';
+import IndexAdmin from "./pages/admin/IndexAdmin";
 
 const cookies = new Cookies();
 
@@ -38,6 +41,9 @@ const routes=[
             }
             else if (role === "applicant") {
                 return <Index />;
+            }
+            else if (role === "admin"){
+                return <IndexAdmin />
             }
             else {
                 return <Index />;
@@ -144,6 +150,21 @@ const routes=[
         path:'/dang-nhap',
         exact: true,
         main: () => { return !cookies.get('role') ? <Login /> : <Redirect to="/" />}
+    },
+    {
+        path:'/quen-mat-khau',
+        exact: true,
+        main: () => { return !cookies.get('role') ? <ForgetPassword /> : <Redirect to="/" /> }
+    },
+    {
+        path:'/quen-mat-khau/xac-nhan-email',
+        exact: true,
+        main: () => { return !cookies.get('role') ? <VerifyAccount /> : <Redirect to="/" />}
+    },
+    {
+        path:'/quen-mat-khau/tao-mat-khau-moi',
+        exact: true,
+        main: () => { return !cookies.get('role') ? <CreateNewPassword /> : <Redirect to="/" />}
     },
     {
         path:'/dang-ky',

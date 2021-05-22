@@ -42,7 +42,8 @@ class App extends Component {
         //Lay thong tin nguoi dung khi khoi dong
         this.setState({getting_data: true});
         var key = this.cookies.get('refresh_token');
-        if (key) {
+        var token = this.cookies.get('token');
+        if (key && !token) {
             refreshToken().then(() => {
                 this.setState({getting_data: false});
             });
@@ -91,6 +92,9 @@ class App extends Component {
         }
         else if (role === "applicant") {
             return <HeaderApplicant />;
+        }
+        else if(role === "admin"){
+            return "";
         }
         else {
             return <Header />;

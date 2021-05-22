@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import Aos from "aos";
+import Cookies from 'universal-cookie';
 import callApi from '../../utils/apiCaller';
 import JobItem from '../../components/common/JobItem';
 import SendMailCvModal from '../../components/applicant/mail/SendMailCvModal';
@@ -12,10 +14,15 @@ class CompanyDetail extends Component{
             "avatar": "",
             "bio": "",
             "name": "",
-            "list_post": []
+            "list_post": [],
+            "contact": false
         };
+        this.cookies = new Cookies();
     }
     componentDidMount() {
+        if (this.cookies.get('role')) {
+            this.setState({"contact": true});
+        }
         callApi("/employer/" + this.props.match.params.id, 'GET').then(rs => {
             this.setState(rs.data);
         });
@@ -23,8 +30,13 @@ class CompanyDetail extends Component{
             this.setState(rs.data);
         });
     }
-    onContact() {
-        window.$('#sendMailCvModal').modal('show');
+    onContact = () => {
+        if (this.state.contact) {
+            window.$('#sendMailCvModal').modal('show');
+        }
+        else {
+            this.props.history.push("/dang-nhap");
+        }
     }
     render(){
         document.body.style.backgroundColor = "#eceff1";
@@ -56,7 +68,7 @@ class CompanyDetail extends Component{
                     </div>
                 </div>
                
-                <SendMailCvModal id_employer={this.props.match.params.id} />
+                {this.state.contact ? <SendMailCvModal id_employer={this.props.match.params.id} /> : ""}
             </div>
         );
     }
@@ -77,4 +89,4 @@ class CompanyDetail extends Component{
 }
 
 
-export default CompanyDetail;
+export default withRouter(CompanyDetail);
