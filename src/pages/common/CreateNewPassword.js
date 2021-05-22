@@ -1,4 +1,5 @@
 import React,{ Component } from "react";
+import { withRouter } from "react-router";
 import ForgetPasswordService from "../../services/ForgetPasswordService";
 
 class CreateNewPassword extends Component {
@@ -34,29 +35,47 @@ class CreateNewPassword extends Component {
             this.setState({ notif });
         }
     }
+    onBlurPassword = () => {
+        let { password } = this.state;
+        if (!password) {
+            let notif = this.state.notif;
+            notif.password = true;
+            this.setState({ notif });
+        } else {
+            let notif = this.state.notif;
+            notif.password = false;
+            this.setState({ notif });
+        }
+        this.onBlurRepassword();
+    }
     onSubmit = (e) => {
         e.preventDefault();
         const search = window.location.search;
         const params = new URLSearchParams(search);
         let key = params.get('key');
-        let id_user = params.get("id_user"); 
+        let id_user = params.get("id_user");
         let {password,repassword} = this.state;
         if(password === repassword){
             ForgetPasswordService.resetPasswordAPI(id_user,key,password).then((res) => {
-                console.log("ok");
-                window.location.href("/dang-nhap");
+                this.props.history.push("/dang-nhap");
             }).catch(err =>{
-                if (err.response.status === 400) {
-                    this.setState({ notifmess: "(*) Vui lòng nhập đầy đủ thông tin!" });
-                } else if (err.response.status === 401) {
-                    this.setState({ notifmess: "(*) Id người dùng hoặc khóa xác thực không đúng !" });
-                } else if (err.response.status === 403) {
-                    this.setState({ notifmess: "(*) Có lỗi trong quá trình xử lý. Vui lòng thử lại !" });
+                if (err.response) {
+                    if (err.response.status === 400) {
+                        this.setState({ notifmess: "(*) Vui lòng nhập đầy đủ thông tin!" });
+                    } else if (err.response.status === 401) {
+                        this.setState({ notifmess: "(*) Id người dùng hoặc khóa xác thực không đúng !" });
+                    } else if (err.response.status === 403) {
+                        this.setState({ notifmess: "(*) Có lỗi trong quá trình xử lý. Vui lòng thử lại !" });
+                    }
                 }
             })
-        }else {
+        }else if(password !== repassword){
             let notif = this.state.notif;
             notif.repassword = true;
+            this.setState({ notif });
+        }else if(!password){
+            let notif = this.state.notif;
+            notif.password = true;
             this.setState({ notif });
         }
     }
@@ -67,10 +86,11 @@ class CreateNewPassword extends Component {
             <h2 className="h2">Tạo mật khẩu mới !</h2>
             <form >
                 <div className="form-group mt-3 mr-3 w-100 ">
-                    <input type="text" placeholder="Mật khẩu mới" className="form-control w-100" value={this.state.password} name="password" onChange={this.onHandleChange}/>  
+                    <input type="password" placeholder="Mật khẩu mới" className="form-control w-100" value={this.state.password} name="password" onChange={this.onHandleChange} onBlur={this.onBlurPassword}/>  
                 </div>
+                {this.state.notif.password === true ? <p className="text-danger mt-1">(*) Mật khẩu không được để trống!</p> : ""}
                 <div className="form-group mt-3 mr-3 w-100 ">
-                    <input type="text" placeholder="Xác nhận mật khẩu mới" className="form-control w-100" value={this.state.repassword} name="repassword" onChange={this.onHandleChange} onBlur={this.onBlurRepassword}/>  
+                    <input type="password" placeholder="Xác nhận mật khẩu mới" className="form-control w-100" value={this.state.repassword} name="repassword" onChange={this.onHandleChange} onBlur={this.onBlurRepassword}/>  
                 </div>
                 {this.state.notif.repassword === true ? <p className="text-danger mt-1">(*) Mật khẩu không trùng khớp !</p> : ""}
                 {this.state.notifmess.length > 0 ? <p className="text-danger mt-1">{this.state.notifmess}</p> : ""}
@@ -82,4 +102,4 @@ class CreateNewPassword extends Component {
         )
     }
 }
-export default CreateNewPassword;
+export default withRouter(CreateNewPassword);

@@ -150,17 +150,17 @@ const routes=[
     {
         path:'/quen-mat-khau',
         exact: true,
-        main: () => { return <ForgetPassword />}
+        main: () => { return !cookies.get('role') ? <ForgetPassword /> : <Redirect to="/" /> }
     },
     {
         path:'/quen-mat-khau/xac-nhan-email',
         exact: true,
-        main: () => { return <VerifyAccount />}
+        main: () => { return !cookies.get('role') ? <VerifyAccount /> : <Redirect to="/" />}
     },
     {
         path:'/quen-mat-khau/tao-mat-khau-moi',
         exact: true,
-        main: () => { return <CreateNewPassword />}
+        main: () => { return !cookies.get('role') ? <CreateNewPassword /> : <Redirect to="/" />}
     },
     {
         path:'/dang-ky',

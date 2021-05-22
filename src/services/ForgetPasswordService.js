@@ -13,7 +13,7 @@ let ForgetPasswordService = {
     },
     resetPasswordAPI: (id_user,key,password) => {
         return axios({
-            method: "POST",
+            method: "PUT",
             url: API_URL + 'reset-password-forget',
             data: {
                 "id_user" : id_user,
