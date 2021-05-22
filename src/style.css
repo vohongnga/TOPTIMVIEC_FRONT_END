@@ -397,6 +397,9 @@ span.icon2 {
     max-height: 100%;
     max-width: 100%;
 }
+.btn-email {
+    float: right;
+}
 /* Admin */
 .admin-left-bar {
     background-color: #394141;

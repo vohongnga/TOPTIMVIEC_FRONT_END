@@ -116,7 +116,7 @@ class Login extends Component {
                                     </div>
                                     {this.state.notif.length>0 ? <p className="text-danger mt-1">{this.state.notif}</p>: ""}
                                     <div className="forget">
-                                        <h6><a className="text-muted" href="/">Quên mật khẩu?</a></h6>
+                                        <h6><a className="text-muted" href="/quen-mat-khau">Quên mật khẩu?</a></h6>
                                         <div className="submit">
                                             <button type="submit" className="btn btn-success center" onClick={this.onSubmit}>Đăng nhập</button>
                                         </div>
