@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Cookies from 'universal-cookie';
 import "../../style.css";
 import logo_img from "../../image/LogoMakr-87TXng_pnsj0a.png";
 import LoginService from "../../services/LoginService";
@@ -18,6 +19,7 @@ class Login extends Component {
             notif: "",
             checkSaveAccount: true
         }
+        this.cookies = new Cookies();
     }
     onChangeEmail = (e) => {
         let email = e.target.value;
@@ -35,16 +37,12 @@ class Login extends Component {
         e.preventDefault();
         LoginService.fetchLoginAPI(this.state.user.email, this.state.user.password).then(res => {
             if (res.status === 200) {
-                if (this.state.checkSaveAccount) {
-                    localStorage.setItem("refresh_token", res.data.refresh_token);
-                }
-                sessionStorage.setItem("id_user", res.data.id_user);
-                sessionStorage.setItem("avatar", res.data.avatar);
-                sessionStorage.setItem("name", res.data.name);
-                sessionStorage.setItem("refresh_token", res.data.refresh_token);
-                sessionStorage.setItem("role", res.data.role);
-                sessionStorage.setItem("token", res.data.token);
-
+                this.cookies.set("id_user", res.data.id_user, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
+                this.cookies.set("avatar", res.data.avatar, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
+                this.cookies.set("name", res.data.name, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
+                this.cookies.set("refresh_token", res.data.refresh_token, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
+                this.cookies.set("role", res.data.role, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
+                this.cookies.set("token", res.data.token, {expires: 0});
                 this.setState({notif: ""});
                 this.props.history.push("/");
                 return;

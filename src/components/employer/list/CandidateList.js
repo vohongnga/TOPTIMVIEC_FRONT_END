@@ -7,6 +7,7 @@ import Aos from "aos";
 import {connect} from 'react-redux';
 import img from './../../../image/document-256.png';
 import loading_gif from './../../../image/loader.gif';
+import SendMailModal from '../mail/SendMailModal';
 
 class CandidateList extends Component {
     constructor(props) {
@@ -22,6 +23,7 @@ class CandidateList extends Component {
                 </div>
                 <ChooseCVModal />
                 <DeleteCVFromListDialog id={this.props.id} />
+                <SendMailModal />
             </div>
         );
     }

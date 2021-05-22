@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Cookies from 'universal-cookie';
 import { Link, NavLink } from "react-router-dom";
 import logo_img from "../../image/LogoMakr-48tDoh_uhomu6.png";
 import { connect } from 'react-redux';
@@ -15,6 +16,7 @@ class HeaderApplicant extends Component {
             "searchbar": true,
             "avatar": "https://res.cloudinary.com/pikann22/image/upload/v1615044354/toptimviec/TCM27Jw1N8ESc1V0Z3gfriuG1NjS_hXXIww7st_jZ0bFz3xGRjKht7JXzfLoU_ZelO4KPiYFPi-ZBVZcR8wdQXYHnwL5SDFYu1Yf7UBT4jhd9d8gj0lCFBA5VbeVp9SveFfJVKRcLON-OyFX_kxrs3f.png"
         };
+        this.cookies = new Cookies();
     }
     changeNavbarBg = () => {
         if (window.scrollY >= 100) {
@@ -31,7 +33,7 @@ class HeaderApplicant extends Component {
         }
     }
     componentDidMount() {
-        var avatar = sessionStorage.getItem("avatar");
+        var avatar = this.cookies.get('avatar');
         if (avatar !== "") {
             this.setState({"avatar": avatar})
         }
@@ -64,7 +66,7 @@ class HeaderApplicant extends Component {
                     </ul>
 
                     <div className="navbar-nav ml-auto">
-                        <Link className="btn btn-success text-truncate mt-1 mt-md-0"  to="#">Quản lý CV</Link>
+                        <Link className="btn btn-success text-truncate mt-1 mt-md-0"  to="/quan-ly-cv">Quản lý CV</Link>
                         <Notification />
                         <li className="nav-item dropdown ml-lg-3 mr-lg-2">
                             <div className="nav-link dropdown-toggle p-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img className="rounded-circle" src={this.state.avatar} width="38px" height="38px" alt=""></img></div>

@@ -12,7 +12,9 @@ export const getMail = (page) => {
 
 export const getMailById = (id_mail) => {
     return callApi("mail/"+id_mail,'GET').then(res => {
-       return res.data;
+        if (res) {
+            return res.data;
+        }
     }) 
 }
 

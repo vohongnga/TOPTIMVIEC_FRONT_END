@@ -1,7 +1,10 @@
 import * as types from './../constants/ActionTypes';
 import callApi from './../utils/apiCaller'
 import axios from 'axios'
+import Cookies from 'universal-cookie';
 import {API_URL} from './../constants/ApiUrl'
+
+const cookies = new Cookies();
 
 export const hideHeader = () => {
     return {
@@ -57,7 +60,7 @@ export const fetchListPlace = () => {
 }
 export const fetchAppendListJob = (list_id_showed, list_hashtag, place) => {
     return (dispatch) => {
-        var key = sessionStorage.getItem("refresh_token");
+        var key = cookies.get('refresh_token');
         if (key) {
             return callApi('post-list', 'POST', {
                 "list_id_showed": list_id_showed, 
@@ -90,7 +93,7 @@ export const appendListJob = (list_job) => {
 }
 export const fetchSetListJob = (list_id_showed, list_hashtag, place) => {
     return (dispatch) => {
-        var key = sessionStorage.getItem("refresh_token");
+        var key = cookies.get('refresh_token');
         if (key) {
             return callApi('post-list', 'POST', {
                 "list_id_showed": list_id_showed, 
@@ -141,4 +144,10 @@ export const setRole = (role) => {
         type: types.SET_ROLE,
         role
     };
+}
+export const choiceAttachCv = (cv) => {
+    return {
+        type: types.CHOICE_ATTACH_CV,
+        cv
+    }
 }

@@ -374,6 +374,12 @@ a:active {
   color: black;
 }
 
+.send-mail {
+    line-height: 30px;
+}
+.list-cv-modal {
+    height: 80vh;
+}
 /* Notification */
 .notify-dropdown {
   height: 60vh;
@@ -393,4 +399,8 @@ a:active {
 /* POST */
 .pointer {
   cursor: pointer;
+}
+.avatar-list-modal {
+    max-height: 100%;
+    max-width: 100%;
 }
