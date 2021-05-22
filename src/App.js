@@ -93,6 +93,9 @@ class App extends Component {
         else if (role === "applicant") {
             return <HeaderApplicant />;
         }
+        else if(role === "admin"){
+            return "";
+        }
         else {
             return <Header />;
         }
