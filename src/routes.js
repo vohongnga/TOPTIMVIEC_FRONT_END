@@ -26,6 +26,7 @@ import ListSampleCV from './pages/applicant/cv/ListSampleCV';
 import CVManage from './pages/applicant/CVManage';
 import ForgetPassword from './pages/common/ForgetPassword';
 import CreateNewPassword from './pages/common/CreateNewPassword';
+import IndexAdmin from "./pages/admin/IndexAdmin";
 
 const cookies = new Cookies();
 
@@ -40,6 +41,9 @@ const routes=[
             }
             else if (role === "applicant") {
                 return <Index />;
+            }
+            else if (role === "admin"){
+                return <IndexAdmin />
             }
             else {
                 return <Index />;

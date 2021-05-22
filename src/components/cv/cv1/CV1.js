@@ -180,8 +180,15 @@ class CV1 extends React.Component {
     var { address, avatar, content, dob, email, gender, interests, name, phone, position, skill } = this.state;
     return (
       <div>
-        <div className="wrapper">
-          <div className="sidebar-wrapper">
+        <div className="row wrapper">
+          
+          <div className="col col-8 main-wrapper">
+
+            {this.showContentItem(content)}
+
+            {this.showSkillItem(skill)}
+          </div>{/*//main-body*/}
+          <div className="col col-4 sidebar-wrapper">
             <Avatar edit={this.props.edit}
               avatar={avatar}
               name={name}
@@ -198,12 +205,6 @@ class CV1 extends React.Component {
             />
             {this.showInterestItem(interests)}
           </div>{/*//sidebar-wrapper*/}
-          <div className="main-wrapper">
-
-            {this.showContentItem(content)}
-
-            {this.showSkillItem(skill)}
-          </div>{/*//main-body*/}
         </div>
       </div>
     );

@@ -400,3 +400,12 @@ span.icon2 {
 .btn-email {
     float: right;
 }
+/* Admin */
+.admin-left-bar {
+    background-color: #394141;
+    height: 100vh;
+}
+
+.admin-left-bar .list-group-item {
+    background-color: #394141;
+}
