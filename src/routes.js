@@ -21,6 +21,8 @@ import IndexMail from './pages/common/IndexMail';
 import DetaiMail from './pages/common/DetailMail';
 import IndexMailSend from './pages/common/IndexMailSend';
 import CV from './pages/employer/CV';
+import Post from './pages/common/Post';
+import ManagementPost from './pages/employer/ManagementPost';
 
 const routes=[
     {
@@ -187,6 +189,16 @@ const routes=[
         }
     },
     {
+        path: '/post/:id',
+        exact: true,
+        main:({match})=><Post match = {match}/>
+    },
+    {
+        path:'/quan-ly-tin',
+        exact: true,
+        main: () => { return <ManagementPost />}
+    },
+    {
         path:'/cong-ty',
         exact: true,
         main: () => { return <Company />}
@@ -212,12 +224,11 @@ const routes=[
             }
         }
     },
+    
     {
         path:'',
         exact: false,
         main: () => <NotFoundPage />
     }
-    
-
 ];
 export default routes;
