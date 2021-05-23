@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Aos from "aos";
-import callApi from '../../utils/apiCaller';
+import { withRouter } from "react-router-dom";
 import JobItem from '../../components/common/JobItem';
 import '../../style.css';
-
+import {connect} from 'react-redux';
+import * as actions from './../../actions/index';
 import * as services from './../../services/ListService';
 
 class Post extends Component{
@@ -32,32 +33,44 @@ class Post extends Component{
     }
 
     toCompany = (id) => {
-        //this.props.history.push("/cong-ty"+id);
-         window.open("/cong-ty/"+id,"_self")
+        this.props.history.push("/cong-ty/"+id);
     }
 
-   componentWillMount(){
+    onClickHashtag(e, hashtag) {
+        e.stopPropagation();
+        this.props.onChangeHashtag([hashtag]);
+        if (this.props.location.pathname === "/") {
+            this.props.setLoadingJob(true);
+            this.props.setLoadJob(false);
+            this.props.setListJob([]);
+            this.props.fetchListJob([], [hashtag], this.props.search_value.place).then(() => {
+                window.scrollTo({ behavior: 'smooth', top: (window.innerHeight)*0.9 - 150 });
+                this.props.setLoadJob(true);
+                this.props.setLoadingJob(false);
+            });
+        }
+        else {
+            this.props.history.push("/");
+        }
+    }
+
+    componentDidMount(){
        var match= this.props.match;
        if(match){
            var id = match.params.id;
            services.getPost(id).then(res=>{
                this.setState({post:res.data.post});
-               console.log(this.state.post.recommend)
-               console.log(res)
            });
        }
    }
     render(){
         document.body.style.backgroundColor = "#eceff1";
         let hashtags = this.state.post.hashtag;
-        console.log(hashtags);
         let benefitList = this.state.post.benefit.split("\n");
         let descriptionList = this.state.post.description.split("\n");
         let requestList = this.state.post.request.split("\n");
         let id = this.state.post.employer._id;
-        console.log(id)
         const jobRecommend = this.state.post.recommend;
-        console.log(jobRecommend);
         return (
 
             <div className="col-10 mx-auto ">
@@ -86,11 +99,11 @@ class Post extends Component{
                                 <h2 className="mb-3 h2">Yêu cầu công việc</h2>
                                 {requestList.map(request=>{return <p className="mb-2 p">{request}</p>})}
                             </div>
-                            <div className = "mt-5 border-top pt-4">
-                                <h2 className = "mb-2 h2 " >Công việc liên quan</h2>
-                                <div className="job-item">
-                                    {this.showJobs(jobRecommend)}
-                                </div>
+                        </div>
+                        <div className = "border-top">
+                            <h2 className = "my-5 h2 " >Công việc liên quan</h2>
+                            <div className="job-item">
+                                {this.showJobs(jobRecommend)}
                             </div>
                         </div>
                     </div>
@@ -110,7 +123,6 @@ class Post extends Component{
     }
 
     showJobs(jobRecommend) {
-        console.log(jobRecommend)
         var result = null;
         if (jobRecommend.length > 0) {
             result = jobRecommend.map((job, index) => {
@@ -125,4 +137,28 @@ class Post extends Component{
         return result;
     }
 }
-export default Post;
+const mapStateToProps = state => {
+    return {
+        search_value: state.search_value
+    }
+}
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onChangeHashtag: (hashtag) => {
+            dispatch(actions.changeHashtag(hashtag));
+        },
+        fetchListJob: (list_id_showed, list_hashtag, place) => {
+            return dispatch(actions.fetchSetListJob(list_id_showed, list_hashtag, place));
+        },
+        setLoadJob: (load) => {
+            return dispatch(actions.setLoadJob(load));
+        },
+        setLoadingJob: (loading) => {
+            return dispatch(actions.setLoadingJob(loading));
+        },
+        setListJob: (jobs) => {
+            return dispatch(actions.setListJob(jobs));
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Post));
