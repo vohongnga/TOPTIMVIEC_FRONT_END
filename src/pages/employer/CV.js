@@ -54,7 +54,7 @@ class CV extends Component{
         return (
             <div>
                 {this.state.data ? <div>
-                    <div className="overflow-auto h-100">
+                    <div className="overflow-auto h-100 my-5">
                         <CV1 edit={false} data={this.state.data}/>
                     </div>
                     {this.state.role === "employer" ? 

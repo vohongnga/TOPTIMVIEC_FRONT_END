@@ -35,7 +35,26 @@ class App extends Component {
                 this.props.onNotHideHeader();
             }
         }
-        this.setState({"show_header": window.location.pathname !== "/dang-nhap"});
+        this.setShowHeader();
+    }
+
+    setShowHeader = () => {
+        const hide_header_paths = [
+            "/dang-nhap",
+            "/admin/quan-ly-cong-ty",
+            "/admin/quan-ly-tin",
+            "/admin/quan-ly-cv",
+            "/admin/quan-ly-nguoi-tim-viec",
+            "/mobile/cv"
+        ];
+        let show_header = true;
+        for (const path of hide_header_paths) {
+            if (window.location.pathname.substring(0, path.length) === path) {
+                show_header = false;
+                break;
+            }
+        }
+        this.setState({"show_header": show_header});
     }
 
     componentDidMount() {
@@ -61,7 +80,7 @@ class App extends Component {
             }
         }
         //Khong hien thi header khi o trang dang nhap
-        this.setState({"show_header": window.location.pathname !== "/dang-nhap"});
+        this.setShowHeader();
         history.listen(this.onRouteChange);
     }
 
