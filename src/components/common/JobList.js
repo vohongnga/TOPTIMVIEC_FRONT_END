@@ -27,6 +27,7 @@ class JobList extends Component {
         }
     }
     componentDidMount() {
+        this.props.setListJob([]);
         this.props.setLoadJob(false);
         var lengthListJob = this.props.jobs.length;
         if (lengthListJob === 0) {
