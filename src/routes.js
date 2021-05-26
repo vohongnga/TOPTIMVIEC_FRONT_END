@@ -27,6 +27,7 @@ import CVManage from './pages/applicant/CVManage';
 import ForgetPassword from './pages/common/ForgetPassword';
 import CreateNewPassword from './pages/common/CreateNewPassword';
 import IndexAdmin from "./pages/admin/IndexAdmin";
+import CVMobile from "./pages/employer/CVMobile";
 
 const cookies = new Cookies();
 
@@ -269,6 +270,11 @@ const routes=[
                 return <Redirect to="/dang-nhap" />;
             }
         }
+    },
+    {
+        path:'/mobile/cv/:id',
+        exact: true,
+        main: (match) => <CVMobile id={match.match.params.id} />
     },
     {
         path:'',
