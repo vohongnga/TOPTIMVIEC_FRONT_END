@@ -38,8 +38,6 @@ class Login extends Component {
         LoginService.fetchLoginAPI(this.state.user.email, this.state.user.password).then(res => {
             if (res.status === 200) {
                 this.cookies.set("id_user", res.data.id_user, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
-                this.cookies.set("avatar", res.data.avatar, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
-                this.cookies.set("name", res.data.name, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
                 this.cookies.set("refresh_token", res.data.refresh_token, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
                 this.cookies.set("role", res.data.role, {expires: this.state.checkSaveAccount ? new Date(Date.now()+604800000) : 0});
                 this.cookies.set("token", res.data.token, {expires: 0});

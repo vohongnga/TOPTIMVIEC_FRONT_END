@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Cookies from 'universal-cookie';
 import { Link, NavLink } from "react-router-dom";
 import logo_img from "../../image/LogoMakr-48tDoh_uhomu6.png";
 import { connect } from 'react-redux';
@@ -7,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import SearchForm from "./../common/SearchForm";
 import LoginService from "../../services/LoginService";
 import Notification from "../common/Notification";
+import callApi from './../../utils/apiCaller';
 
 class HeaderApplicant extends Component {
     constructor(props) {
@@ -16,7 +16,6 @@ class HeaderApplicant extends Component {
             "searchbar": true,
             "avatar": "https://res.cloudinary.com/pikann22/image/upload/v1615044354/toptimviec/TCM27Jw1N8ESc1V0Z3gfriuG1NjS_hXXIww7st_jZ0bFz3xGRjKht7JXzfLoU_ZelO4KPiYFPi-ZBVZcR8wdQXYHnwL5SDFYu1Yf7UBT4jhd9d8gj0lCFBA5VbeVp9SveFfJVKRcLON-OyFX_kxrs3f.png"
         };
-        this.cookies = new Cookies();
     }
     changeNavbarBg = () => {
         if (window.scrollY >= 100) {
@@ -33,10 +32,11 @@ class HeaderApplicant extends Component {
         }
     }
     componentDidMount() {
-        var avatar = this.cookies.get('avatar');
-        if (avatar !== "") {
-            this.setState({"avatar": avatar})
-        }
+        callApi('info', 'GET').then(res => {
+            if (res.data.avatar !== "") {
+                this.setState({"avatar": res.data.avatar});
+            }
+        });
         window.addEventListener('scroll', this.changeNavbarBg);
     }
     logOut = () => {

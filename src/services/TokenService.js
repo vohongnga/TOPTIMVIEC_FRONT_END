@@ -15,8 +15,6 @@ export const refreshToken = () => {
             cookies.set("token", res.data.token);
         }).catch((e) => {
             cookies.remove("id_user");
-            cookies.remove("avatar");
-            cookies.remove("name");
             cookies.remove("refresh_token");
             cookies.remove("role");
             cookies.remove("token");
@@ -24,8 +22,6 @@ export const refreshToken = () => {
         });
     } else {
         cookies.remove("id_user");
-        cookies.remove("avatar");
-        cookies.remove("name");
         cookies.remove("refresh_token");
         cookies.remove("role");
         cookies.remove("token");

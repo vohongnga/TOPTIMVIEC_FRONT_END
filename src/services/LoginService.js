@@ -19,8 +19,6 @@ let LoginService = {
     logoutAPI: () => {
         return callApi('logout', 'DELETE').then(res => {
             cookies.remove("id_user");
-            cookies.remove("avatar");
-            cookies.remove("name");
             cookies.remove("refresh_token");
             cookies.remove("role");
             cookies.remove("token");
