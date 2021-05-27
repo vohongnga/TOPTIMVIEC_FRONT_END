@@ -8,7 +8,7 @@ class ListContent extends Component {
     render() {
         return (
             <div className="col-lg-9 col-md-6 px-0">
-                <div className="dark py-4 text-right pr-3">
+                <div className="dark py-4 text-right pr-3 sticky-top">
                     <button className="btn btn-success text-truncate" onClick={this.logOut}>Đăng xuất</button>
                 </div>
                 <div className="p-5 row m-0">
