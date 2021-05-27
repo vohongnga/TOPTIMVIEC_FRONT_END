@@ -5,17 +5,28 @@ import * as actions from '../../../actions/employer/list';
 import * as services from '../../../services/ListService';
 
 class AddListModal extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            notif: false
+        }
+    }
     onChangeListName = (e) => {
         this.props.setNameList(e.target.value);
     }
     onAddNewList = (e) => {
-        e.preventDefault();
-        services.newList(this.props.list_page.name_list).then((res) => {
-            this.props.setList(res.data.candidate_lists);
-            this.props.setCountPageList(res.data.page);
-            this.props.setPageList(0);
-        });
-        window.$('#addListModal').modal('hide');
+        if (this.props.list_page.name_list) {
+            e.preventDefault();
+            services.newList(this.props.list_page.name_list).then((res) => {
+                this.props.setList(res.data.candidate_lists);
+                this.props.setCountPageList(res.data.page);
+                this.props.setPageList(0);
+            });
+            window.$('#addListModal').modal('hide');
+        }
+        else {
+            this.setState({notif: true});
+        }
     }
     onUpdateList = (e) => {
         e.preventDefault();
@@ -50,6 +61,7 @@ class AddListModal extends Component {
                             <label htmlFor="list-name" className="col-form-label">Tên danh sách:</label>
                             <input type="text" className="form-control" id="list-name" onChange={this.onChangeListName} value={this.props.list_page.name_list} />
                         </div>
+                        {this.state.notif ? <p className="text-danger">Tên danh sách không được để trống!</p> : ""}
                     </form>
                     </div>
                     <div className="modal-footer">
