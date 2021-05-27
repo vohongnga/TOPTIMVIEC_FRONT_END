@@ -5,8 +5,8 @@ import admin_img from "../../image/administrator.png";
 class SideBar extends Component {
     render() {
         return (
-            <div className="col-lg-3 col-md-6 admin-left-bar fixed-height">
-                <div className="">
+            <div className="col-lg-3 col-md-6 admin-left-bar">
+                <div className="sticky-top">
                     <ul className="">
                         <li className="list-group-item text-center py-4 border-0">
                             <img src={logo_img} className="" alt="" width="200px" />
