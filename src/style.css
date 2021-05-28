@@ -415,7 +415,7 @@ span.icon2 {
 /* Admin */
 .admin-left-bar {
     background-color: #394141;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .admin-left-bar .list-group-item {

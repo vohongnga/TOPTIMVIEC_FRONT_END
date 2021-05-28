@@ -28,6 +28,8 @@ import ForgetPassword from './pages/common/ForgetPassword';
 import CreateNewPassword from './pages/common/CreateNewPassword';
 import IndexAdmin from "./pages/admin/IndexAdmin";
 import CVMobile from "./pages/employer/CVMobile";
+import IndexCompany from './pages/admin/IndexCompany';
+import IndexPost from './pages/admin/IndexPost';
 
 const cookies = new Cookies();
 
@@ -42,6 +44,8 @@ const routes=[
             }
             else if (role === "applicant") {
                 return <Index />;
+            }else if (role === "admin"){
+                return <IndexAdmin />
             }
             else if (role === "admin"){
                 return <IndexAdmin />
@@ -275,6 +279,30 @@ const routes=[
         path:'/mobile/cv/:id',
         exact: true,
         main: (match) => <CVMobile id={match.match.params.id} />
+    },
+    {
+        path:'/admin/quan-ly-cong-ty',
+        exact: true,
+        main: (match) => {
+            var role = cookies.get('role');
+            if(role === "admin"){
+                return <IndexCompany />
+            }else {
+                return <Redirect to="/" />
+            }
+        }
+    },
+    {
+        path:'/admin/quan-ly-tin',
+        exact: true,
+        main: (match) => {
+            var role = cookies.get('role');
+            if(role === "admin"){
+                return <IndexPost />
+            }else {
+                return <Redirect to="/" />
+            }
+        }
     },
     {
         path:'',
