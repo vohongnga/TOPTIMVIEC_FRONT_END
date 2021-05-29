@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 import { getInfo } from "../../services/AdminService";
 import LoginService from "../../services/LoginService";
-
+import loading_gif from "../../image/loader.gif";
 class ListContent extends Component {
     constructor(props){
         super(props);
         this.state = {
-            listInfo : ""
+            listInfo : "",
+            loading: false
         }
     }
     logOut = () => {
         LoginService.logoutAPI();
     }
     componentDidMount() {
+        this.setState({ loading: true });
         getInfo().then((res) => {
             this.setState({listInfo: res.data});
+            this.setState({ loading: false });
         })
     }
     render() {
@@ -74,6 +77,16 @@ class ListContent extends Component {
                         </div>
                     </div>
                 </div>
+                {this.state.loading ? (
+          <img
+            className="center mb-5"
+            src={loading_gif}
+            alt=""
+            width="50px"
+          ></img>
+        ) : (
+          ""
+        )}
             </div>
         );
     }
