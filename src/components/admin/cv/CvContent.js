@@ -273,7 +273,7 @@ class CvContent extends Component {
           ""
         )}
         <nav aria-label="Page navigation example ">
-          <ul className="pagination page">
+          <ul className="pagination page mb-5">
             <li className="page-item">
               <button className="page-link" onClick={() => this.setPage(1)}>
                 Đầu
