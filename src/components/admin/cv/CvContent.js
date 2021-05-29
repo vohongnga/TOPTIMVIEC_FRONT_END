@@ -99,7 +99,7 @@ class CvContent extends Component {
     window.$("#deleteCvModal").modal("show");
   };
   showListPlace = (list_place) => {
-    var result = null;
+    let result = null;
     if (list_place.length > 0) {
       result = list_place.map((place, index) => {
         return (
@@ -112,7 +112,7 @@ class CvContent extends Component {
     }
   };
   showPage = (page_count, page_choose) => {
-    var result = null;
+    let result = null;
     if (page_count > 0) {
       const begin_page = +page_choose - 2 > 0 ? +page_choose - 2 : 1;
       const end_page =
@@ -146,7 +146,7 @@ class CvContent extends Component {
     window.open("/cv/" + id, "_blank");
   };
   showCv = (cvs) => {
-    var result = null;
+    let result = null;
     if (cvs.length > 0) {
       result = cvs.map((cv, index) => {
         return (
@@ -171,7 +171,7 @@ class CvContent extends Component {
     return result;
   };
   showHashtag = (listHashtag) => {
-    var result = null;
+    let result = null;
     if (listHashtag.length > 0) {
       result = listHashtag.map((hashtag, index) => {
         return (
@@ -194,7 +194,7 @@ class CvContent extends Component {
       })
   }
   render() {
-    var ref = React.createRef();
+    const ref = React.createRef();
     return (
       <div className="col-lg-9 col-md-6 px-0">
         <div className="dark py-4 text-right pr-3 sticky-top">

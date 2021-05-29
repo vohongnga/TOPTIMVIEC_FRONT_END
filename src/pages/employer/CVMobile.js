@@ -15,7 +15,7 @@ class CVMobile extends Component{
     componentDidMount() {
         const search = window.location.search;
         const params = new URLSearchParams(search);
-        let token = encodeURIComponent(params.get('token'));
+        const token = encodeURIComponent(params.get('token'));
         this.setState({loading: true});
         axios({
             method: "GET",

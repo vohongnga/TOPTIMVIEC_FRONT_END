@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 
-var initialState = "";
+let initialState = "";
 
 const role = (state = initialState, action) => {
     switch(action.type){

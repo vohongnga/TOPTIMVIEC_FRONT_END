@@ -92,7 +92,7 @@ class List extends Component {
         );
     }
     showLists(lists) {
-        var result = null;
+        let result = null;
         if (lists.length > 0) {
             result = lists.map((list, index) => {
                 return (
@@ -110,7 +110,7 @@ class List extends Component {
         return result;
     }
     showPage = (page_count, page_choose) => {
-        var result = null;
+        let result = null;
         if (page_count > 0) {
             const begin_page = (+page_choose - 2 > 0) ? (+page_choose -2) : 1;
             const end_page = (begin_page + 5 < page_count) ? (begin_page + 5) : page_count 

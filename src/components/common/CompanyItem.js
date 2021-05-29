@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 class CompanyItem extends Component {
     render() {
-        var company = this.props.company;
+        const company = this.props.company;
         return (
             <div className="col-lg-3 col-md-6 w-100 my-3">
                 <Link to={"/cong-ty/" + company._id} className="link">

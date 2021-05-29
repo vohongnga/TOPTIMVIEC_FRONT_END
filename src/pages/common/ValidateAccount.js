@@ -7,8 +7,8 @@ class ValidateAccount extends Component {
     componentDidMount(){
         const search = window.location.search;
         const params = new URLSearchParams(search);
-        let key = encodeURIComponent(params.get('key'));
-        let id = encodeURIComponent(params.get("id"));
+        const key = encodeURIComponent(params.get('key'));
+        const id = encodeURIComponent(params.get("id"));
         ValidateAccountService.fetchValidateAccountAPI(id, key).then(res => {
             this.props.history.push('/dang-nhap')
         }).catch(err => {

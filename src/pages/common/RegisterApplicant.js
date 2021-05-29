@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 import ApplicantService from "../../services/ApplicantService";
-import DatePicker from "react-datepicker";
-
-import "react-datepicker/dist/react-datepicker.css";
-
 
 class RegisterApplicant extends Component {
     constructor(props) {
@@ -12,7 +8,7 @@ class RegisterApplicant extends Component {
             name: "",
             email:"",
             gender: false,
-            dob: new Date("01/01/1999"),
+            dob: "1999-01-01",
             password: "",
             repassword: "",
             notif: {
@@ -26,8 +22,8 @@ class RegisterApplicant extends Component {
     }
     
     onHandleChange = (e) => {
-        let target = e.target;
-        let name = target.name;
+        const target = e.target;
+        const name = target.name;
         let value = target.value;
         if (name === 'gender') value = (value === 'true');
         this.setState({
@@ -36,72 +32,72 @@ class RegisterApplicant extends Component {
     }
     onBlurRePassword = () => {
 
-        let { password, repassword } = this.state;
+        const { password, repassword } = this.state;
         if (password !== repassword) {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.repassword = true;
             this.setState({ notif });
         } else {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.repassword = false;
             this.setState({ notif });
         }
 
     }
     onBlurPassword = () => {
-        let { password } = this.state;
+        const { password } = this.state;
         if (!password) {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.password = true;
             this.setState({ notif });
         } else {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.password = false;
             this.setState({ notif });
         }
         this.onBlurRePassword();
     }
     onBlurEmail = () => {
-        let { email } = this.state;
+        const { email } = this.state;
         if (!email) {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.email = true;
             this.setState({ notif });
 
         } else {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.email = false;
             this.setState({ notif });
         }
     }
     onBlurName = () => {
-        let { name } = this.state;
+        const { name } = this.state;
         if (!name) {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.name = true;
             this.setState({ notif });
 
         } else {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.name = false;
             this.setState({ notif });
         }
     }
-    onChangeDob = (date) => {
-        this.setState({"dob": date})
+    onChangeDob = (e) => {
+        this.setState({"dob": e.target.value})
     }
     onHandleBlur = (e) => {
         
-        let repassword = e.target.value;
+        const repassword = e.target.value;
         if(!repassword ){
             this.setState({notif: "(*) Mật khẩu không được để trống!"});
         }
     }
     onSubmit = (e) => {
         e.preventDefault();
-        let { name, email, gender, dob, password, repassword} = this.state;
+        const { name, email, gender, dob, password, repassword} = this.state;
         if(password === repassword && name && email && password){
-            ApplicantService.fetchApplicantAPI(name, email, gender, dob, password).then(res => {
+            ApplicantService.fetchApplicantAPI(name, email, gender, new Date(dob), password).then(res => {
 
                 if (res.status === 201) {
                     window.location.href = "/dang-ky/xac-nhan";
@@ -117,19 +113,19 @@ class RegisterApplicant extends Component {
                 }
             })
         }else if(password !== repassword){
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.repassword = true;
             this.setState({ notif });
         }else if(!name){
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.name = true;
             this.setState({ notif });
         }else if(!email){
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.email = true;
             this.setState({ notif });
         }else if(!password){
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.password = true;
             this.setState({ notif });
         }
@@ -163,7 +159,7 @@ class RegisterApplicant extends Component {
                     </div>
                     <div className="info">
                         <label >Ngày sinh:</label>
-                        <div><DatePicker selected={this.state.dob} className="form-control" dateFormat="dd/MM/yyyy" wrapperClassName="w-100" onChange={this.onChangeDob}/></div>
+                        <div><input type="date" value={this.state.dob} className="form-control" onChange={this.onChangeDob}/></div>
                     </div>
                    
                     <div className="info">

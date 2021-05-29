@@ -60,7 +60,7 @@ export const fetchListPlace = () => {
 }
 export const fetchAppendListJob = (list_id_showed, list_hashtag, place) => {
     return (dispatch) => {
-        var key = cookies.get('refresh_token');
+        const key = cookies.get('refresh_token');
         if (key) {
             return callApi('post-list', 'POST', {
                 "list_id_showed": list_id_showed, 
@@ -93,7 +93,7 @@ export const appendListJob = (list_job) => {
 }
 export const fetchSetListJob = (list_id_showed, list_hashtag, place) => {
     return (dispatch) => {
-        var key = cookies.get('refresh_token');
+        const key = cookies.get('refresh_token');
         if (key) {
             return callApi('post-list', 'POST', {
                 "list_id_showed": list_id_showed, 

@@ -15,9 +15,9 @@ class SendMailCvModal extends Component {
     this.sendMailRef = React.createRef();
   }
   onHandleChange = (e) => {
-    let target = e.target;
-    let name = target.name;
-    let value = target.value;
+    const target = e.target;
+    const name = target.name;
+    const value = target.value;
     this.setState({
       [name]: value,
     });
@@ -39,7 +39,7 @@ class SendMailCvModal extends Component {
     this.props.choiceAttachCv(null);
   };
   showHashtag = (listHashtag) => {
-    var result = null;
+    let result = null;
     if (listHashtag.length > 0) {
       result = listHashtag.map((hashtag, index) => {
         return (
@@ -56,7 +56,7 @@ class SendMailCvModal extends Component {
     return result;
   };
   onSubmit = () => {
-    let receiver = [this.props.id_employer];
+    const receiver = [this.props.id_employer];
     let attach_post;
     if (this.props.choice_attach_post) {
       attach_post = this.props.choice_attach_post._id;
@@ -69,7 +69,7 @@ class SendMailCvModal extends Component {
     } else {
       attach_cv = "";
     }
-    let { title, content } = this.state;
+    const { title, content } = this.state;
     sendMail(receiver, title, content, attach_post, attach_cv).then((res) => {
       this.onClose();
     });
@@ -91,7 +91,7 @@ class SendMailCvModal extends Component {
     document.removeEventListener("click", this.handleClick);
   }
   render() {
-    let show_cv = this.props.choice_attach_cv;
+    const show_cv = this.props.choice_attach_cv;
     return (
       <div
         className="modal fade bd-example-modal-lg"

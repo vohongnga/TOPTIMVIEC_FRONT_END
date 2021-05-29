@@ -21,7 +21,7 @@ class ListContent extends Component {
     });
   }
   render() {
-    let { listInfo } = this.state;
+    const { listInfo } = this.state;
     return (
       <div className="col-lg-9 col-md-6 px-0">
         <div className="dark py-4 text-right pr-3 sticky-top">

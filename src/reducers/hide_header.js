@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 
-var initialState = true;
+let initialState = true;
 
 const hide_header = (state = initialState, action) => {
     switch(action.type){

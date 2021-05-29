@@ -14,7 +14,7 @@ class GetList extends Component{
         };
     }
     onScrollDown = () => {
-        let showTopButton  = window.scrollY >= 500;
+        const showTopButton  = window.scrollY >= 500;
         this.setState({showTopButton});
     }
     goToTop = () => {

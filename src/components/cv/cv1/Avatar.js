@@ -4,8 +4,8 @@ import "./stylecv1.css"
 class Avatar extends React.Component {
 
     onChangeAvatar = (e) => {
-        var name = e.target.getAttribute("name");
-        var value = e.currentTarget.textContent;
+        const name = e.target.getAttribute("name");
+        const value = e.currentTarget.textContent;
         this.props.onChange(name, value);
     }
 

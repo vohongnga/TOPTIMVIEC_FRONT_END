@@ -41,7 +41,7 @@ class SearchForm extends Component{
         }
     }
     render(){
-        var ref = React.createRef();
+        const ref = React.createRef();
         return (
             <div className={this.props.header?"col center":"col center center-vertical index-search-form rounded"}>
                 <form className="form-row" onSubmit={this.onSubmitSearch}>
@@ -72,7 +72,7 @@ class SearchForm extends Component{
         );
     }
     showListPlace = (list_place) => {
-        var result = null;
+        let result = null;
         if (list_place.length > 0) {
             result = list_place.map((place, index) => {
                 return (
