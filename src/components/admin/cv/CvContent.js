@@ -1,35 +1,45 @@
 import React, { Component } from "react";
-import LoginService from "../../../services/LoginService";
 import callApi from "../../../utils/apiCaller";
+import LoginService from "../../../services/LoginService";
 import loading_gif from "../../../image/loader.gif";
 import { Typeahead } from "react-bootstrap-typeahead";
 import { connect } from "react-redux";
 import * as actions from "../../../actions/index";
-import DeletePostModal from "./DeletePostModal";
+import DeleteCvModal from "./DeleteCvModal";
+import { Link } from "react-router-dom";
 
-class PostContent extends Component {
+class CvContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list_post: [],
-      count_post: 0,
+      list_cv: [],
+      count_cv: 0,
       page: 1,
       loading: false,
+      name: "",
       hashtag: [],
-      place: [],
-      job: "",
-      choice_delete: ""
+      place: "",
+      choice_delete: "",
     };
   }
   logOut = () => {
     LoginService.logoutAPI();
   };
-  setListPost = (page) => {
+  onChangeName = (e) => {
+    this.setState({ name: e.target.value });
+  };
+  onChangeHashtag = (e) => {
+    this.setState({ hashtag: e });
+  };
+  onChangePlace = (e) => {
+    this.setState({ place: e.target.value });
+  };
+  setListCv = (page) => {
     if (page > 0) {
       this.setState({ loading: true });
       callApi(
-        "/admin/post?title=" +
-          this.state.job +
+        "/admin/cv?name=" +
+          this.state.name +
           "&page=" +
           (page - 1) +
           "&list_hashtag=" +
@@ -43,24 +53,15 @@ class PostContent extends Component {
       });
     }
   };
-  onChangeJob = (e) => {
-    this.setState({ job: e.target.value });
-  };
-  onChangeHashtag = (e) => {
-    this.setState({ hashtag: e });
-  };
-  onChangePlace = (e) => {
-    this.setState({ place: e.target.value });
-  };
   setPage = (page) => {
     this.setState({ page: page });
-    this.setState({ list_post: [] });
-    this.setListPost(page);
+    this.setState({ list_cv: [] });
+    this.setListCv(page);
   };
   setCountPage = () => {
     callApi(
-      "/admin/post/count?title=" +
-        this.state.job +
+      "/admin/cv/count?name=" +
+        this.state.name +
         "&list_hashtag=" +
         this.state.hashtag +
         "&place=" +
@@ -84,80 +85,18 @@ class PostContent extends Component {
       page = 1;
     }
     this.setState({ page: page });
-    this.setListPost(this.state.page);
+    this.setListCv(this.state.page);
     this.setCountPage();
-  };
+  }
   onSubmitSearch = (e) => {
     e.preventDefault();
-    this.setListPost(this.state.page);
+    this.setListCv(this.state.page);
     this.setCountPage();
   };
-  onChoiceDelete = (e,id) => {
+  onChoiceDelete = (e, id) => {
     e.stopPropagation();
-    this.setState({choice_delete: id});
-    window.$("#deletePostModal").modal('show');
-  }
-  onDelete = () => {
-    callApi("post/" + this.state.choice_delete, "DELETE").then(rs => {
-        window.$("#deletePostModal").modal('hide');
-        this.setPage(this.state.page);
-    })
-  }
-  showPost = (posts) => {
-    var result = null;
-    if (posts.length > 0) {
-      result = posts.map((post, index) => {
-        return (
-          <tr key={index} className="">
-            <th scope="col">{this.state.page * 8 + index - 7}</th>
-            <td>{post.title}</td>
-            <td>{post.employer}</td>
-            <td>{this.showHashtag(post.hashtag)}</td>
-            <td>{this.showPlace(post.place)}</td>
-            <td>
-              <button type="button" className="btn btn-danger" onClick={(e) =>this.onChoiceDelete(e, post._id)}>
-                Xóa
-              </button>
-            </td>
-          </tr>
-        );
-      });
-      return result;
-    }
-  };
-  showHashtag = (listHashtag) => {
-    var result = null;
-    if (listHashtag.length > 0) {
-      result = listHashtag.map((hashtag, index) => {
-        return (
-          <button
-            key={index}
-            type="button"
-            className="btn btn-light btn-sm mr-1 mt-1"
-          >
-            {hashtag}
-          </button>
-        );
-      });
-      return result;
-    }
-  };
-  showPlace = (listPlace) => {
-    var result = null;
-    if (listPlace.length > 0) {
-      result = listPlace.map((place, index) => {
-        return (
-          <button
-            key={index}
-            type="button"
-            className="btn btn-light btn-sm mr-1 mt-1"
-          >
-            {place}
-          </button>
-        );
-      });
-      return result;
-    }
+    this.setState({ choice_delete: id });
+    window.$("#deleteCvModal").modal("show");
   };
   showListPlace = (list_place) => {
     var result = null;
@@ -201,6 +140,59 @@ class PostContent extends Component {
     }
     return result;
   };
+  onChoose = (e, id) => {
+    e.stopPropagation(); 
+    console.log(id);
+    window.open("/cv/" + id, "_blank");
+  };
+  showCv = (cvs) => {
+    var result = null;
+    if (cvs.length > 0) {
+      result = cvs.map((cv, index) => {
+        return (
+          <tr key={index} className="">
+            <th scope="col">{this.state.page * 8 + index - 7}</th>
+            <td><Link to="#" className="link" onClick={(e) => this.onChoose(e, cv._id)}>{cv.name}</Link></td>
+            <td>{this.showHashtag(cv.hashtag)}</td>
+            <td><button type="button" className="btn btn-light btn-sm mr-1 mt-1">{cv.place}</button></td>
+            <td>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={(e) => this.onChoiceDelete(e, cv._id)}
+              >
+                Xóa
+              </button>
+            </td>
+          </tr>
+        );
+      });
+    }
+    return result;
+  };
+  showHashtag = (listHashtag) => {
+    var result = null;
+    if (listHashtag.length > 0) {
+      result = listHashtag.map((hashtag, index) => {
+        return (
+          <button
+            key={index}
+            type="button"
+            className="btn btn-light btn-sm mr-1 mt-1"
+          >
+            {hashtag}
+          </button>
+        );
+      });
+      return result;
+    }
+  };
+  onDelete = () => {
+      callApi("/cv/" + this.state.choice_delete,"DELETE").then(rs => {
+          window.$("#deleteCvModal").modal('hide');
+          this.setPage(this.state.page);
+      })
+  }
   render() {
     var ref = React.createRef();
     return (
@@ -214,13 +206,13 @@ class PostContent extends Component {
           </button>
         </div>
         <form className="col-lg-9 row p-5 " onSubmit={this.onSubmitSearch}>
-        <div className="col-lg-7 col-md-6 mt-1 mt-md-0 mb-2">
+          <div className="col-lg-7 col-md-6 mt-1 mt-md-0 mb-2">
             <input
               type="text"
               className="form-control form-control-lg"
-              placeholder="Tên công việc"
-              onChange={this.onChangeJob}
-              name="job"
+              placeholder="Tên cv"
+              onChange={this.onChangeName}
+              name="name"
             />
           </div>
           <div className="col-lg-7 col-md-6 mt-1 mt-md-0">
@@ -261,14 +253,13 @@ class PostContent extends Component {
             <thead className="">
               <tr className="">
                 <th scope="col">#</th>
-                <th scope="col">Tên tin</th>
-                <th scope="col">Tên công ty</th>
+                <th scope="col">Tên cv</th>
                 <th scope="col">Hashtag</th>
                 <th scope="col">Địa điểm</th>
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody>{this.showPost(this.state.list_post)}</tbody>
+            <tbody>{this.showCv(this.state.list_cv)}</tbody>
           </table>
         </div>
         {this.state.loading ? (
@@ -282,24 +273,24 @@ class PostContent extends Component {
           ""
         )}
         <nav aria-label="Page navigation example ">
-          <ul className="pagination page mb-5">
+          <ul className="pagination page">
             <li className="page-item">
               <button className="page-link" onClick={() => this.setPage(1)}>
                 Đầu
               </button>
             </li>
-            {this.showPage(this.state.count_post, this.state.page)}
+            {this.showPage(this.state.count_cv, this.state.page)}
             <li className="page-item">
               <button
                 className="page-link"
-                onClick={() => this.setPage(this.state.count_post)}
+                onClick={() => this.setPage(this.state.count_cv)}
               >
                 Cuối
               </button>
             </li>
           </ul>
         </nav>
-        <DeletePostModal  onDelete={this.onDelete}/>
+        <DeleteCvModal  onDelete={this.onDelete}/>
       </div>
     );
   }
@@ -320,4 +311,4 @@ const mapDispatchToProps = (dispatch, props) => {
     },
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(PostContent);
+export default connect(mapStateToProps, mapDispatchToProps)(CvContent);

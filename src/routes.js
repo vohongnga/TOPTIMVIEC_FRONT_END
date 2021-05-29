@@ -30,6 +30,7 @@ import IndexAdmin from "./pages/admin/IndexAdmin";
 import CVMobile from "./pages/employer/CVMobile";
 import IndexCompany from './pages/admin/IndexCompany';
 import IndexPost from './pages/admin/IndexPost';
+import IndexCv from './pages/admin/IndexCv';
 
 const cookies = new Cookies();
 
@@ -238,6 +239,9 @@ const routes=[
             else if (role === "applicant") {
                 return <CV  id={match.match.params.id}/>;
             }
+            else if (role === "admin") {
+                return <CV  id={match.match.params.id}/>;
+            }
             else {
                 return <Redirect to="/dang-nhap" />;
             }
@@ -299,6 +303,18 @@ const routes=[
             var role = cookies.get('role');
             if(role === "admin"){
                 return <IndexPost />
+            }else {
+                return <Redirect to="/" />
+            }
+        }
+    },
+    {
+        path:'/admin/quan-ly-cv',
+        exact: true,
+        main: (match) => {
+            var role = cookies.get('role');
+            if(role === "admin"){
+                return <IndexCv />
             }else {
                 return <Redirect to="/" />
             }
