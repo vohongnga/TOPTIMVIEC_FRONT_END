@@ -14,9 +14,9 @@ class SendMailModal extends Component {
     this.sendMailRef = React.createRef();
   }
   onHandleChange = (e) => {
-    let target = e.target;
-    let name = target.name;
-    let value = target.value;
+    const target = e.target;
+    const name = target.name;
+    const value = target.value;
     this.setState({
       [name]: value,
     });
@@ -38,7 +38,7 @@ class SendMailModal extends Component {
     this.props.choiceAttachPost(null);
   };
   showHashtag = (listHashtag) => {
-    var result = null;
+    let result = null;
     if (listHashtag.length > 0) {
       result = listHashtag.map((hashtag, index) => {
         return (
@@ -74,7 +74,7 @@ class SendMailModal extends Component {
     } else {
       attach_cv = "";
     }
-    let { title, content } = this.state;
+    const { title, content } = this.state;
     sendMail(receiver, title, content, attach_post, attach_cv).then((res) => {
       this.onClose();
     });
@@ -96,7 +96,7 @@ class SendMailModal extends Component {
     document.removeEventListener("click", this.handleClick);
   }
   render() {
-    let show_post = this.props.choice_attach_post;
+    const show_post = this.props.choice_attach_post;
     return (
       <div
         className="modal fade bd-example-modal-lg"

@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 
-var initialState = {
+let initialState = {
     page_count: 0,
     page: 0,
     name_list: "",

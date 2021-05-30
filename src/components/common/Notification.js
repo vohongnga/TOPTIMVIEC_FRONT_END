@@ -142,7 +142,7 @@ class Notification extends Component {
         );
     }
     showListNotification = (list_notify) => {
-        var result = null;
+        let result = null;
         if (list_notify.length > 0) {
             result = list_notify.map((notify, index) => {
                 return (
@@ -172,7 +172,7 @@ class Notification extends Component {
         }
     }
     showListNotificationSocket = (list_notify) => {
-        var result = null;
+        let result = null;
         if (list_notify.length > 0) {
             result = list_notify.map((notify, index) => {
                 return (

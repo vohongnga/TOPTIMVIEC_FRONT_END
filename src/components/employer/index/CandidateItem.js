@@ -43,7 +43,7 @@ class CandidateItem extends Component {
         this.props.chooseCV(this.props.job._id);
     }
     render() {
-        var {job} = this.props;
+        const {job} = this.props;
         return (
             <div className="item row h-100 full-width mx-1 mb-3 rounded bg-white big-hover pr-2 pl-4 pt-4 pb-3" data-aos={this.props.list ? "fade-left" : "fade-right"} onClick={(e) =>this.toPost(job._id)}>
                 <div className="col col-2 logo">
@@ -75,7 +75,7 @@ class CandidateItem extends Component {
         );
     }
     showHashtag = (listHashtag) => {
-        var result = null;
+        let result = null;
         if (listHashtag.length > 0) {
             result = listHashtag.map((hashtag, index) => {
                 return (

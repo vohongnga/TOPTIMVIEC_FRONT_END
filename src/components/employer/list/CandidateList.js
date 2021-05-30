@@ -28,7 +28,7 @@ class CandidateList extends Component {
         );
     }
     showCandidates(candidates) {
-        var result = null;
+        let result = null;
         if (candidates.length > 0) {
             result = candidates.map((candidate, index) => {
                 return (

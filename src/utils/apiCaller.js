@@ -6,7 +6,7 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 export default function callApi(endpoint, method = 'GET', body) {
-    var token = cookies.get("token");
+    const token = cookies.get("token");
     if (token) {
         return axios({
             method: method,

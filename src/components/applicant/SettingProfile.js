@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DatePicker from "react-datepicker";
+import Moment from 'moment';
 import callApi from '../../utils/apiCaller';
 import ImageUploader from '../common/ImageUploader';
 import {connect} from 'react-redux';
@@ -12,7 +12,7 @@ class SettingProfile extends Component{
             avatar: "",
             name: "",
             gender: true,
-            dob: new Date("01/01/1999"),
+            dob: "1999-01-01",
             place: "",
             success: false,
             name_blank: false
@@ -25,7 +25,7 @@ class SettingProfile extends Component{
         this.setState({gender: e.target.value === "true" ? true : false});
     }
     onChangeDob = (e) => {
-        this.setState({dob: e});
+        this.setState({dob: e.target.value});
     }
     onChangePlace = (e) => {
         this.setState({place: e.target.value});
@@ -45,7 +45,7 @@ class SettingProfile extends Component{
         else {
             callApi("profile", "PUT", {
                 name: this.state.name,
-                dob: this.state.dob,
+                dob: new Date(this.state.dob),
                 gender: this.state.gender,
                 place: this.state.place
             }).then(rs => {
@@ -66,7 +66,7 @@ class SettingProfile extends Component{
                 name: rs.data.name,
                 gender: rs.data.gender,
                 avatar: rs.data.avatar,
-                dob: new Date(rs.data.dob),
+                dob: Moment(rs.data.dob).format('yyyy-MM-DD'),
                 place: rs.data.place
             });
         })
@@ -105,7 +105,7 @@ class SettingProfile extends Component{
                     </div>
                     <div className="form-group">
                         Ngày sinh:
-                        <div><DatePicker selected={this.state.dob} className="form-control" dateFormat="dd/MM/yyyy" wrapperClassName="w-100 mt-3" onChange={this.onChangeDob}/></div>
+                        <div><input type="date" value={this.state.dob} className="form-control mt-3" onChange={this.onChangeDob}/></div>
                     </div>
                     <div className="form-group">
                         Địa điểm:
@@ -121,7 +121,7 @@ class SettingProfile extends Component{
         );
     }
     showListPlace = (list_place) => {
-        var result = null;
+        let result = null;
         if (list_place.length > 0) {
             result = list_place.map((place, index) => {
                 return (

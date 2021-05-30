@@ -5,13 +5,13 @@ import "./stylecv1.css"
 export default class ContentItem extends React.Component {
     
     onChangeContent = (name, value, indexDetail) => {
-        var {indexItem} = this.props;
+        const {indexItem} = this.props;
         this.props.onChangeContent(name,value,indexItem,indexDetail);
     }
     render() {
-        var {content, title, edit} = this.props;
+        const {content, title, edit} = this.props;
         
-        var elmDetail = content.map((contentDetail, index) =>{
+        const elmDetail = content.map((contentDetail, index) =>{
             return (
                 <ContentItemDetail
                     key = {index}

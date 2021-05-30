@@ -22,14 +22,14 @@ class Login extends Component {
         this.cookies = new Cookies();
     }
     onChangeEmail = (e) => {
-        let email = e.target.value;
-        let {user} = this.state;
+        const email = e.target.value;
+        const {user} = this.state;
         user.email = email;
         this.setState({user});
     }
     onChangePassword = (e) => {
-        let password = e.target.value;
-        let {user} = this.state;
+        const password = e.target.value;
+        const {user} = this.state;
         user.password = password;
         this.setState({user})
     }

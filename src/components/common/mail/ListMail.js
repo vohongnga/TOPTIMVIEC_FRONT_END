@@ -31,7 +31,7 @@ class ListMail extends Component {
     });
   };
   showPage = (page_count, page_choose) => {
-    var result = null;
+    let result = null;
     if (page_count > 0) {
       const begin_page = +page_choose - 2 > 0 ? +page_choose - 2 : 1;
       const end_page =
@@ -71,7 +71,7 @@ class ListMail extends Component {
   }
 
   render() {
-    let { receiveMailList } = this.state;
+    const { receiveMailList } = this.state;
 
     return (
       <div className="col-lg-8 col-md-6 center p-4 rounded bg-white">

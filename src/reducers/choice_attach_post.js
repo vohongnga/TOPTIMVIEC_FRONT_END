@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 
-var initialState = null;
+let initialState = null;
 
 const choice_attach_post = (state = initialState, action) => {
     switch(action.type) {

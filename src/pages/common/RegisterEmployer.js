@@ -23,9 +23,9 @@ class RegisterEmployer extends Component {
     }
 
     onHandleChange = (e) => {
-        let target = e.target;
-        let name = target.name;
-        let value = target.value;
+        const target = e.target;
+        const name = target.name;
+        const value = target.value;
         this.setState({
             [name] : value
         });
@@ -33,60 +33,60 @@ class RegisterEmployer extends Component {
     
     onBlurRePassword = () => {
 
-        let { password, repassword } = this.state;
+        const { password, repassword } = this.state;
         if (password !== repassword) {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.repassword = true;
             this.setState({ notif });
         } else {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.repassword = false;
             this.setState({ notif });
         }
 
     }
     onBlurPassword = () => {
-        let { password } = this.state;
+        const { password } = this.state;
         if (!password) {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.password = true;
             this.setState({ notif });
         } else {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.password = false;
             this.setState({ notif });
         }
         this.onBlurRePassword();
     }
     onBlurEmail = () => {
-        let { email } = this.state;
+        const { email } = this.state;
         if (!email) {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.email = true;
             this.setState({ notif });
 
         } else {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.email = false;
             this.setState({ notif });
         }
     }
     onBlurName = () => {
-        let { name } = this.state;
+        const { name } = this.state;
         if (!name) {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.name = true;
             this.setState({ notif });
 
         } else {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.name = false;
             this.setState({ notif });
         }
     }
     onSubmit = (e) => {
         e.preventDefault();
-        let {name,email,password,repassword} = this.state;
+        const {name,email,password,repassword} = this.state;
             if(password === repassword && name && email && password){
                 EmployerService.fetchEmployerAPI(name,email,password).then(res => {
                 
@@ -104,19 +104,19 @@ class RegisterEmployer extends Component {
                     }
                 })
             }else if(password !== repassword){
-                let notif = this.state.notif;
+                const notif = this.state.notif;
                 notif.repassword = true;
                 this.setState({ notif });
             }else if(!name){
-                let notif = this.state.notif;
+                const notif = this.state.notif;
                 notif.name = true;
                 this.setState({ notif });
             }else if(!email){
-                let notif = this.state.notif;
+                const notif = this.state.notif;
                 notif.email = true;
                 this.setState({ notif });
             }else if(!password){
-                let notif = this.state.notif;
+                const notif = this.state.notif;
                 notif.password = true;
                 this.setState({ notif });
             }

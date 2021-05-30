@@ -73,7 +73,7 @@ class CompanyDetail extends Component{
         );
     }
     showJobs(jobs) {
-        var result = null;
+        let result = null;
         if (jobs.length > 0) {
             result = jobs.map((job, index) => {
                 return (

@@ -79,7 +79,7 @@ class ChooseCVModal extends Component {
         );
     }
     showLists(lists) {
-        var result = null;
+        let result = null;
         if (lists.length > 0) {
             result = lists.map((list, index) => {
                 return (
@@ -90,7 +90,7 @@ class ChooseCVModal extends Component {
         return result;
     }
     showPage = (page_count, page_choose) => {
-        var result = null;
+        let result = null;
         if (page_count > 0) {
             result = [...Array(page_count).keys()].map((page, index) => {
                 return (

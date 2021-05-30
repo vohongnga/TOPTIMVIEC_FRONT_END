@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 export const refreshToken = () => {
-    var key = cookies.get("refresh_token");
+    const key = cookies.get("refresh_token");
     if (key) {
         return axios({
             method: "GET",

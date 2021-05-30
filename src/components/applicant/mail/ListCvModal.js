@@ -32,7 +32,7 @@ class ListCvModal extends Component {
     });
   };
   showPage = (page_count, page_choose) => {
-    var result = null;
+    let result = null;
     if (page_count > 0) {
       const begin_page = +page_choose - 2 > 0 ? +page_choose - 2 : 1;
       const end_page =
@@ -61,7 +61,7 @@ class ListCvModal extends Component {
     return result;
   };
   showHashtag = (listHashtag) => {
-    var result = null;
+    let result = null;
     if (listHashtag.length > 0) {
       result = listHashtag.map((hashtag, index) => {
         return (
@@ -96,7 +96,7 @@ class ListCvModal extends Component {
     window.$("#listCvModal").modal("hide");
   }
   render() {
-    let { listCv } = this.state;
+    const { listCv } = this.state;
     return (
       <div
         className="modal fade bd-example-modal-lg dialog2"

@@ -3,12 +3,12 @@ import "./stylecv1.css"
 
 export default class Info extends React.Component {
     onChangeInfo = (e) => {
-        var name = e.target.getAttribute("name");
-        var value = e.currentTarget.textContent;
+        const name = e.target.getAttribute("name");
+        const value = e.currentTarget.textContent;
         return this.props.onChangeInfo(name, value)
     }
     render() {
-        var { email, phone, dob, gender, address, edit } = this.props;
+        const { email, phone, dob, gender, address, edit } = this.props;
 
         return (
             <div className="contact-container container-block">
