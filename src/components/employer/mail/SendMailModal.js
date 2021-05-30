@@ -56,12 +56,12 @@ class SendMailModal extends Component {
   };
   onSubmit = () => {
     let receiver;
-    if(this.props.id_applicant){
-       receiver = [this.props.id_applicant];
-    }else {
-       receiver = this.props.get_list.list.map((re, index) => re.applicant);
+    if (this.props.id_applicant) {
+      receiver = [this.props.id_applicant];
+    } else {
+      receiver = this.props.get_list.list.map((re, index) => re.applicant);
     }
-    
+
     let attach_post;
     if (this.props.choice_attach_post) {
       attach_post = this.props.choice_attach_post._id;
@@ -186,7 +186,7 @@ class SendMailModal extends Component {
                 </div>
               ) : (
                 <Link to="#" onClick={this.onChoosePost}>
-                  Đính kèm
+                  Đính kèm bài đăng
                 </Link>
               )}
             </div>
