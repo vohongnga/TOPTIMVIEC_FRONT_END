@@ -3,6 +3,7 @@ import callApi from "../../../utils/apiCaller";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as employer_action from "./../../../actions/employer/index";
+import img from './../../../image/document-256.png';
 
 class ListPostModal extends Component {
   constructor(props) {
@@ -96,7 +97,6 @@ class ListPostModal extends Component {
     window.$("#listPostModal").modal("hide");
   }
   onCreatePost = (e) => {
-    e.stopPropagation();
     window.open("/", "_blank");
   };
   render() {
@@ -165,11 +165,11 @@ class ListPostModal extends Component {
                 ))
               ) : (
                 <div>
-                  <span className="h5">Chưa có bài đăng nào! &nbsp; </span>
-                  <button
-                    className="btn btn-success"
-                    onClick={(e) => this.onCreatePost(e)}
-                  >
+                  <div>
+                    <img className="center my-5" src={img} alt="" width="200px" />
+                    <h2 className="h2 text-center text-muted">Không tìm thấy bài đăng</h2>
+                  </div>
+                  <button className="btn btn-success center mt-4" onClick={(e) => this.onCreatePost(e)}>
                     Tạo ngay
                   </button>
                 </div>
