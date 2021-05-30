@@ -5,6 +5,7 @@ import { Router, Switch, Route } from 'react-router-dom';
 import Header from './components/common/Header';
 import HeaderApplicant from './components/applicant/HeaderApplicant';
 import HeaderEmployer from './components/employer/commom/HeaderEmployer';
+import HeaderAdmin from './components/admin/HeaderAdmin';
 import { createBrowserHistory } from "history";
 import { connect } from 'react-redux';
 import * as actions from './actions/index';
@@ -48,12 +49,21 @@ class App extends Component {
             "/mobile/cv"
         ];
         let show_header = true;
-        for (const path of hide_header_paths) {
-            if (window.location.pathname.substring(0, path.length) === path) {
+        if (window.location.pathname === "/") {
+            const role = this.cookies.get('role');
+            if (role === "admin") {
                 show_header = false;
-                break;
             }
         }
+        else {
+            for (const path of hide_header_paths) {
+                if (window.location.pathname.substring(0, path.length) === path) {
+                    show_header = false;
+                    break;
+                }
+            }
+        }
+        
         this.setState({"show_header": show_header});
     }
 
@@ -113,7 +123,7 @@ class App extends Component {
             return <HeaderApplicant />;
         }
         else if(role === "admin"){
-            return "";
+            return <HeaderAdmin />;
         }
         else {
             return <Header />;

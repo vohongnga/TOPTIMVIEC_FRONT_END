@@ -20,11 +20,13 @@ class ListCvModal extends Component {
     this.setListCv(page);
   };
   setListCv = (page) => {
-    this.setState({ loading: true });
-    callApi("cv/my?page=" + (page - 1), "GET").then((rs) => {
-      this.setState({ listCv: rs.data.list_cv });
-      this.setState({ loading: false });
-    });
+    if (page > 0) {
+      this.setState({ loading: true });
+      callApi("cv/my?page=" + (page - 1), "GET").then((rs) => {
+        this.setState({ listCv: rs.data.list_cv });
+        this.setState({ loading: false });
+      });
+    }
   };
   setCountPage = () => {
     callApi("/cv/my/page", "GET").then((rs) => {
@@ -84,7 +86,7 @@ class ListCvModal extends Component {
     let page = params.get("page");
     if (!page) page = 1;
     this.setState({ page: page });
-    this.setListCv(1);
+    this.setListCv(this.state.page);
     this.setCountPage();
   }
 
@@ -95,6 +97,10 @@ class ListCvModal extends Component {
   onClose() {
     window.$("#listCvModal").modal("hide");
   }
+  OnCreateCv = (e) => {
+    e.stopPropagation();
+    window.open("/mau-cv", "_blank");
+  };
   render() {
     const { listCv } = this.state;
     return (
@@ -115,42 +121,54 @@ class ListCvModal extends Component {
               </button>
             </div>
             <div className="modal-body overflow-auto list-cv-modal">
-              {listCv.map((list, index) => (
-                <Link
-                  to="#"
-                  data-aos="fade-right"
-                  key={index}
-                  onClick={() => this.onChooseCv(list)}
-                >
-                  <div className="item row h-30 full-width mx-1 mb-3 rounded bg-grey big-hover border border-secondary pt-2 pb-2">
-                    <div className="col col-2 logo ">
-                      <img
-                        className="mx-auto avatar-list-modal "
-                        src={list.avatar}
-                        alt=""
-                        height="100px"
-                        width="100px"
-                      />
-                    </div>
-                    <div className="col col-10">
-                      <h4 className="text-truncate">{list.name}</h4>
-                      <div className="row mt-4 mb-1">
-                        <div className="col-8 detail mb-0 pb-0">
-                          <h5 className="text-truncate">{list.position}</h5>
-                          <div className="row pl-3 mt-3 ">
-                            {this.showHashtag(list.hashtag)}
+              {listCv.length > 0 ? (
+                listCv.map((list, index) => (
+                  <Link
+                    to="#"
+                    data-aos="fade-right"
+                    key={index}
+                    onClick={() => this.onChooseCv(list)}
+                  >
+                    <div className="item row h-30 full-width mx-1 mb-3 rounded bg-grey big-hover border border-secondary pt-2 pb-2">
+                      <div className="col col-2 logo ">
+                        <img
+                          className="mx-auto avatar-list-modal "
+                          src={list.avatar}
+                          alt=""
+                          height="100px"
+                          width="100px"
+                        />
+                      </div>
+                      <div className="col col-10">
+                        <h4 className="text-truncate">{list.name}</h4>
+                        <div className="row mt-4 mb-1">
+                          <div className="col-8 detail mb-0 pb-0">
+                            <h5 className="text-truncate">{list.position}</h5>
+                            <div className="row pl-3 mt-3 ">
+                              {this.showHashtag(list.hashtag)}
+                            </div>
                           </div>
-                        </div>
-                        <div className="col-4 ml-auto city_and_posted_date h-100">
-                          <div className="text-right mt-3">
-                            <p className="text-truncate">{list.place}</p>
+                          <div className="col-4 ml-auto city_and_posted_date h-100">
+                            <div className="text-right mt-3">
+                              <p className="text-truncate">{list.place}</p>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                ))
+              ) : (
+                <div>
+                  <span className="h5">Chưa có CV nào! &nbsp; </span>
+                  <button
+                    className="btn btn-success"
+                    onClick={(e) => this.OnCreateCv(e)}
+                  >
+                    Tạo ngay
+                  </button>
+                </div>
+              )}
             </div>
             <nav aria-label="Page navigation example ">
               <ul className="pagination page mb-2">

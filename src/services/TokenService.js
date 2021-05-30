@@ -12,19 +12,19 @@ export const refreshToken = () => {
             url: API_URL+"token",
             headers: { Authorization: `Bearer ${key}` }
         }).then((res) => {
-            cookies.set("token", res.data.token);
+            cookies.set("token", res.data.token, {path: "/"});
         }).catch((e) => {
-            cookies.remove("id_user");
-            cookies.remove("refresh_token");
-            cookies.remove("role");
-            cookies.remove("token");
+            cookies.remove("id_user", {path: "/"});
+            cookies.remove("refresh_token", {path: "/"});
+            cookies.remove("role", {path: "/"});
+            cookies.remove("token", {path: "/"});
             window.location.href = "/dang-nhap";
         });
     } else {
-        cookies.remove("id_user");
-        cookies.remove("refresh_token");
-        cookies.remove("role");
-        cookies.remove("token");
+        cookies.remove("id_user", {path: "/"});
+        cookies.remove("refresh_token", {path: "/"});
+        cookies.remove("role", {path: "/"});
+        cookies.remove("token", {path: "/"});
 
         window.location.href = "/dang-nhap";
     }

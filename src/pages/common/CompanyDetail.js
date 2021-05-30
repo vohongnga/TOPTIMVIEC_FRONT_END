@@ -20,7 +20,9 @@ class CompanyDetail extends Component{
         this.cookies = new Cookies();
     }
     componentDidMount() {
-        if (this.cookies.get('role')) {
+        const role = this.cookies.get('role');
+        this.setState({role})
+        if (role) {
             this.setState({"contact": true});
         }
         callApi("/employer/" + this.props.match.params.id, 'GET').then(rs => {
@@ -49,7 +51,7 @@ class CompanyDetail extends Component{
                         <img className="mx-auto my-5" src={this.state.avatar} alt="" width="170px"></img>
                         <div className="col-12"><h1 className="h2 text-break text-center">{this.state.name}</h1></div>
                         <div className="col-12 mt-3 text-center">
-                            <button className="btn btn-primary" onClick={this.onContact}>Liên hệ</button>
+                            {this.state.role !== "admin" ? <button className="btn btn-primary" onClick={this.onContact}>Liên hệ</button> : ""}
                         </div>
                     </div>
                 </div>
@@ -68,7 +70,7 @@ class CompanyDetail extends Component{
                     </div>
                 </div>
                
-                {this.state.contact ? <SendMailCvModal id_employer={this.props.match.params.id} /> : ""}
+                {this.state.contact && this.state.role !== "admin" ? <SendMailCvModal id_employer={this.props.match.params.id} /> : ""}
             </div>
         );
     }
