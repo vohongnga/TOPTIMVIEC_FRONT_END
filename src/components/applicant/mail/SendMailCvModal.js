@@ -175,7 +175,7 @@ class SendMailCvModal extends Component {
                 </div>
               ) : (
                 <Link to="#" onClick={this.onChooseCv}>
-                  Đính kèm
+                  Đính kèm CV
                 </Link>
               )}
             </div>
