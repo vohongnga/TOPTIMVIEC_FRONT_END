@@ -1,7 +1,11 @@
 import React,{ Component } from "react";
 import {Link} from "react-router-dom";
+import LoginService from "../../services/LoginService";
 import logo_img from "../../image/LogoMakr-48tDoh_uhomu6.png";
 class HeaderAdmin extends Component {
+    logOut = () => {
+        LoginService.logoutAPI();
+    };
     render() {
         return (
             <header className= "navbar navbar-expand-md d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 scrolling-navbar dark navbar-dark sticky-top">
@@ -11,7 +15,7 @@ class HeaderAdmin extends Component {
                 </button>
                 <div className="col-sm-9 collapse navbar-collapse row">
                     <div className="navbar-nav ml-auto">
-                        <Link className="btn btn-success text-truncate mt-1 mt-md-0"  to="#">Đăng xuất</Link>
+                        <button className="btn btn-success text-truncate mt-1 mt-md-0" onClick={this.logOut}>Đăng xuất</button>
                     </div>
                 </div>
             </header>
