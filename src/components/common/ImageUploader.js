@@ -10,7 +10,7 @@ class ImageUploader extends Component{
         }
     }
     onSelectImage = (e) => {
-        var fd = new FormData();
+        let fd = new FormData();
         fd.append("upload_preset", "toptimviec");
         fd.append("file", e.target.files[0]);
         fd.append("folder", "toptimviec");

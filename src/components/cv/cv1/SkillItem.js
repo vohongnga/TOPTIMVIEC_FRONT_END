@@ -3,19 +3,19 @@ import "./stylecv1.css"
 
 export default class SkillItem extends React.Component {
     onChangeTitleSkill = (e) => {
-        var name = e.target.getAttribute("name");
-        var value = e.currentTarget.textContent;
-        var { index, onChangeTitleSkill } = this.props;
+        const name = e.target.getAttribute("name");
+        const value = e.currentTarget.textContent;
+        const { index, onChangeTitleSkill } = this.props;
         return onChangeTitleSkill(name, value, index)
     }
     onChangeLevelSkill = (e) => {
-        var name = e.target.name;
-        var value = parseInt(e.target.value);
-        var { index, onChangeLevelSkill } = this.props;
+        const name = e.target.name;
+        const value = parseInt(e.target.value);
+        const { index, onChangeLevelSkill } = this.props;
         return onChangeLevelSkill(name, value, index)
     }
     render() {
-        var { skill, edit } = this.props;
+        const { skill, edit } = this.props;
         return (
             <div className="item">
                 <h3 className="level-title">

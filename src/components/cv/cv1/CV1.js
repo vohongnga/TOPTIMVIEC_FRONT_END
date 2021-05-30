@@ -161,8 +161,8 @@ class CV1 extends React.Component {
   }
 
   onChangeInterest = (e) =>{
-    var indexItem = parseInt(e.target.getAttribute("index"));
-    var value = e.currentTarget.textContent;
+    const indexItem = parseInt(e.target.getAttribute("index"));
+    const value = e.currentTarget.textContent;
     this.setState({
       interests: this.state.interests.map((interest, index)=>{
         return index===indexItem ? value : interest;
@@ -177,7 +177,7 @@ class CV1 extends React.Component {
   }
 
   render() {
-    var { address, avatar, content, dob, email, gender, interests, name, phone, position, skill } = this.state;
+    const { address, avatar, content, dob, email, gender, interests, name, phone, position, skill } = this.state;
     return (
       <div>
         <div className="row wrapper">
@@ -211,7 +211,7 @@ class CV1 extends React.Component {
   }
 
   showContentItem = (contents) => {
-    var result = null;
+    let result = null;
     if (contents.length > 0) {
       result = contents.map((contentItem, index) => {
         return (
@@ -230,7 +230,7 @@ class CV1 extends React.Component {
 
   showSkillItem = (skills) => {
     if (skills.length > 0) {
-      var result = skills.map((skill, index) => {
+      const result = skills.map((skill, index) => {
         return (
           <SkillItem key={index}
             edit={this.props.edit}
@@ -257,7 +257,7 @@ class CV1 extends React.Component {
 
   showInterestItem = (interests) => {
     if (interests.length > 0) {
-      var result = interests.map((interest, index) => {
+      const result = interests.map((interest, index) => {
         return (
           <li key={index}>
             <p suppressContentEditableWarning contentEditable={this.props.edit} onBlur={this.onChangeInterest} index={index}>{interest}</p>

@@ -74,7 +74,7 @@ class AddListModal extends Component {
         );
     }
     showLists(lists) {
-        var result = null;
+        let result = null;
         if (lists.length > 0) {
             result = lists.map((list, index) => {
                 return (

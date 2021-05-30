@@ -4,14 +4,14 @@ import "./stylecv1.css"
 export default class ContentItemDetail extends React.Component {
 
     onChangeContentItem = (e) => {
-        var name = e.target.getAttribute("name");
-        var value = e.currentTarget.textContent;
-        var {indexDetail} = this.props;
+        const name = e.target.getAttribute("name");
+        const value = e.currentTarget.textContent;
+        const {indexDetail} = this.props;
         this.props.onChangeContentItem(name, value, indexDetail);
     }
 
     render() {
-        var {contentDetail, edit} = this.props;
+        const {contentDetail, edit} = this.props;
         
         return (
             <div className="item">

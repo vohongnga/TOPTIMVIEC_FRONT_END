@@ -13,11 +13,11 @@ class JobList extends Component {
         Aos.init({duration: 1000});
     }
     onScrollDown = () => {
-        var scroll_offset=500;
+        const scroll_offset=500;
         if (window.innerHeight + document.documentElement.scrollTop > document.scrollingElement.scrollHeight-scroll_offset && this.props.search_value.load) {
             this.props.setLoadJob(false);
             this.props.setLoadingJob(true);
-            var lengthListJob = this.props.jobs.length;
+            const lengthListJob = this.props.jobs.length;
             this.props.fetchAppendListJob(this.props.jobs.map((job) => job._id), this.props.search_value.tag, this.props.search_value.place).then(() => {
                 if (this.props.jobs.length!==lengthListJob) {
                     this.props.setLoadJob(true);
@@ -29,7 +29,7 @@ class JobList extends Component {
     componentDidMount() {
         this.props.setListJob([]);
         this.props.setLoadJob(false);
-        var lengthListJob = this.props.jobs.length;
+        const lengthListJob = this.props.jobs.length;
         if (lengthListJob === 0) {
             this.props.setLoadingJob(true);
             this.props.fetchListJob(this.props.jobs.map((job) => job._id), this.props.search_value.tag, this.props.search_value.place).then(() => {
@@ -48,7 +48,7 @@ class JobList extends Component {
         window.removeEventListener('scroll', this.onScrollDown);
     }
     render() {
-        var {jobs} = this.props;
+        const {jobs} = this.props;
         return (
             <div className="col-lg-8 mt-3">
                 <div className="job-item">
@@ -59,7 +59,7 @@ class JobList extends Component {
         );
     }
     showJobs(jobs) {
-        var result = null;
+        let result = null;
         if (jobs.length > 0) {
             result = jobs.map((job, index) => {
                 return (

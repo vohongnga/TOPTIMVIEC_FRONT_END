@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 
-var initialState = [];
+let initialState = [];
 
 const list = (state = initialState, action) => {
     switch(action.type){

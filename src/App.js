@@ -60,8 +60,8 @@ class App extends Component {
     componentDidMount() {
         //Lay thong tin nguoi dung khi khoi dong
         this.setState({getting_data: true});
-        var key = this.cookies.get('refresh_token');
-        var token = this.cookies.get('token');
+        const key = this.cookies.get('refresh_token');
+        const token = this.cookies.get('token');
         if (key && !token) {
             refreshToken().then(() => {
                 this.setState({getting_data: false});
@@ -105,7 +105,7 @@ class App extends Component {
     }
 
     showHeader = () => {
-        var role = this.cookies.get('role');
+        const role = this.cookies.get('role');
         if (role === "employer") {
             return <HeaderEmployer />;
         }
@@ -121,7 +121,7 @@ class App extends Component {
     }
 
     showContentMenus = (routes) => {
-        var result = null;
+        let result = null;
         if (routes.length > 0) {
             result = routes.map((route, index) => {
                 return (

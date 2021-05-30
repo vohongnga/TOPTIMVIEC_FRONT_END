@@ -16,33 +16,33 @@ class CreateNewPassword extends Component {
         }
     }
     onHandleChange = (e) =>{
-        let target = e.target;
-        let name = target.name;
-        let value = target.value;
+        const target = e.target;
+        const name = target.name;
+        const value = target.value;
         this.setState({
             [name] : value
         })
     }
     onBlurRepassword = () => {
-        let { password, repassword } = this.state;
+        const { password, repassword } = this.state;
         if (password !== repassword) {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.repassword = true;
             this.setState({ notif });
         } else {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.repassword = false;
             this.setState({ notif });
         }
     }
     onBlurPassword = () => {
-        let { password } = this.state;
+        const { password } = this.state;
         if (!password) {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.password = true;
             this.setState({ notif });
         } else {
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.password = false;
             this.setState({ notif });
         }
@@ -52,9 +52,9 @@ class CreateNewPassword extends Component {
         e.preventDefault();
         const search = window.location.search;
         const params = new URLSearchParams(search);
-        let key = params.get('key');
-        let id_user = params.get("id_user");
-        let {password,repassword} = this.state;
+        const key = params.get('key');
+        const id_user = params.get("id_user");
+        const {password,repassword} = this.state;
         if(password === repassword){
             ForgetPasswordService.resetPasswordAPI(id_user,key,password).then((res) => {
                 this.props.history.push("/dang-nhap");
@@ -70,11 +70,11 @@ class CreateNewPassword extends Component {
                 }
             })
         }else if(password !== repassword){
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.repassword = true;
             this.setState({ notif });
         }else if(!password){
-            let notif = this.state.notif;
+            const notif = this.state.notif;
             notif.password = true;
             this.setState({ notif });
         }

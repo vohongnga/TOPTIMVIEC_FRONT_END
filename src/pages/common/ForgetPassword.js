@@ -12,16 +12,16 @@ class ForgetPassword extends Component {
     };
   }
   onHandleChange = (e) => {
-    let target = e.target;
-    let name = target.name;
-    let value = target.value;
+    const target = e.target;
+    const name = target.name;
+    const value = target.value;
     this.setState({
       [name]: value,
     });
   };
   onSubmit = (e) => {
     e.preventDefault();
-    let { email } = this.state;
+    const { email } = this.state;
     this.setState({ loading: true });
     ForgetPasswordService.sendMailAPI(email)
       .then((rs) => {

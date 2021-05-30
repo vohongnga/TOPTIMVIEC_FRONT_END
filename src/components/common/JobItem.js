@@ -27,8 +27,8 @@ class JobItem extends Component {
         }
     }
     render() {
-        var {job} = this.props;
-        var place = "";
+        const {job} = this.props;
+        let place = "";
         if (job.place.length>0) {
             job.place.forEach((element, i) => {
                 if (i===0) {
@@ -62,7 +62,7 @@ class JobItem extends Component {
         );
     }
     showHashtag = (listHashtag) => {
-        var result = null;
+        let result = null;
         if (listHashtag.length > 0) {
             result = listHashtag.map((hashtag, index) => {
                 return (

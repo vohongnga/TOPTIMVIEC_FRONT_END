@@ -31,7 +31,7 @@ class GetMail extends Component {
     this.cookies = new Cookies();
   }
   showHashtag = (listHashtag) => {
-    var result = null;
+    let result = null;
     if (listHashtag.length > 0) {
       result = listHashtag.map((hashtag, index) => {
         return (
@@ -48,7 +48,7 @@ class GetMail extends Component {
     return result;
   };
   showReceiver = (listReceiver) => {
-    var result = null;
+    let result = null;
     if(listReceiver.length > 0) {
       result = listReceiver.map((receiver,index) => {
         return (
@@ -66,7 +66,7 @@ class GetMail extends Component {
   }
   componentDidMount() {
     this.setState({ loading: true });
-    var id = this.props.id;
+    const id = this.props.id;
     getMailById(id).then((detailMail) => {
       this.setState(detailMail);
       this.setState({ loading: false });

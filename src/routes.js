@@ -39,7 +39,7 @@ const routes=[
         path:'/',
         exact: true,
         main: () => { 
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if (role === "employer") {
                 return <Employer />;
             }
@@ -60,7 +60,7 @@ const routes=[
         path:'/danh-sach',
         exact: true,
         main: () => {
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if (role === "employer") {
                 return <List />;
             }
@@ -76,7 +76,7 @@ const routes=[
         path:'/danh-sach/:id',
         exact: false,
         main: (match) => {
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if (role === "employer") {
                 return <GetList id={match.match.params.id}/>;
             }
@@ -92,7 +92,7 @@ const routes=[
         path:'/hop-thu',
         exact: true,
         main: () => { 
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if (role === "employer") {
                 return <IndexMail />;
             }
@@ -108,7 +108,7 @@ const routes=[
         path:'/hop-thu/gui',
         exact: true,
         main: () => { 
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if (role === "employer") {
                 return <IndexMailSend />;
             }
@@ -124,7 +124,7 @@ const routes=[
         path:'/hop-thu/gui/:id',
         exact: false,
         main: (match) => {
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if (role === "employer") {
                 return <DetailMail id={match.match.params.id}/>;
             }
@@ -140,7 +140,7 @@ const routes=[
         path:'/hop-thu/:id',
         exact: false,
         main: (match) => {
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if (role === "employer") {
                 return <DetailMail id={match.match.params.id}/>;
             }
@@ -206,7 +206,7 @@ const routes=[
         path:'/tai-khoan',
         exact: true,
         main: (match) => {
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if (role === "employer") {
                 return <AccountSettingEmployer />;
             }
@@ -232,7 +232,7 @@ const routes=[
         path:'/cv/:id',
         exact: true,
         main: (match) => {
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if (role === "employer") {
                 return <CV  id={match.match.params.id}/>;
             }
@@ -251,7 +251,7 @@ const routes=[
         path:'/mau-cv',
         exact: true,
         main: (match) => {
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if (role === "employer") {
                 return <Redirect to="/" />;
             }
@@ -267,7 +267,7 @@ const routes=[
         path:'/quan-ly-cv',
         exact: true,
         main: (match) => {
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if (role === "employer") {
                 return <Redirect to="/" />;
             }
@@ -288,7 +288,7 @@ const routes=[
         path:'/admin/quan-ly-cong-ty',
         exact: true,
         main: (match) => {
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if(role === "admin"){
                 return <IndexCompany />
             }else {
@@ -300,7 +300,7 @@ const routes=[
         path:'/admin/quan-ly-tin',
         exact: true,
         main: (match) => {
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if(role === "admin"){
                 return <IndexPost />
             }else {
@@ -312,7 +312,7 @@ const routes=[
         path:'/admin/quan-ly-cv',
         exact: true,
         main: (match) => {
-            var role = cookies.get('role');
+            const role = cookies.get('role');
             if(role === "admin"){
                 return <IndexCv />
             }else {
