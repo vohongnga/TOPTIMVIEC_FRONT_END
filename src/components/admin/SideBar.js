@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import logo_img from "../../image/LogoMakr-48tDoh_uhomu6.png";
 import admin_img from "../../image/administrator.png";
 class SideBar extends Component {
@@ -9,7 +9,7 @@ class SideBar extends Component {
                 <div className="sticky-top">
                     <ul className="">
                         <li className="list-group-item text-center py-4 border-0">
-                            <img src={logo_img} className="" alt="" width="200px" />
+                            <Link to="/"><img src={logo_img} className="" alt="" width="200px" /></Link>
                         </li>
                         <li className="list-group-item text-center py-4 border-0">
                             <img src={admin_img} className="" alt="" width="130px" />
