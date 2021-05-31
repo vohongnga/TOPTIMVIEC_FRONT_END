@@ -164,8 +164,8 @@ class RegisterEmployer extends Component {
                     {this.state.notifmess.length > 0 ? <p className="text-danger mt-1">{this.state.notifmess}</p> : ""}
                     {this.state.loading ? 
                         <div className="right-w3l">
-                            <img className="center" src={loading_gif} alt="" width="50px"></img>
                             <button type="button" className="btn btn-success center mt30" disabled>Đăng ký</button>
+                            <img className="center" src={loading_gif} alt="" width="50px"></img>
                         </div>
                     : 
                         <div className="right-w3l">
