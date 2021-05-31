@@ -60,7 +60,7 @@ class CompanyContent extends Component {
     this.setState({ name: e.target.value });
   };
   onChangeStatus = (e) => {
-    this.setState({status: e.target.value});
+    this.setState({status: e.target.checked});
   }
   onChoose = (e, id) => {
     e.stopPropagation(); 
@@ -168,15 +168,9 @@ class CompanyContent extends Component {
               onChange={this.onChangeName}
             />
           </div>
-          <div className="col-lg-2 col-md-3 mt-1 mt-md-0">
-            <select
-              className="form-control form-control-lg"
-              onChange={this.onChangeStatus}
-              value={this.state.status}
-            >
-              <option value="">Trạng thái</option>
-              <option value="true">Khóa</option>
-            </select>
+          <div className="col-lg-2 col-md-3 mt-1 mt-md-0 form-group form-check">
+              <input type="checkbox" className="form-check-input big-checkbox mt-2 ml-2" name="status"  onChange={this.onChangeStatus} /> 
+              <p className="ml-5 mt-2 text-large" >Đã khóa</p>
           </div>
           <div className="col-lg-2 col-md-3 mt-1 mt-md-0">
             <button
