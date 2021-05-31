@@ -12,6 +12,7 @@ class CompanyContent extends Component {
       count_page: 0,
       page: 1,
       loading: false,
+      status: ""
     };
   }
   logOut = () => {
@@ -31,7 +32,7 @@ class CompanyContent extends Component {
     if (page > 0) {
       this.setState({ loading: true });
       callApi(
-        "/admin/employer?name=" + this.state.name + "&page=" + (page - 1),
+        "/admin/employer?name=" + this.state.name + "&page=" + (page - 1) + "&ban=" + this.state.status,
         "GET"
       ).then((rs) => {
         this.setState(rs.data);
@@ -40,7 +41,7 @@ class CompanyContent extends Component {
     }
   };
   setCountPage = () => {
-    callApi("/employer/page?name=" + this.state.name, "GET").then((rs) => {
+    callApi("/admin/employer/count?name=" + this.state.name + "&ban=" + this.state.status, "GET").then((rs) => {
       this.setState(rs.data);
     });
   };
@@ -58,6 +59,9 @@ class CompanyContent extends Component {
   onChangeName = (e) => {
     this.setState({ name: e.target.value });
   };
+  onChangeStatus = (e) => {
+    this.setState({status: e.target.value});
+  }
   onChoose = (e, id) => {
     e.stopPropagation(); 
     window.open("/cong-ty/" + id, "_blank");
@@ -155,14 +159,24 @@ class CompanyContent extends Component {
             Đăng xuất
           </button>
         </div>
-        <form className="col-lg-9 row p-5 " onSubmit={this.searchCompany}>
-          <div className="col-lg-9 col-md-6 ">
+        <form className="row p-5 " onSubmit={this.searchCompany}>
+          <div className="col-lg-8 col-md-6 ">
             <input
               type="text"
               className="form-control form-control-lg"
               placeholder="Tên công ty"
               onChange={this.onChangeName}
             />
+          </div>
+          <div className="col-lg-2 col-md-3 mt-1 mt-md-0">
+            <select
+              className="form-control form-control-lg"
+              onChange={this.onChangeStatus}
+              value={this.state.status}
+            >
+              <option value="">Trạng thái</option>
+              <option value="true">Khóa</option>
+            </select>
           </div>
           <div className="col-lg-2 col-md-3 mt-1 mt-md-0">
             <button

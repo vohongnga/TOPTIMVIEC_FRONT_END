@@ -205,8 +205,8 @@ class CvContent extends Component {
             Đăng xuất
           </button>
         </div>
-        <form className="col-lg-9 row p-5 " onSubmit={this.onSubmitSearch}>
-          <div className="col-lg-7 col-md-6 mt-1 mt-md-0 mb-2">
+        <form className="row p-5 " onSubmit={this.onSubmitSearch}>
+          <div className="col-lg-8 col-md-6 mt-1 mt-md-0 mb-2">
             <input
               type="text"
               className="form-control form-control-lg"
@@ -215,7 +215,7 @@ class CvContent extends Component {
               name="name"
             />
           </div>
-          <div className="col-lg-7 col-md-6 mt-1 mt-md-0">
+          <div className="col-lg-8 col-md-6 mt-1 mt-md-0">
             <Typeahead
               id="public-methods-example"
               labelKey="name"
@@ -228,7 +228,7 @@ class CvContent extends Component {
               selected={this.state.hashtag}
             />
           </div>
-          <div className="col-lg-3 col-md-3 mt-1 mt-md-0">
+          <div className="col-lg-2 col-md-3 mt-1 mt-md-0">
             <select
               className="form-control form-control-lg"
               onChange={this.onChangePlace}
