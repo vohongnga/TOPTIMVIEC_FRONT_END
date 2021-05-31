@@ -27,7 +27,7 @@ class SideBar extends Component {
                             <NavLink className="nav-link h4 text-muted" activeClassName="bg-light rounded" exact to="/admin/quan-ly-cong-ty">Quản lý công ty</NavLink>
                         </li>
                         <li className="list-group-item text-center border-0">
-                            <NavLink className="nav-link h4 text-muted" activeClassName="bg-light rounded" exact to="/admin/quan-ly-tai-khoan">Quản lý người tìm việc</NavLink>
+                            <NavLink className="nav-link h4 text-muted" activeClassName="bg-light rounded" exact to="/admin/quan-ly-bao-xau">Quản lý báo xấu</NavLink>
                         </li>
                     </ul>
                 </div>
