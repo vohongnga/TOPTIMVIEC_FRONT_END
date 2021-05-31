@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ApplicantService from "../../services/ApplicantService";
+import loading_gif from "../../image/loader.gif";
 
 class RegisterApplicant extends Component {
     constructor(props) {
@@ -18,6 +19,7 @@ class RegisterApplicant extends Component {
                 repassword: false
             },
             notifmess: "",
+            loading: false
         }
     }
     
@@ -95,15 +97,17 @@ class RegisterApplicant extends Component {
     }
     onSubmit = (e) => {
         e.preventDefault();
+        this.setState({ loading: true });
         const { name, email, gender, dob, password, repassword} = this.state;
         if(password === repassword && name && email && password){
             ApplicantService.fetchApplicantAPI(name, email, gender, new Date(dob), password).then(res => {
-
+                this.setState({ loading: false });
                 if (res.status === 201) {
                     window.location.href = "/dang-ky/xac-nhan";
                 }
     
             }).catch(err => {
+                this.setState({ loading: false });
                 if (err.response.status === 400) {
                     this.setState({ notifmess: "(*) Vui lòng nhập đầy đủ thông tin" });
                 } else if (err.response.status === 403) {
@@ -113,18 +117,22 @@ class RegisterApplicant extends Component {
                 }
             })
         }else if(password !== repassword){
+            this.setState({ loading: false });
             const notif = this.state.notif;
             notif.repassword = true;
             this.setState({ notif });
         }else if(!name){
+            this.setState({ loading: false });
             const notif = this.state.notif;
             notif.name = true;
             this.setState({ notif });
         }else if(!email){
+            this.setState({ loading: false });
             const notif = this.state.notif;
             notif.email = true;
             this.setState({ notif });
         }else if(!password){
+            this.setState({ loading: false });
             const notif = this.state.notif;
             notif.password = true;
             this.setState({ notif });
@@ -173,9 +181,17 @@ class RegisterApplicant extends Component {
                     </div>
                     {this.state.notif.repassword === true ? <p className="text-danger mt-1">(*) Mật khẩu không trùng khớp !</p> : ""}
                     {this.state.notifmess.length > 0 ? <p className="text-danger mt-1">{this.state.notifmess}</p> : ""}
-                    <div className="right-w3l">
-                        <button type="button" className="btn btn-success center mt30" onClick={this.onSubmit}>Đăng ký</button>
-                    </div>
+                    {this.state.loading ? 
+                        <div className="right-w3l">
+                            <img className="center" src={loading_gif} alt="" width="50px"></img>
+                            <button type="button" className="btn btn-success center mt30" disabled>Đăng ký</button>
+                        </div>
+                    : 
+                        <div className="right-w3l">
+                            <button type="button" className="btn btn-success center mt30" onClick={this.onSubmit}>Đăng ký</button>
+                        </div>
+                    }
+                   
                 </form>
 
             </div>
