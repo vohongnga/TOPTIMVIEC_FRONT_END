@@ -160,12 +160,6 @@ class Login extends Component {
                     </h6>
                     {this.state.loading ? (
                       <div className="submit">
-                        <img
-                          className="center"
-                          src={loading_gif}
-                          alt=""
-                          width="50px"
-                        ></img>
                         <button
                           type="submit"
                           className="btn btn-success center"
@@ -173,6 +167,12 @@ class Login extends Component {
                         >
                           Đăng nhập
                         </button>
+                        <img
+                          className="center"
+                          src={loading_gif}
+                          alt=""
+                          width="50px"
+                        ></img>
                       </div>
                     ) : (
                       <div className="submit">
