@@ -16,7 +16,7 @@ class PostContent extends Component {
       page: 1,
       loading: false,
       hashtag: [],
-      place: [],
+      place: "",
       job: "",
       choice_delete: ""
     };
@@ -213,8 +213,8 @@ class PostContent extends Component {
             Đăng xuất
           </button>
         </div>
-        <form className="col-lg-9 row p-5 " onSubmit={this.onSubmitSearch}>
-        <div className="col-lg-7 col-md-6 mt-1 mt-md-0 mb-2">
+        <form className=" row p-5 " onSubmit={this.onSubmitSearch}>
+        <div className="col-lg-8 col-md-6 mt-1 mt-md-0 mb-2">
             <input
               type="text"
               className="form-control form-control-lg"
@@ -223,7 +223,7 @@ class PostContent extends Component {
               name="job"
             />
           </div>
-          <div className="col-lg-7 col-md-6 mt-1 mt-md-0">
+          <div className="col-lg-8 col-md-6 mt-1 mt-md-0">
             <Typeahead
               id="public-methods-example"
               labelKey="name"
@@ -236,7 +236,7 @@ class PostContent extends Component {
               selected={this.state.hashtag}
             />
           </div>
-          <div className="col-lg-3 col-md-3 mt-1 mt-md-0">
+          <div className="col-lg-2 col-md-3 mt-1 mt-md-0">
             <select
               className="form-control form-control-lg"
               onChange={this.onChangePlace}
