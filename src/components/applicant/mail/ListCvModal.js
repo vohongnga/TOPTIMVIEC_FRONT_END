@@ -3,6 +3,7 @@ import callApi from "../../../utils/apiCaller";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "./../../../actions/index";
+import img from './../../../image/document-256.png';
 
 class ListCvModal extends Component {
   constructor(props) {
@@ -98,7 +99,6 @@ class ListCvModal extends Component {
     window.$("#listCvModal").modal("hide");
   }
   OnCreateCv = (e) => {
-    e.stopPropagation();
     window.open("/mau-cv", "_blank");
   };
   render() {
@@ -160,11 +160,11 @@ class ListCvModal extends Component {
                 ))
               ) : (
                 <div>
-                  <span className="h5">Chưa có CV nào! &nbsp; </span>
-                  <button
-                    className="btn btn-success"
-                    onClick={(e) => this.OnCreateCv(e)}
-                  >
+                  <div>
+                    <img className="center my-5" src={img} alt="" width="200px" />
+                    <h2 className="h2 text-center text-muted">Không tìm thấy CV</h2>
+                  </div>
+                  <button className="btn btn-success center mt-4" onClick={(e) => this.OnCreateCv(e)}>
                     Tạo ngay
                   </button>
                 </div>
