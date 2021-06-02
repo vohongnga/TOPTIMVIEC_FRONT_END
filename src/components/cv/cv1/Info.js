@@ -4,12 +4,12 @@ import "./stylecv1.css"
 export default class Info extends React.Component {
     onChangeInfo = (e) => {
         const name = e.target.getAttribute("name");
-        const value = e.currentTarget.textContent;
+        let value = null;
+        (name !== 'gender') ? value = e.currentTarget.textContent : value = Boolean(e.target.value);
         return this.props.onChangeInfo(name, value)
     }
     render() {
         const { email, phone, dob, gender, address, edit } = this.props;
-
         return (
             <div className="contact-container container-block">
                 <ul className="list-unstyled contact-list">
@@ -23,7 +23,14 @@ export default class Info extends React.Component {
                         <p suppressContentEditableWarning contentEditable={edit} onBlur={this.onChangeInfo} name="dob">{dob}</p>
                     </li>
                     <li className="gender"><i className="fas fa-user-circle" />
-                        <p suppressContentEditableWarning contentEditable={edit} onBlur={this.onChangeInfo} name="gender">{gender?'Nam':'Nữ'}</p>
+                        {
+                            (edit) ? <p>
+                                <input type="radio" id="male" name="gender" value="" onClick={this.onChangeInfo} />
+                                <label htmlFor="male">Nam</label>
+                                <input type="radio" id="female" name="gender" value="1" className="ml-3" onClick={this.onChangeInfo} />
+                                <label htmlFor="female">Nữ</label>
+                            </p> : <p>{gender ? 'Nữ' : 'Nam'}</p>
+                        }
                     </li>
                     <li className="address"><i className="fas fa-map-marker-alt" />
                         <p suppressContentEditableWarning contentEditable={edit} onBlur={this.onChangeInfo} name="address">{address}</p>

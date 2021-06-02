@@ -31,6 +31,8 @@ import CVMobile from "./pages/employer/CVMobile";
 import IndexCompany from './pages/admin/IndexCompany';
 import IndexPost from './pages/admin/IndexPost';
 import IndexCv from './pages/admin/IndexCv';
+import CreateCV from './pages/applicant/cv/CreateCV';
+
 
 const cookies = new Cookies();
 
@@ -317,6 +319,22 @@ const routes=[
                 return <IndexCv />
             }else {
                 return <Redirect to="/" />
+            }
+        }
+    },
+    {
+        path:'/them-cv',
+        exact: true,
+        main: (match) => {
+            var role = cookies.get('role');
+            if (role === "employer") {
+                return <Redirect to="/" />;
+            }
+            else if (role === "applicant") {
+                return <CreateCV edit={true}/>;
+            }
+            else {
+                return <Redirect to="/dang-nhap" />;
             }
         }
     },
