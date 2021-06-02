@@ -24,6 +24,8 @@ import IndexMailSend from './pages/common/IndexMailSend';
 import CV from './pages/employer/CV';
 import ListSampleCV from './pages/applicant/cv/ListSampleCV';
 import CVManage from './pages/applicant/CVManage';
+import CreateCV from './pages/applicant/cv/CreateCV';
+
 
 const cookies = new Cookies();
 
@@ -243,6 +245,22 @@ const routes=[
             }
             else if (role === "applicant") {
                 return <CVManage />;
+            }
+            else {
+                return <Redirect to="/dang-nhap" />;
+            }
+        }
+    },
+    {
+        path:'/them-cv',
+        exact: true,
+        main: (match) => {
+            var role = cookies.get('role');
+            if (role === "employer") {
+                return <Redirect to="/" />;
+            }
+            else if (role === "applicant") {
+                return <CreateCV edit={true}/>;
             }
             else {
                 return <Redirect to="/dang-nhap" />;

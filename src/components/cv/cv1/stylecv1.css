@@ -11,6 +11,7 @@
     -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    height:100%;
   }
   
   .sidebar-wrapper {
@@ -40,8 +41,9 @@
     margin-bottom: 0;
   }
   
-  .sidebar-wrapper .profile {
+  .sidebar-wrapper .profile  {
     margin-bottom: 15px;
+    margin-left: 30px;
   }
   
   .sidebar-wrapper .contact-list .svg-inline--fa {
@@ -58,6 +60,7 @@
     margin-left: 10px;
     display: inline;
   }
+
 
   .sidebar-wrapper .contact-list li:last-child {
     margin-bottom: 0;
@@ -203,6 +206,8 @@
     right: 0;
     top: 0;
     color: #97AAC3;
+    min-width: 70px;
+    text-align: right;
   }
   
   .main-wrapper .company {
@@ -217,14 +222,10 @@
     margin-bottom: 5px;
   }
   
-  .main-wrapper .projects-section .intro {
-    margin-bottom: 30px;
+  .main-wrapper .experiences-section .item .details p {
+    white-space: pre-line;
+    /* word-break: break-all; */
   }
-  
-  .main-wrapper .projects-section .item {
-    margin-bottom: 15px;
-  }
-  
   .skillset .item {
     margin-bottom: 15px;
     overflow: hidden;
