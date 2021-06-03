@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import EmployerService from '../../services/EmployerService';
 import loading_gif from "../../image/loader.gif";
-
+import { withRouter } from "react-router";
 
 class RegisterEmployer extends Component {
     constructor(props){
@@ -93,7 +93,7 @@ class RegisterEmployer extends Component {
                 EmployerService.fetchEmployerAPI(name,email,password).then(res => {
                     this.setState({ loading: false });
                     if(res.status === 201){
-                        window.location.href = "/dang-ky/xac-nhan";
+                        this.props.history.push("/dang-ky/xac-nhan");
                     }
                 
                 }).catch(err => {
@@ -180,4 +180,4 @@ class RegisterEmployer extends Component {
 
     }
 }
-export default RegisterEmployer;
+export default withRouter(RegisterEmployer);
