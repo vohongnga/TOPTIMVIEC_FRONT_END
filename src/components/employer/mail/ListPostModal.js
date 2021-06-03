@@ -97,7 +97,7 @@ class ListPostModal extends Component {
     window.$("#listPostModal").modal("hide");
   }
   onCreatePost = (e) => {
-    window.open("/", "_blank");
+    window.open("/them-bai-dang", "_blank");
   };
   render() {
     const { listPost } = this.state;
