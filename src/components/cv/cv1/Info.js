@@ -25,7 +25,7 @@ export default class Info extends React.Component {
                     <li className="gender"><i className="fas fa-user-circle" />
                         {
                             (edit) ? <p>
-                                <input type="radio" id="male" name="gender" value="" onClick={this.onChangeInfo} />
+                                <input type="radio" id="male" name="gender" value="" onClick={this.onChangeInfo} defaultChecked={true} />
                                 <label htmlFor="male">Nam</label>
                                 <input type="radio" id="female" name="gender" value="1" className="ml-3" onClick={this.onChangeInfo} />
                                 <label htmlFor="female">Nữ</label>

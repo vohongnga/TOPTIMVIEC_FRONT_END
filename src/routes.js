@@ -339,6 +339,25 @@ const routes=[
         }
     },
     {
+        path:'/sua-cv/:id',
+        exact: true,
+        main: (match) => {
+            const role = cookies.get('role');
+            if (role === "employer") {
+                return <Redirect to="/khong-ton-tai" />;
+            }
+            else if (role === "applicant") {
+                return <CreateCV  id={match.match.params.id}/>;
+            }
+            else if (role === "admin") {
+                return <Redirect to="/khong-ton-tai" />;
+            }
+            else {
+                return <Redirect to="/dang-nhap" />;
+            }
+        }
+    },
+    {
         path:'',
         exact: false,
         main: () => <NotFoundPage />

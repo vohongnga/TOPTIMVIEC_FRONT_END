@@ -42,6 +42,10 @@ class CandidateItem extends Component {
         window.$('#deleteCVFromListDialog').modal('show');
         this.props.chooseCV(this.props.job._id);
     }
+    onUpdateCV = (e) => {
+        e.stopPropagation();
+        this.props.history.push("/sua-cv/" + this.props.job._id);
+    }
     render() {
         const {job} = this.props;
         return (
@@ -61,7 +65,7 @@ class CandidateItem extends Component {
                             {this.props.list ? <Link to="#" className="btn btn-danger text-white ml-1" role="button" onClick={this.onDeleteCV}>Xóa</Link> : ""}
                             {this.props.manage ? 
                                 <div>
-                                    <Link to="#" className="btn btn-primary text-white ml-1" role="button">Sửa</Link> 
+                                    <Link to="#" className="btn btn-primary text-white ml-1" role="button" onClick={(e) => this.onUpdateCV(e)}>Sửa</Link> 
                                     <Link to="#" className="btn btn-danger text-white ml-1" role="button" onClick={(e) => this.props.onChoiceDelete(e, job._id)}>Xóa</Link> 
                                 </div>
                             : ""}
