@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import callApi from '../../utils/apiCaller';
 import CV1 from '../../components/cv/cv1/CV1';
@@ -69,7 +69,7 @@ class CV extends Component{
                     : 
                         <div className="fixed-bottom mr-4 mb-4">
                             <div className="text-right">
-                                <button className="btn btn-primary btn-lg shadow">Sửa</button>
+                                <Link className="btn btn-primary btn-lg shadow" to={ "/sua-cv/" + this.props.id }>Sửa</Link>
                             </div>
                             <div className="mt-2 text-right">
                                 <button className="btn btn-danger btn-lg shadow" onClick={this.onChoiceDelete}>Xóa</button>

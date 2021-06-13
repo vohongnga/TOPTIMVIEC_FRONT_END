@@ -22,15 +22,20 @@ import IndexMail from './pages/common/IndexMail';
 import DetailMail from './pages/common/DetailMail';
 import IndexMailSend from './pages/common/IndexMailSend';
 import CV from './pages/employer/CV';
+import Post from './pages/common/Post';
+import ManagementPost from './pages/employer/ManagementPost';
 import ListSampleCV from './pages/applicant/cv/ListSampleCV';
 import CVManage from './pages/applicant/CVManage';
 import ForgetPassword from './pages/common/ForgetPassword';
 import CreateNewPassword from './pages/common/CreateNewPassword';
 import IndexAdmin from "./pages/admin/IndexAdmin";
 import CVMobile from "./pages/employer/CVMobile";
+import NewPost from './pages/common/NewPost';
 import IndexCompany from './pages/admin/IndexCompany';
 import IndexPost from './pages/admin/IndexPost';
 import IndexCv from './pages/admin/IndexCv';
+import CreateCV from './pages/applicant/cv/CreateCV';
+
 
 const cookies = new Cookies();
 
@@ -219,6 +224,21 @@ const routes=[
         }
     },
     {
+        path: '/post/:id',
+        exact: true,
+        main:({match})=><Post match = {match}/>
+    },
+    {
+        path:'/quan-ly-tin',
+        exact: true,
+        main: () => { return <ManagementPost />}
+    },
+    {
+        path:'/them-bai-dang',
+        exact: true,
+        main: () => { return <NewPost />}
+    },
+    {
         path:'/cong-ty',
         exact: true,
         main: () => { return <Company />}
@@ -279,6 +299,7 @@ const routes=[
             }
         }
     },
+    
     {
         path:'/mobile/cv/:id',
         exact: true,
@@ -321,11 +342,44 @@ const routes=[
         }
     },
     {
+        path:'/them-cv',
+        exact: true,
+        main: (match) => {
+            var role = cookies.get('role');
+            if (role === "employer") {
+                return <Redirect to="/" />;
+            }
+            else if (role === "applicant") {
+                return <CreateCV edit={true}/>;
+            }
+            else {
+                return <Redirect to="/dang-nhap" />;
+            }
+        }
+    },
+    {
+        path:'/sua-cv/:id',
+        exact: true,
+        main: (match) => {
+            const role = cookies.get('role');
+            if (role === "employer") {
+                return <Redirect to="/khong-ton-tai" />;
+            }
+            else if (role === "applicant") {
+                return <CreateCV  id={match.match.params.id}/>;
+            }
+            else if (role === "admin") {
+                return <Redirect to="/khong-ton-tai" />;
+            }
+            else {
+                return <Redirect to="/dang-nhap" />;
+            }
+        }
+    },
+    {
         path:'',
         exact: false,
         main: () => <NotFoundPage />
     }
-    
-
 ];
 export default routes;

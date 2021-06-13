@@ -28,7 +28,7 @@ class ImageUploader extends Component{
     render(){
         return (
             <div className="col div-image-change p-0" >
-                <label className="ml-0">
+                <label>
                     <img src={this.props.imageUrl} alt="" width="170px" height="170px"/>
                     <input type="file" hidden onChange={this.onSelectImage} />
                     {!this.state.loading ? <div className="overlay d-flex align-items-center">

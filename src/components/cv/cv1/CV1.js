@@ -1,7 +1,6 @@
 import React from 'react';
 import Avatar from './Avatar';
 import Info from './Info';
-// import Interest from './Interest';
 import ContentItem from './ContentItem';
 import SkillItem from './SkillItem';
 import "./stylecv1.css";
@@ -87,7 +86,7 @@ class CV1 extends React.Component {
           title: "GIẢI THƯỞNG"
         }
       ],
-      dob: "Fri, 01 Jan 1999",
+      dob: "10/10/1999",
       email: "abc@gmail.com",
       gender: false,
       hashtag: [
@@ -130,6 +129,13 @@ class CV1 extends React.Component {
     }
   }
 
+
+  componentDidMount() {
+    if (this.props.data) {
+      this.setState(this.props.data);
+    }
+  }
+
   onChangeAvatarInfo = (name, value) => {
     this.setState({
       [name]: value
@@ -164,24 +170,99 @@ class CV1 extends React.Component {
     const indexItem = parseInt(e.target.getAttribute("index"));
     const value = e.currentTarget.textContent;
     this.setState({
-      interests: this.state.interests.map((interest, index)=>{
-        return index===indexItem ? value : interest;
+      interests: this.state.interests.map((interest, index) => {
+        return index === indexItem ? value : interest;
       })
     })
   }
 
-  componentDidMount() {
-    if (this.props.data) {
-      this.setState(this.props.data);
+
+  onClickToolBarDetail = (name, index, indexDetail) => {
+    var contents = this.state.content;
+    var contentItem = contents[index].content;
+    var temp = contentItem[indexDetail];
+    switch (name) {
+      case 'up': {
+        if (indexDetail > 0) {
+          contentItem[indexDetail] = contentItem[indexDetail - 1];
+          contentItem[indexDetail - 1] = temp;
+        }
+        break;
+      }
+      case 'down': {
+        if (indexDetail < contentItem.length - 1) {
+          contentItem[indexDetail] = contentItem[indexDetail + 1];
+          contentItem[indexDetail + 1] = temp;
+        }
+        break;
+      }
+      case 'create': {
+        contentItem.splice(indexDetail, 0, temp);
+        break;
+      }
+      case 'delete': {
+        contentItem.splice(indexDetail, 1)
+        break;
+      }
+      default:
     }
+    contents[index].content = contentItem;
+    this.setState({ content: contents })
+  }
+
+  onChangeContentTitle = (value, indexItem) => {
+    this.setState({
+      content: this.state.content.map((contentItem, index) => {
+        return index === indexItem ? {
+          ...contentItem, title: value
+        } : contentItem;
+      })
+    })
+  }
+
+  onClickToolBarItem = (name, index, itemName) => {
+    var item = this.state.content;
+    if (itemName === 'skill') item = this.state.skill;
+    if (itemName === 'interest') item = this.state.interests;
+    var temp = item[index];
+    switch (name) {
+      case 'up': {
+        if (index > 0) {
+          item[index] = item[index - 1];
+          item[index - 1] = temp;
+        }
+        break;
+      }
+      case 'down': {
+        if (index < item.length - 1) {
+          item[index] = item[index + 1];
+          item[index + 1] = temp;
+        }
+        break;
+      }
+      case 'create': {
+        item.splice(index, 0, temp);
+        break;
+      }
+      case 'delete': {
+        item.splice(index, 1);
+        break;
+      }
+      default:
+    }
+    this.setState({ itemName: item })
+  }
+
+  onChangeImage = (url) => {
+    this.setState({ avatar: url });
   }
 
   render() {
+    if (this.props.onChangeState) this.props.onChangeState(this.state);
     const { address, avatar, content, dob, email, gender, interests, name, phone, position, skill } = this.state;
     return (
       <div>
         <div className="row wrapper">
-          
           <div className="col col-8 main-wrapper">
 
             {this.showContentItem(content)}
@@ -194,6 +275,7 @@ class CV1 extends React.Component {
               name={name}
               position={position}
               onChange={this.onChangeAvatarInfo}
+              onChangeImage={this.onChangeImage}
             />
             <Info edit={this.props.edit}
               email={email}
@@ -221,6 +303,9 @@ class CV1 extends React.Component {
             title={contentItem.title}
             indexItem={index}
             onChangeContent={this.onChangeContent}
+            onChangeContentTitle={this.onChangeContentTitle}
+            onClickToolBarItem={this.onClickToolBarItem}
+            onClickToolBarDetail={this.onClickToolBarDetail}
           />
         )
       })
@@ -238,6 +323,7 @@ class CV1 extends React.Component {
             index={index}
             onChangeTitleSkill={this.onChangeSkill}
             onChangeLevelSkill={this.onChangeSkill}
+            onClickToolBarSkill={this.onClickToolBarItem}
           />
         )
       })
