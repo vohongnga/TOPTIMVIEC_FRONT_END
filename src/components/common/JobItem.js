@@ -7,13 +7,12 @@ import * as actions from './../../actions/index';
 
 class JobItem extends Component {
     toPost = (id) => {
-        console.log(this.props.inTag)
         if (this.props.inTag) {
-            this.props.history.push("/post/" + id);
+            this.props.history.push("/tin/" + id);
             this.props.history.go();
         }
         else {
-            window.open("/post/"+id, "_blank");
+            window.open("/tin/"+id, "_blank");
         }
     }
     onClickHashtag(e, hashtag) {

@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux';
-import * as actions from './../../actions/index';
-import * as services from './../../services/ListService';
+import Moment from 'moment';
+import * as actions from '../../actions/index';
+import * as services from '../../services/ListService';
 import { Typeahead } from 'react-bootstrap-typeahead';
+import loading_gif from './../../image/loader.gif';
 
 class NewPost extends Component{
 
     constructor(props) {
         super(props);
         this.state={
-            'hashtag':[],
-            'title':'',
-            'salary':0,
+            'hashtag': [],
+            'title': '',
+            'salary': '',
             'benefit': '',
-            'description':'',
-            'request':'',
-            'address':'',
-            'deadline':'',
+            'description': '',
+            'request': '',
+            'address': '',
+            'deadline': Moment(new Date()).format('yyyy-MM-DD'),
             'place' : [],
             notif: {
                 title: false,
@@ -31,6 +33,7 @@ class NewPost extends Component{
                 place:false
             },
             notifApi: "",
+            submiting: false
         };
     }
 
@@ -71,9 +74,23 @@ class NewPost extends Component{
         }
     }
 
+    onBlurPlace = (e)=>{
+        let { place } = this.state;
+        if (place.length === 0) {
+            let notif = this.state.notif;
+            notif.place = true;
+            this.setState({ notif });
+
+        } else {
+            let notif = this.state.notif;
+            notif.place = false;
+            this.setState({ notif });
+        }
+    }
+
     onBlurHashtag = (e)=>{
         let { hashtag } = this.state;
-        if (!hashtag) {
+        if (hashtag.length === 0) {
             let notif = this.state.notif;
             notif.hashtag = true;
             this.setState({ notif });
@@ -141,40 +158,36 @@ class NewPost extends Component{
         }
     }
 
-    onChangeHashtag = (e) => {
-        this.props.onChangeHashtag(e);
-        let hashtag = this.state.hashtag;
-        hashtag = e;
+    onChangeHashtag = (hashtag) => {
         this.setState({hashtag})
     }
-onHandleChangeS= (e)=>{
 
-const selected = document.querySelectorAll('#changePlace option:checked');
-const values = Array.from(selected).map(el => el.value);
-let place = values;
-this.setState({place})
-console.log(values);
-}
+    onChangePlace = (place) => {
+        this.setState({place})
+    }
+
     onSubmit = (e)=>{
         e.preventDefault();
         let { title, description, request, benefit, salary, place,hashtag,address,deadline} = this.state;
-        if(title && description && request && benefit && salary && place && hashtag && address && deadline){
-            services.newPost(title, description, request, benefit, salary, place,hashtag,address,deadline).then(res => {
-
+        if(title && description && request && benefit && salary && place.length > 0 && hashtag.length > 0 && address && deadline){
+            this.setState({submiting: true});
+            services.newPost(title, description, request, benefit, salary, place,hashtag,address,deadline)
+            .then(res => {
+                this.setState({submiting: false});
                 if (res.status === 200) {
-                    console.log(res.data)
+                    this.props.history.push("/tin/" + res.data.id_post);
                 }
-                }).catch(err => {
-                    if (err.status === 400) {
-                        this.setState({ notifApi: "(*) Vui lòng nhập đầy đủ thông tin" });
-                    } else if (err.status === 403) {
-                        this.setState({ notifApi: "(*) Có lỗi xảy ra khi kết nối CSDL" });
-                    } else if (err.status === 401) {
-                        this.setState({ notifApi: "(*) Bạn không có quyền đăng tin tuyển dụng" });
-                    }
-                })
-
-            console.log(this.state);
+            })
+            .catch(err => {
+                this.setState({submiting: false});
+                if (err.status === 400) {
+                    this.setState({ notifApi: "(*) Vui lòng nhập đầy đủ thông tin" });
+                } else if (err.status === 403) {
+                    this.setState({ notifApi: "(*) Có lỗi xảy ra khi kết nối CSDL" });
+                } else if (err.status === 401) {
+                    this.setState({ notifApi: "(*) Bạn không có quyền đăng tin tuyển dụng" });
+                }
+            })
         }else if(!title){
             let notif = this.state.notif;
             notif.title = true;
@@ -197,12 +210,12 @@ console.log(values);
             notif.salary = true;
             this.setState({ notif });
         }
-        else if(!place){
+        else if(place.length === 0){
             let notif = this.state.notif;
             notif.place = true;
             this.setState({ notif });
         }
-        else if(!hashtag){
+        else if(hashtag.length === 0){
             let notif = this.state.notif;
             notif.hashtag = true;
             this.setState({ notif });
@@ -229,77 +242,89 @@ console.log(values);
 
         return (
 
-            <div className="col-10 mx-auto center mb-5 mt-4 center-text bg-white rounded p-4">
-                <h2 className = "h2">Thêm bài tuyển dụng</h2>
+            <div className="col-lg-8 mx-lg-auto center mb-5 mt-5  center-text bg-white rounded p-4">
+                <h2 className = "h2">Đăng tin tuyển dụng</h2>
                 <form className = "mt-4 left-text" onSubmit={this.onSubmit}>
                     <div className="form-group ">
-                        <label htmlFor="exampleFormControlInput1">Tên bài đăng</label>
-                        <input type="email" name = "title" className="form-control mt-2" onChange={this.onHandleChange} onBlur={this.onBlurTitle} placeholder="Nhập tiêu đề"/>
+                        <label htmlFor="exampleFormControlInput1">Tiêu đề bài đăng</label>
+                        <input type="text" name = "title" value={this.state.title} className="form-control mt-2" onChange={this.onHandleChange} onBlur={this.onBlurTitle} placeholder="Nhập tiêu đề"/>
+                        {this.state.notif.title === true ? <p className="text-danger">(*) Tiêu đề không được để trống !</p> : ""}
                     </div>
-                    {this.state.notif.title === true ? <p className="text-danger mt-1">(*) Tiêu đề không được để trống !</p> : ""}
 
                     <div className="form-group">
                         <label htmlFor="exampleFormControlTextarea1">Mô tả công việc</label>
-                        <textarea className="form-control  mt-2" name = "description" placeholder="Nhập mô tả công việc" rows="3" onChange={this.onHandleChange} onBlur = {this.onBlurDescription}></textarea>
+                        <textarea className="form-control mt-2" name = "description" value={this.state.description} placeholder="Nhập mô tả công việc" rows="3" onChange={this.onHandleChange} onBlur = {this.onBlurDescription}></textarea>
+                        {this.state.notif.description === true ? <p className="text-danger">(*) Mô tả công việc không được để trống !</p> : ""}
                     </div>
-                    {this.state.notif.description === true ? <p className="text-danger mt-1">(*) Mô tả công việc không được để trống !</p> : ""}
-
+                    
                     <div className="form-group">
                         <label htmlFor="exampleFormControlTextarea1">Yêu cầu công việc</label>
-                        <textarea className="form-control  mt-2"  name = "request" placeholder ="Nhập yêu cầu công việc" rows="3" onChange={this.onHandleChange} onBlur = {this.onBlurRequest}></textarea>
+                        <textarea className="form-control mt-2"  name = "request" value={this.state.request} placeholder ="Nhập yêu cầu công việc" rows="3" onChange={this.onHandleChange} onBlur = {this.onBlurRequest}></textarea>
+                        {this.state.notif.request === true ? <p className="text-danger">(*) Yêu cầu công việc không được để trống !</p> : ""}
                     </div>
-                    {this.state.notif.request === true ? <p className="text-danger mt-1">(*) Yêu cầu công việc không được để trống !</p> : ""}
-
+                    
                     <div className="form-group">
                         <label htmlFor="exampleFormControlTextarea1">Quyền lợi</label>
-                        <textarea className="form-control  mt-2" name = "benefit" placeholder="Nhập quyền lợi" rows="3" onChange={this.onHandleChange} onBlur={this.onBlurBenefit}></textarea>
+                        <textarea className="form-control mt-2" name = "benefit" value={this.state.benefit} placeholder="Nhập quyền lợi" rows="3" onChange={this.onHandleChange} onBlur={this.onBlurBenefit}></textarea>
+                        {this.state.notif.benefit === true ? <p className="text-danger">(*) Quyền lợi không được để trống !</p> : ""}
                     </div>
-                    {this.state.notif.benefit === true ? <p className="text-danger mt-1">(*) Quyền lợi không được để trống !</p> : ""}
-
+                    
                     <div className="form-group ">
-                        <select className="form-control selectpicker" multiple  name = "place" id = "changePlace" onChange={this.onHandleChangeS} onBlur={this.onBlurPlace} >
-                            <option value="">Địa điểm</option>
-                            {this.showListPlace(this.props.list_place)}
-                        </select>
+                        <label htmlFor="exampleFormControlInput1">Thành phố</label>
+                        <Typeahead
+                            id="public-methods-example"
+                            name = "place1"
+                            className="mt-2"
+                            labelKey="name"
+                            multiple
+                            options={this.props.list_place}
+                            placeholder="Nhập thành phố"
+                            ref={ref}
+                            onChange={this.onChangePlace}
+                            onBlur={this.onBlurPlace}
+                            selected={this.state.place}
+                        />
+                        {this.state.notif.place === true ? <p className="text-danger">(*) Thành phố không được để trống !</p> : ""}
                     </div>
-                    {this.state.notif.place === true ? <p className="text-danger mt-1">(*) Thành phố không được để trống !</p> : ""}
-
+                    
                     <div className="form-group ">
                         <label htmlFor="exampleFormControlInput1">Lương</label>
-                        <input type="text" name = "salary" className="form-control mt-2" placeholder = "Nhập mức lương" onChange={this.onHandleChange} onBlur={this.onBlurSalary}/>
+                        <input type="text" name = "salary" value={this.state.salary} className="form-control mt-2" placeholder = "Nhập mức lương" onChange={this.onHandleChange} onBlur={this.onBlurSalary}/>
+                        {this.state.notif.salary === true ? <p className="text-danger">(*) Lương không được để trống !</p> : ""}
                     </div>
-                    {this.state.notif.salary === true ? <p className="text-danger mt-1">(*) Lương không được để trống !</p> : ""}
-
+                    
                     <div className="form-group ">
                         <label htmlFor="exampleFormControlInput1">Hạn nộp hồ sơ</label>
-                        <input type="date" name = "deadline" className="form-control mt-2" placeholder = "Chọn hạn nộp hồ sơ"onChange={this.onHandleChange} onBlur={this.onBlurDeadline}/>
+                        <input type="date" name = "deadline" value={this.state.deadline} className="form-control mt-2" min={Moment(new Date()).format('yyyy-MM-DD')} placeholder = "Chọn hạn nộp hồ sơ" onChange={this.onHandleChange} onBlur={this.onBlurDeadline}/>
                     </div>
                     <div className="form-group ">
                         <label htmlFor="exampleFormControlInput1">Hashtag </label>
                         <Typeahead
                             id="public-methods-example"
                             name = "hashtag1"
+                            className="mt-2"
                             labelKey="name"
                             multiple
                             options={this.props.list_hashtag}
-                            placeholder="Tên công việc, vị trí..."
+                            placeholder="Nhập hashtag"
                             ref={ref}
                             onChange={this.onChangeHashtag}
-                            selected={this.props.search_value.tag}
+                            onBlur={this.onBlurHashtag}
+                            selected={this.state.hashtag}
                         />
+                        {this.state.notif.hashtag === true ? <p className="text-danger">(*) Hashtag không được để trống !</p> : ""}
                     </div>
-                    {this.state.notif.hashtag === true ? <p className="text-danger mt-1">(*) Hashtag không được để trống !</p> : ""}
-
+                    
                     <div className="form-group ">
                         <label htmlFor="exampleFormControlInput1">Địa chỉ </label>
-                        <input type="text" name = "address" className="form-control mt-2" placeholder = "Nhập địa chỉ làm việc"onChange={this.onHandleChange} onBlur={this.onBlurAddress}/>
+                        <input type="text" name = "address" value={this.state.address} className="form-control mt-2" placeholder = "Nhập địa chỉ làm việc"onChange={this.onHandleChange} onBlur={this.onBlurAddress}/>
+                        {this.state.notif.address === true ? <p className="text-danger">(*) Địa chỉ không được để trống !</p> : ""}
                     </div>
-                    {this.state.notif.address === true ? <p className="text-danger mt-1">(*) Địa điểm không được để trống !</p> : ""}
-                    {this.state.notifApi.length > 0 ? <p className="text-danger mt-1">{this.state.notifApi}</p> : ""}
+                    {this.state.notifApi.length > 0 ? <p className="text-danger">{this.state.notifApi}</p> : ""}
 
-                    <div>
-                        <button type="submit" className="btn btn-success" onClick={this.onSubmit}>Submit</button>&nbsp;&nbsp;&nbsp;
-                        <button type="button" className="btn btn-primary">Cancel</button>
+                    <div className="text-center mt-5">
+                        <button type="submit" className="btn btn-success" disabled={this.state.submiting}>Đăng bài</button>
+                        {this.state.submiting ? <img className="center" src={loading_gif} alt="" width="50px"></img> : ""}
                     </div>
                 </form>
             </div>

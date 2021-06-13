@@ -30,7 +30,7 @@ import ForgetPassword from './pages/common/ForgetPassword';
 import CreateNewPassword from './pages/common/CreateNewPassword';
 import IndexAdmin from "./pages/admin/IndexAdmin";
 import CVMobile from "./pages/employer/CVMobile";
-import NewPost from './pages/common/NewPost';
+import NewPost from './pages/employer/NewPost';
 import IndexCompany from './pages/admin/IndexCompany';
 import IndexPost from './pages/admin/IndexPost';
 import IndexCv from './pages/admin/IndexCv';
@@ -224,7 +224,7 @@ const routes=[
         }
     },
     {
-        path: '/post/:id',
+        path: '/tin/:id',
         exact: true,
         main:({match})=><Post match = {match}/>
     },
@@ -234,7 +234,7 @@ const routes=[
         main: () => { return <ManagementPost />}
     },
     {
-        path:'/them-bai-dang',
+        path:'/dang-tin',
         exact: true,
         main: () => { return <NewPost />}
     },
