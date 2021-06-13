@@ -86,7 +86,7 @@ class CV1 extends React.Component {
           title: "GIẢI THƯỞNG"
         }
       ],
-      dob: "10/10/1999",
+      dob: "2012-03-23",
       email: "abc@gmail.com",
       gender: false,
       hashtag: [
