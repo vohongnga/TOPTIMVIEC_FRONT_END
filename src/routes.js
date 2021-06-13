@@ -22,12 +22,15 @@ import IndexMail from './pages/common/IndexMail';
 import DetailMail from './pages/common/DetailMail';
 import IndexMailSend from './pages/common/IndexMailSend';
 import CV from './pages/employer/CV';
+import Post from './pages/common/Post';
+import ManagementPost from './pages/employer/ManagementPost';
 import ListSampleCV from './pages/applicant/cv/ListSampleCV';
 import CVManage from './pages/applicant/CVManage';
 import ForgetPassword from './pages/common/ForgetPassword';
 import CreateNewPassword from './pages/common/CreateNewPassword';
 import IndexAdmin from "./pages/admin/IndexAdmin";
 import CVMobile from "./pages/employer/CVMobile";
+import NewPost from './pages/employer/NewPost';
 import IndexCompany from './pages/admin/IndexCompany';
 import IndexPost from './pages/admin/IndexPost';
 import IndexCv from './pages/admin/IndexCv';
@@ -221,6 +224,21 @@ const routes=[
         }
     },
     {
+        path: '/tin/:id',
+        exact: true,
+        main:({match})=><Post match = {match}/>
+    },
+    {
+        path:'/quan-ly-tin',
+        exact: true,
+        main: () => { return <ManagementPost />}
+    },
+    {
+        path:'/dang-tin',
+        exact: true,
+        main: () => { return <NewPost />}
+    },
+    {
         path:'/cong-ty',
         exact: true,
         main: () => { return <Company />}
@@ -281,6 +299,7 @@ const routes=[
             }
         }
     },
+    
     {
         path:'/mobile/cv/:id',
         exact: true,
@@ -362,7 +381,5 @@ const routes=[
         exact: false,
         main: () => <NotFoundPage />
     }
-    
-
 ];
 export default routes;

@@ -58,9 +58,11 @@ class Login extends Component {
           });
           this.cookies.set("token", res.data.token, { expires: 0 });
           this.setState({ notif: "" });
-          this.props.history.push("/");
           return;
         }
+      })
+      .then(res => {
+        this.props.history.push("/");
       })
       .catch((err) => {
         this.setState({ loading: false });
