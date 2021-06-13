@@ -3,8 +3,6 @@ import Aos from "aos";
 import JobItem from '../../components/common/JobItem';
 import '../../style.css';
 
-import * as services from './../../services/ListService';
-
 class ManagementPost extends Component{
 
     constructor(props) {
