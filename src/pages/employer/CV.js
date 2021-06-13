@@ -10,6 +10,7 @@ import NotFoundPage from '../NotFoundPage';
 import SendMailModal from '../../components/employer/mail/SendMailModal';
 import DeleteCVDialog from '../../components/applicant/DeleteCVDialog';
 import Cookies from 'universal-cookie';
+import Moment from 'moment';
 
 class CV extends Component{
     constructor(props) {
@@ -44,6 +45,7 @@ class CV extends Component{
         callApi("/cv/" + this.props.id, 'GET').then(rs => {
             this.setState({loading: false});
             if (rs) {
+                rs.data.dob = Moment(rs.data.dob).format('DD-MM-yyyy');
                 this.setState({"data": rs.data});
             }
         });

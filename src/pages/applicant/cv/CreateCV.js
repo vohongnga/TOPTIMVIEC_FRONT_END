@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import callApi from '../../../utils/apiCaller';
 import CV1 from '../../../components/cv/cv1/CV1';
 import Cookies from 'universal-cookie';
+import Moment from 'moment';
 
 class CreateCV extends Component {
     constructor(props) {
@@ -17,11 +18,13 @@ class CreateCV extends Component {
         if (this.props.id) {
             this.setState({ loading: true });
             callApi("/cv/" + this.props.id, 'GET').then(rs => {
-                this.setState({ loading: false });
+                
                 if (rs) {
                     this.data = rs.data;
+                    this.data.dob = Moment(this.data.dob).format('yyyy-MM-DD');  
                 }
-            });
+                this.setState({ loading: false });
+            });   
         }
     }
     onSubmitCV = () => {
@@ -46,7 +49,7 @@ class CreateCV extends Component {
         return (
             <div>
                 <div className="overflow-auto h-100 my-5">
-                    <CV1 edit={true} onChangeState={this.onChangeState} data={this.data} /> 
+                    {(!this.state.loading) ?  <CV1 edit={true} onChangeState={this.onChangeState} data={this.data} /> :"" }
                 </div>
                 <div className="fixed-bottom mr-4 mb-4">
                     <div className="text-right">
