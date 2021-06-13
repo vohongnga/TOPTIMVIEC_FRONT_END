@@ -18,3 +18,22 @@ export const getList = (id_list) => {
 export const deleteCV = (id_list, id_cv) => {
     return callApi('list-candidate/'+id_list+'/'+id_cv, 'DELETE');
 }
+export const getPost = (id)=>{
+    return callApi('post/'+id,'GET');
+}
+export const getMyPosts = ()=>{
+    return callApi('post/my?page=0','GET');
+}
+export const newPost = (title, description, request, benefit, salary, place,hashtag,address,deadline)=>{
+    return callApi('post','POST',{
+        "title":title,
+        "description": description,
+        "request": request,
+        "benefit": benefit,
+        "place": place,
+        "salary": salary,
+        "deadline": deadline,
+        "hashtag": hashtag,
+        "address": address
+    })
+}
