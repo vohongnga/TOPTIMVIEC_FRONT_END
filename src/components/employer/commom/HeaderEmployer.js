@@ -66,7 +66,7 @@ class HeaderEmployer extends Component {
                     </ul>
 
                     <div className="navbar-nav ml-auto">
-                        <Link className="btn btn-success text-truncate mt-1 mt-md-0"  to="#">Đăng tin</Link>
+                        <Link className="btn btn-success text-truncate mt-1 mt-md-0"  to="/dang-tin">Đăng tin</Link>
                         <Notification />
                         <li className="nav-item dropdown ml-lg-3 mr-lg-2">
                             <div className="nav-link dropdown-toggle p-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img className="rounded-circle" src={this.state.avatar} width="38px" height="38px" alt=""></img></div>

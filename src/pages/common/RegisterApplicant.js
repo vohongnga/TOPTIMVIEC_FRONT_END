@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ApplicantService from "../../services/ApplicantService";
 import loading_gif from "../../image/loader.gif";
-
+import { withRouter } from "react-router";
 class RegisterApplicant extends Component {
     constructor(props) {
         super(props);
@@ -103,7 +103,7 @@ class RegisterApplicant extends Component {
             ApplicantService.fetchApplicantAPI(name, email, gender, new Date(dob), password).then(res => {
                 this.setState({ loading: false });
                 if (res.status === 201) {
-                    window.location.href = "/dang-ky/xac-nhan";
+                    this.props.history.push("/dang-ky/xac-nhan");
                 }
     
             }).catch(err => {
@@ -199,4 +199,4 @@ class RegisterApplicant extends Component {
     }
 }
     
-export default RegisterApplicant;
+export default withRouter(RegisterApplicant);

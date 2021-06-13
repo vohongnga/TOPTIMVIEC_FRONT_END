@@ -141,8 +141,7 @@ class CvContent extends Component {
     return result;
   };
   onChoose = (e, id) => {
-    e.stopPropagation(); 
-
+    e.stopPropagation();
     window.open("/cv/" + id, "_blank");
   };
   showCv = (cvs) => {
