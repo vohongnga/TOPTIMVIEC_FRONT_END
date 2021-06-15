@@ -26,9 +26,14 @@ class CV extends Component{
         window.$('#deleteCVDialog').modal('show');
     }
     onDelete = () => {
+        const role = this.cookies.get('role');
         callApi("/cv/" + this.props.id, 'DELETE').then(rs => {
             window.$('#deleteCVDialog').modal('hide');
-            this.props.history.push("/quan-ly-cv");
+            if(role === "admin"){
+                this.props.history.push("/admin/quan-ly-cv");
+            }else if (role === "applicant"){
+                this.props.history.push("/quan-ly-cv");
+            }
         });
     }
     onChooseCV = (e) => {
@@ -68,7 +73,8 @@ class CV extends Component{
                                 <button className="btn btn-primary btn-lg shadow" onClick={this.onContact}>Liên hệ</button>
                             </div>
                         </div> 
-                    : 
+                    : " "}
+                    {this.state.role === "applicant" ?
                         <div className="fixed-bottom mr-4 mb-4">
                             <div className="text-right">
                                 <Link className="btn btn-primary btn-lg shadow" to={ "/sua-cv/" + this.props.id }>Sửa</Link>
@@ -76,8 +82,15 @@ class CV extends Component{
                             <div className="mt-2 text-right">
                                 <button className="btn btn-danger btn-lg shadow" onClick={this.onChoiceDelete}>Xóa</button>
                             </div>
-                        </div> }
-                    
+                        </div> 
+                    : " " }
+                    {this.state.role === "admin" ? 
+                        <div className="fixed-bottom mr-4 mb-4">
+                            <div className="mt-2 text-right">
+                                <button className="btn btn-danger btn-lg shadow" onClick={this.onChoiceDelete}>Xóa</button>
+                            </div>
+                        </div>
+                    : " "  }
                     {this.state.role === "employer" ? <ChooseCVModal /> : <DeleteCVDialog onDelete={this.onDelete}/> }
                     {this.state.role === "employer" ? <SendMailModal id_applicant={this.state.data.applicant} /> : ""}
                 </div> : 
