@@ -151,7 +151,7 @@ class Post extends Component{
                             </div>
                         </div>
                     : " " }
-                    {this.state.role === "applicant" ? <SendMailCvModal id_employer={this.props.match.params.id}/> : "" }
+                    {this.state.role === "applicant" ? <SendMailCvModal id_employer ={id} /> : "" }
                     <DeletePostModal onDelete = {this.onDelete}/>
                 </div>
             );
