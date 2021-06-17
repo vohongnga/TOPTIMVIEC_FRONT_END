@@ -13,7 +13,7 @@ import SendMailCvModal from '../../components/applicant/mail/SendMailCvModal';
 import Cookies from 'universal-cookie';
 import callApi from "../../utils/apiCaller";
 import DeletePostModal from '../../components/admin/post/DeletePostModal';
-import {Link} from "react-router-dom";
+
 class Post extends Component{
     constructor(props) {
         super(props);
@@ -137,20 +137,16 @@ class Post extends Component{
                                 <div className="col-12"><h1 className="h2 text-break text-center pointer " >{this.state.post.employer.name}</h1></div> }
                                 <div className="col-12 mt-3 text-center">
                                     {this.state.role === "applicant" || this.state.role === "admin" ? <button className="btn btn-primary" onClick={(e) =>this.toCompany(id)}>Xem chi tiết</button> : ""}
+                                    {this.state.role === "employer" ? 
+                                        <div>
+                                            <button className="btn btn-success btn-lg shadow" to=" " >Sửa</button>  &nbsp;
+                                            <button className="btn btn-danger btn-lg shadow" onClick={(e) =>this.onChoiceDelete(e, id_post)}>Xóa</button>
+                                        </div>
+                                    : " " }
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {this.state.role === "employer" ? 
-                        <div className="fixed-bottom mr-4 mb-4">
-                            <div className="text-right">
-                                <Link className="btn btn-primary btn-lg shadow" to=" " >Sửa</Link>
-                            </div>
-                            <div className="mt-2 text-right">
-                                <button className="btn btn-danger btn-lg shadow" onClick={(e) =>this.onChoiceDelete(e, id_post)}>Xóa</button>
-                            </div>
-                        </div>
-                    : " " }
                     {this.state.role === "applicant" ? <SendMailCvModal id_employer ={id} /> : "" }
                     <DeletePostModal onDelete = {this.onDelete}/>
                 </div>
