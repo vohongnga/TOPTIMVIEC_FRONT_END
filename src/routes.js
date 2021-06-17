@@ -35,6 +35,7 @@ import IndexCompany from './pages/admin/IndexCompany';
 import IndexPost from './pages/admin/IndexPost';
 import IndexCv from './pages/admin/IndexCv';
 import CreateCV from './pages/applicant/cv/CreateCV';
+import ManagePost from './pages/common/ManagePost';
 
 
 const cookies = new Cookies();
@@ -59,6 +60,26 @@ const routes=[
             else {
                 return <Index />;
             }
+        }
+    },
+    {
+        path: '/quan-ly-tin',
+        exact: true,
+        main: () => {
+            const role = cookies.get('role');
+            if (role === "employer") {
+                return <ManagePost />;
+            }
+            else {
+                return <Index />;
+            }
+        }
+    },
+    {
+        path:'/bai-dang/sua/:id',
+        exact: false,
+        main: (match) => {
+            return <GetList id={match.match.params.id}/>
         }
     },
     {
