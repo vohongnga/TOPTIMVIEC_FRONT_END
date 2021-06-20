@@ -9,21 +9,27 @@ import {connect} from 'react-redux';
 import * as actions from './../../actions/index';
 import * as services from './../../services/ListService';
 import loading_gif from './../../image/loader.gif';
+import SendMailCvModal from '../../components/applicant/mail/SendMailCvModal';
+import Cookies from 'universal-cookie';
+import callApi from "../../utils/apiCaller";
+import DeletePostModal from '../../components/admin/post/DeletePostModal';
 
 class Post extends Component{
     constructor(props) {
         super(props);
         this.state = {
             post: null,
-            loading: false
+            loading: false,
+            choice_delete: ""
         }
         Aos.init({duration: 1000});
+        this.cookies = new Cookies();
     }
 
     toCompany = (id) => {
         this.props.history.push("/cong-ty/"+id);
     }
-
+    
     onClickHashtag(e, hashtag) {
         e.stopPropagation();
         this.props.onChangeHashtag([hashtag]);
@@ -41,8 +47,29 @@ class Post extends Component{
             this.props.history.push("/");
         }
     }
-
+    onSendMail = () => {
+        window.$('#sendMailCvModal').modal('show');
+    }
+    onChoiceDelete = (e,id) => {
+        e.stopPropagation();
+        this.setState({choice_delete: id});
+        window.$("#deletePostModal").modal('show');
+    }
+    onDelete = () => {
+        const role = this.cookies.get('role');
+        callApi("post/" + this.state.choice_delete, "DELETE").then(rs => {
+            window.$("#deletePostModal").modal('hide');
+            if(role === "admin") {
+                this.props.history.push("/admin/quan-ly-tin");
+            }else if (role === "employer"){
+                this.props.history.push("/quan-ly-tin");
+            }
+            
+        })
+    }
     componentDidMount(){
+       const role = this.cookies.get('role');
+       this.setState({role});
        var match= this.props.match;
        if(match) {
             var id = match.params.id;
@@ -64,13 +91,16 @@ class Post extends Component{
             let requestList = this.state.post.request.split("\n");
             let id = this.state.post.employer._id;
             const jobRecommend = this.state.post.recommend;
+            let id_post = this.state.post._id;
             return (
                 <div className="col-10 mx-auto ">
                     <div className ="row">
                         <div className="col-sm-12 col-md-8 col-lg-8 mt-3">
                             <div className="bg-white rounded mt-4 p-3">
                                 <h1 className="mb-5 h1">{this.state.post.title}</h1>
-                                <button type="button" className="btn btn-success btn-lg btn-block">Apply now</button>
+                                {this.state.role === "applicant" ? <button type="button" className="btn btn-success btn-lg btn-block" onClick={this.onSendMail}>Ứng tuyển ngay</button> : " " }
+                                {this.state.role === "employer" ? <button type="button" className="btn btn-success btn-lg btn-block" >Gửi thư giới thiệu tin</button> : " " }
+                                {this.state.role === "admin" ? <button type="button" className="btn btn-danger btn-lg btn-block" onClick={(e) =>this.onChoiceDelete(e, id_post)}>Xóa</button> : " " }
                                 <div className="infor border-top-bottom mt-4">
                                     <div className = "hashtag mb-3 mt-3">
                                         {hashtags.map((hashtag, index) => ( <button key={index} type="button" className="btn btn-light btn-sm mr-1 mt-1" onClick={(e) =>this.onClickHashtag(e, hashtag)}>{hashtag}</button>))}
@@ -103,13 +133,22 @@ class Post extends Component{
                             <div className="container position-sticky list-title bg-white rounded row p-3 mx-auto">
                                 <div className="col-12 text-center mt-2"><p className="text-muted">Công ty</p></div>
                                 <img className="mx-auto my-5" src={this.state.post.employer.avatar} alt="" width="170px" onClick={(e) =>this.toCompany(id)}></img>
-                                <div className="col-12"><h1 className="h2 text-break text-center pointer " onClick={(e) =>this.toCompany(id)}>{this.state.post.employer.name}</h1></div>
+                                {this.state.role === "applicant" || this.state.role === "admin" ? <div className="col-12"><h1 className="h2 text-break text-center pointer " onClick={(e) =>this.toCompany(id)}>{this.state.post.employer.name}</h1></div> : 
+                                <div className="col-12"><h1 className="h2 text-break text-center pointer " >{this.state.post.employer.name}</h1></div> }
                                 <div className="col-12 mt-3 text-center">
-                                    <button className="btn btn-primary" onClick={(e) =>this.toCompany(id)}>Xem chi tiết</button>
+                                    {this.state.role === "applicant" || this.state.role === "admin" ? <button className="btn btn-primary" onClick={(e) =>this.toCompany(id)}>Xem chi tiết</button> : ""}
+                                    {this.state.role === "employer" ? 
+                                        <div>
+                                            <button className="btn btn-success btn-lg shadow" to=" " >Sửa</button>  &nbsp;
+                                            <button className="btn btn-danger btn-lg shadow" onClick={(e) =>this.onChoiceDelete(e, id_post)}>Xóa</button>
+                                        </div>
+                                    : " " }
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {this.state.role === "applicant" ? <SendMailCvModal id_employer ={id} /> : "" }
+                    <DeletePostModal onDelete = {this.onDelete}/>
                 </div>
             );
         }
