@@ -5,7 +5,6 @@ import { getMailById } from "../../../services/ReceiveMailService";
 import loading_gif from "../../../image/loader.gif";
 import JobItem from "../JobItem";
 import CandidateItem from "../../employer/index/CandidateItem";
-import ChooseCVModal from "../../employer/index/ChooseCVModal";
 import {Link} from "react-router-dom";
 import SendMailModal from "../../employer/mail/SendMailModal";
 import SendMailCvModal from "../../applicant/mail/SendMailCvModal";
@@ -122,7 +121,6 @@ class GetMail extends Component {
         </div>
         {this.state.attach_post ? <div className="job-item mt-3"><JobItem job={this.state.attach_post} /></div> : ""}
         {this.state.attach_cv ? <div className="job-item mt-3"><CandidateItem job={this.state.attach_cv} /></div> : ""}
-        <ChooseCVModal/>
         {this.state.reply ? <Link to="#" className="btn btn-success text-white mt-2" role="button" onClick={this.onReply}>Trả lời</Link> : ""}
         {this.role === "employer" ? <SendMailModal id_applicant={this.state.sender._id}/> : ""}
         {this.role === "applicant" ? <SendMailCvModal id_employer={this.state.sender._id}/> : ""}

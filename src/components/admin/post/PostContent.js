@@ -6,7 +6,7 @@ import { Typeahead } from "react-bootstrap-typeahead";
 import { connect } from "react-redux";
 import * as actions from "../../../actions/index";
 import DeletePostModal from "./DeletePostModal";
-
+import { Link } from "react-router-dom";
 class PostContent extends Component {
   constructor(props) {
     super(props);
@@ -103,6 +103,10 @@ class PostContent extends Component {
         this.setPage(this.state.page);
     })
   }
+  onChoose = (e, id) => {
+    e.stopPropagation(); 
+    window.open("/tin/" + id, "_blank");
+  };
   showPost = (posts) => {
     let result = null;
     if (posts.length > 0) {
@@ -110,7 +114,7 @@ class PostContent extends Component {
         return (
           <tr key={index} className="">
             <th scope="col">{this.state.page * 8 + index - 7}</th>
-            <td>{post.title}</td>
+            <td><Link className="text-dark" to="#" onClick = {(e) => this.onChoose(e,post._id)}>{post.title}</Link></td>
             <td>{post.employer}</td>
             <td>{this.showHashtag(post.hashtag)}</td>
             <td>{this.showPlace(post.place)}</td>
