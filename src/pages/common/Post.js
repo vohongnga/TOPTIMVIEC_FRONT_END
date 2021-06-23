@@ -48,7 +48,13 @@ class Post extends Component{
         }
     }
     onSendMail = () => {
-        window.$('#sendMailCvModal').modal('show');
+        const role = this.cookies.get('role');
+        if(role === "applicant"){
+            window.$('#sendMailCvModal').modal('show');
+        }else {
+            this.props.history.push("/dang-nhap");
+        }
+        
     }
     onChoiceDelete = (e,id) => {
         e.stopPropagation();
@@ -98,7 +104,7 @@ class Post extends Component{
                         <div className="col-sm-12 col-md-8 col-lg-8 mt-3">
                             <div className="bg-white rounded mt-4 p-3">
                                 <h1 className="mb-5 h1">{this.state.post.title}</h1>
-                                {this.state.role === "applicant" ? <button type="button" className="btn btn-success btn-lg btn-block" onClick={this.onSendMail}>Ứng tuyển ngay</button> : " " }
+                                {this.state.role === "applicant" || !this.state.role ? <button type="button" className="btn btn-success btn-lg btn-block" onClick={this.onSendMail}>Ứng tuyển ngay</button> : " " }
                                 {this.state.role === "employer" ? <button type="button" className="btn btn-success btn-lg btn-block" >Gửi thư giới thiệu tin</button> : " " }
                                 {this.state.role === "admin" ? <button type="button" className="btn btn-danger btn-lg btn-block" onClick={(e) =>this.onChoiceDelete(e, id_post)}>Xóa</button> : " " }
                                 <div className="infor border-top-bottom mt-4">
