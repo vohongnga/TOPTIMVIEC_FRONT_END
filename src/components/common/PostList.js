@@ -6,6 +6,7 @@ import Aos from "aos";
 import img from './../../image/document-256.png';
 import loading_gif from './../../image/loader.gif';
 import callApi from '../../utils/apiCaller';
+import DeletePostModal from "../../components/admin/post/DeletePostModal";
 
 class PostList extends Component {
     constructor(props) {
@@ -34,6 +35,17 @@ class PostList extends Component {
             this.setState(rs.data);
             this.setState({loading: false});
         });
+    }
+    onChoiceDelete = (e,id) => {
+        e.stopPropagation();
+        this.setState({choice_delete: id});
+        window.$("#deletePostModal").modal('show');
+      }
+    onDelete = () => {
+        callApi("post/" + this.state.choice_delete, "DELETE").then(rs => {
+            window.$("#deletePostModal").modal('hide');
+            this.setPage(this.state.page);
+        })
     }
     componentDidMount() {
         this.setCountPage();
@@ -77,8 +89,10 @@ class PostList extends Component {
                         </div>
                         <div className="col col-2 justify-content-center align-self-center">
                             <Link to={"/sua-bai-dang/" + job._id} className="btn btn-primary mr-2">Sửa</Link>
-                            <Link to = "" className ="btn btn-danger">Xoá</Link>
+                            <button type="button" className="btn btn-danger" onClick={(e) =>this.onChoiceDelete(e, job._id)}>
+                                Xóa</button>
                         </div>
+                        <DeletePostModal  onDelete={this.onDelete}/>
                     </div>
                 )
             })
