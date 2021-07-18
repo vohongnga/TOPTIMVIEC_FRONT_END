@@ -23,7 +23,6 @@ import DetailMail from './pages/common/DetailMail';
 import IndexMailSend from './pages/common/IndexMailSend';
 import CV from './pages/employer/CV';
 import Post from './pages/common/Post';
-import ManagementPost from './pages/employer/ManagementPost';
 import ListSampleCV from './pages/applicant/cv/ListSampleCV';
 import CVManage from './pages/applicant/CVManage';
 import ForgetPassword from './pages/common/ForgetPassword';
@@ -36,7 +35,6 @@ import IndexPost from './pages/admin/IndexPost';
 import IndexCv from './pages/admin/IndexCv';
 import CreateCV from './pages/applicant/cv/CreateCV';
 import ManagePost from './pages/common/ManagePost';
-
 
 const cookies = new Cookies();
 
@@ -76,10 +74,16 @@ const routes=[
         }
     },
     {
-        path:'/bai-dang/sua/:id',
+        path:'/sua-bai-dang/:id',
         exact: false,
         main: (match) => {
-            return <GetList id={match.match.params.id}/>
+            const role = cookies.get('role');
+            if (role === "employer") {
+                return <NewPost match = {match} />;
+            }
+            else {
+                return <Index />;
+            }
         }
     },
     {
@@ -250,14 +254,17 @@ const routes=[
         main:({match})=><Post match = {match}/>
     },
     {
-        path:'/quan-ly-tin',
-        exact: true,
-        main: () => { return <ManagementPost />}
-    },
-    {
         path:'/dang-tin',
         exact: true,
-        main: () => { return <NewPost />}
+        main: () => {
+            const role = cookies.get('role');
+            if (role === "employer") {
+                return <NewPost />;
+            }
+            else {
+                return <Index />;
+            }
+        }
     },
     {
         path:'/cong-ty',

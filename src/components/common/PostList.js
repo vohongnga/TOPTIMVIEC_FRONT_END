@@ -68,7 +68,7 @@ class PostList extends Component {
         if (jobs.length > 0) {
             result = jobs.map((job, index) => {
                 return (
-                    <div className="row mt-3">
+                    <div className="row mt-3" key={index}>
                         <div className="col col-10">
                             <JobItem
                                 key={index}
@@ -76,7 +76,7 @@ class PostList extends Component {
                             />
                         </div>
                         <div className="col col-2 justify-content-center align-self-center">
-                            <Link to="" className="btn btn-primary mr-2">Sửa</Link>
+                            <Link to={"/sua-bai-dang/" + job._id} className="btn btn-primary mr-2">Sửa</Link>
                             <Link to = "" className ="btn btn-danger">Xoá</Link>
                         </div>
                     </div>
