@@ -69,7 +69,7 @@ const routes=[
                 return <ManagePost />;
             }
             else {
-                return <Index />;
+                return <Redirect to="/" />;
             }
         }
     },
@@ -82,7 +82,7 @@ const routes=[
                 return <NewPost match = {match} />;
             }
             else {
-                return <Index />;
+                return <Redirect to="/" />;
             }
         }
     },
