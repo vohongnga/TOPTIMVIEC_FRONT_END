@@ -13,6 +13,7 @@ import SendMailCvModal from '../../components/applicant/mail/SendMailCvModal';
 import Cookies from 'universal-cookie';
 import callApi from "../../utils/apiCaller";
 import DeletePostModal from '../../components/admin/post/DeletePostModal';
+import { Link } from "react-router-dom";
 
 class Post extends Component{
     constructor(props) {
@@ -145,7 +146,7 @@ class Post extends Component{
                                     {this.state.role === "applicant" || this.state.role === "admin" ? <button className="btn btn-primary" onClick={(e) =>this.toCompany(id)}>Xem chi tiết</button> : ""}
                                     {this.state.role === "employer" ? 
                                         <div>
-                                            <button className="btn btn-success btn-lg shadow" to=" " >Sửa</button>  &nbsp;
+                                            <Link to={"/sua-bai-dang/" + id_post} className="btn btn-success btn-lg  mr-2">Sửa</Link>
                                             <button className="btn btn-danger btn-lg shadow" onClick={(e) =>this.onChoiceDelete(e, id_post)}>Xóa</button>
                                         </div>
                                     : " " }
