@@ -170,10 +170,11 @@ class NewPost extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        let { title, description, request, benefit, salary, place, hashtag, address, deadline } = this.state;
+        let { title, description, request, benefit, salary, place, hashtag, address, deadline, action } = this.state;
         if (title && description && request && benefit && salary && place.length > 0 && hashtag.length > 0 && address && deadline) {
             this.setState({ submiting: true });
-            services.newPost(title, description, request, benefit, salary, place, hashtag, address, deadline)
+            if(action === 'add') {
+                services.newPost(title, description, request, benefit, salary, place, hashtag, address, deadline)
                 .then(res => {
                     this.setState({ submiting: false });
                     if (res.status === 200) {
@@ -190,6 +191,25 @@ class NewPost extends Component {
                         this.setState({ notifApi: "(*) Bạn không có quyền đăng tin tuyển dụng" });
                     }
                 })
+            } else {
+                services.editPost(this.props.match.params.id, title, description, request, benefit, salary, place, hashtag, address, deadline)
+                .then(res => {
+                    this.setState({ submiting: false });
+                    if (res.status === 200) {
+                        this.props.history.push("/tin/" + this.props.match.params.id);
+                    }
+                })
+                .catch(err => {
+                    this.setState({ submiting: false });
+                    if (err.status === 400) {
+                        this.setState({ notifApi: "(*) Vui lòng nhập đầy đủ thông tin" });
+                    } else if (err.status === 403) {
+                        this.setState({ notifApi: "(*) Có lỗi xảy ra khi kết nối CSDL" });
+                    } else if (err.status === 401) {
+                        this.setState({ notifApi: "(*) Bạn không có quyền đăng tin tuyển dụng" });
+                    }
+                })
+            }
         } else if (!title) {
             let notif = this.state.notif;
             notif.title = true;
@@ -230,9 +250,9 @@ class NewPost extends Component {
     }
 
     componentDidMount() {
-        var match = this.props.match;
+        let match = this.props.match;
         if (match.params.id) {
-            var id = match.params.id;
+            let id = match.params.id;
             this.setState({ loading: true });
             this.setState({ action: "edit" });
             services.getPost(id).then(res => {
@@ -253,16 +273,16 @@ class NewPost extends Component {
 
     render() {
         document.body.style.backgroundColor = "#eceff1";
-        var ref = React.createRef();
-        var h2 = "Đăng tin tuyển dụng";
-        var btn = "Đăng bài";
+        let ref = React.createRef();
+        let h2 = "Đăng tin tuyển dụng";
+        let btn = "Đăng bài";
         if(this.state.action === "edit")
         {
             h2="Sửa bài đăng";
             btn = "Sửa bài"
         }
         return (
-            <div className="col-lg-8 mx-lg-auto center mb-5 mt-5  center-text bg-white rounded p-4">
+            <div className="col-lg-8 mx-lg-auto col-md-10 mx-md-auto center mb-5 mt-5  center-text bg-white rounded p-4">
                 {this.state.action !== "edit" || this.state.loading === false ?
                 <div>
                         <h2 className="h2">{h2}</h2>
@@ -359,7 +379,7 @@ class NewPost extends Component {
 
 
     showListPlace = (list_place) => {
-        var result = null;
+        let result = null;
         if (list_place.length > 0) {
             result = list_place.map((place, index) => {
                 return (
