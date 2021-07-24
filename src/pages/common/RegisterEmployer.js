@@ -15,7 +15,8 @@ class RegisterEmployer extends Component {
                 password: false,
                 name: false,
                 email: false,
-                repassword: false
+                repassword: false,
+                validate: false,
             },
             notifmess: "",
             loading: false
@@ -64,11 +65,18 @@ class RegisterEmployer extends Component {
         if (!email) {
             const notif = this.state.notif;
             notif.email = true;
+            notif.validate = false;
             this.setState({ notif });
 
+        }else if(!this.validateEmail()){
+            const notif = this.state.notif;
+            notif.validate = true;
+            notif.email = false;
+            this.setState({ notif });
         } else {
             const notif = this.state.notif;
             notif.email = false;
+            notif.validate = false;
             this.setState({ notif });
         }
     }
@@ -85,11 +93,15 @@ class RegisterEmployer extends Component {
             this.setState({ notif });
         }
     }
+    validateEmail = () => {
+        const email = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return email.test(this.state.email)
+    }
     onSubmit = (e) => {
         e.preventDefault();
         this.setState({ loading: true });
         const {name,email,password,repassword} = this.state;
-            if(password === repassword && name && email && password){
+            if(password === repassword && name && email && password && this.validateEmail()){
                 EmployerService.fetchEmployerAPI(name,email,password).then(res => {
                     this.setState({ loading: false });
                     if(res.status === 201){
@@ -106,6 +118,13 @@ class RegisterEmployer extends Component {
                         this.setState({notifmess: "(*) Email đã tồn tại"});
                     }
                 })
+            }else if(!name && !email && !password){
+                this.setState({ loading: false });
+                const notif = this.state.notif;
+                notif.password = true;
+                notif.email = true;
+                notif.name = true;
+                this.setState({ notif });
             }else if(password !== repassword){
                 this.setState({ loading: false });
                 const notif = this.state.notif;
@@ -125,6 +144,11 @@ class RegisterEmployer extends Component {
                 this.setState({ loading: false });
                 const notif = this.state.notif;
                 notif.password = true;
+                this.setState({ notif });
+            }else if(!this.validateEmail()){
+                this.setState({ loading: false });
+                const notif = this.state.notif;
+                notif.validate = true;
                 this.setState({ notif });
             }
             
@@ -149,6 +173,7 @@ class RegisterEmployer extends Component {
                         
                     </div>
                     {this.state.notif.email === true ? <p className="text-danger mt-1">(*) Email không được để trống!</p> : ""}
+                    {this.state.notif.validate === true ? <p className="text-danger mt-1">(*) Email không đúng định dạng!</p> : ""}
                     <div className="info">
                         <label >Mật khẩu (*):</label>
                         <input type="password" name="password"  className="form-control" placeholder="" onChange={this.onHandleChange} onBlur={this.onBlurPassword} />

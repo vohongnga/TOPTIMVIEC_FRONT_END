@@ -16,7 +16,8 @@ class RegisterApplicant extends Component {
                 password: false,
                 name: false,
                 email: false,
-                repassword: false
+                repassword: false,
+                validate: false
             },
             notifmess: "",
             loading: false
@@ -64,11 +65,18 @@ class RegisterApplicant extends Component {
         if (!email) {
             const notif = this.state.notif;
             notif.email = true;
+            notif.validate = false;
             this.setState({ notif });
 
-        } else {
+        } else if(!this.validateEmail()){
+            const notif = this.state.notif;
+            notif.validate = true;
+            notif.email = false;
+            this.setState({ notif });
+        }else {
             const notif = this.state.notif;
             notif.email = false;
+            notif.validate = false
             this.setState({ notif });
         }
     }
@@ -95,11 +103,15 @@ class RegisterApplicant extends Component {
             this.setState({notif: "(*) Mật khẩu không được để trống!"});
         }
     }
+    validateEmail = () => {
+        const email = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return email.test(this.state.email)
+    }
     onSubmit = (e) => {
         e.preventDefault();
         this.setState({ loading: true });
         const { name, email, gender, dob, password, repassword} = this.state;
-        if(password === repassword && name && email && password){
+        if(password === repassword && name && email && password && this.validateEmail()){
             ApplicantService.fetchApplicantAPI(name, email, gender, new Date(dob), password).then(res => {
                 this.setState({ loading: false });
                 if (res.status === 201) {
@@ -116,6 +128,13 @@ class RegisterApplicant extends Component {
                     this.setState({ notifmess: "(*) Email đã tồn tại" });
                 }
             })
+        }else if(!name && !email && !password){
+            this.setState({ loading: false });
+            const notif = this.state.notif;
+            notif.password = true;
+            notif.email = true;
+            notif.name = true;
+            this.setState({ notif });
         }else if(password !== repassword){
             this.setState({ loading: false });
             const notif = this.state.notif;
@@ -135,6 +154,11 @@ class RegisterApplicant extends Component {
             this.setState({ loading: false });
             const notif = this.state.notif;
             notif.password = true;
+            this.setState({ notif });
+        }else if(!this.validateEmail()){
+            this.setState({ loading: false });
+            const notif = this.state.notif;
+            notif.validate = true;
             this.setState({ notif });
         }
         
@@ -160,6 +184,7 @@ class RegisterApplicant extends Component {
 
                     </div>
                     {this.state.notif.email === true ? <p className="text-danger mt-1">(*) Email không được để trống!</p> : ""}
+                    {this.state.notif.validate === true ? <p className="text-danger mt-1">(*) Email không đúng định dạng!</p> : ""}
                     <div className="info" >
                         <label >Giới tính:</label> &#12644;
                         <input type="radio" name="gender" value={false} onChange={this.onHandleChange} checked={this.state.gender === false} />&nbsp;Nam &#12644;
