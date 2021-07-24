@@ -37,3 +37,16 @@ export const newPost = (title, description, request, benefit, salary, place,hash
         "address": address
     })
 }
+export const editPost = (id,title, description, request, benefit, salary, place,hashtag,address,deadline)=>{
+    return callApi('post/'+id,'PUT',{
+        "title":title,
+        "description": description,
+        "request": request,
+        "benefit": benefit,
+        "place": place,
+        "salary": salary,
+        "deadline": deadline,
+        "hashtag": hashtag,
+        "address": address
+    })
+}
